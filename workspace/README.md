@@ -121,18 +121,32 @@ Use the CLI command below to build and serve the application. You can use the Ch
 
 > ng serve
 
+### Install Spark Design System
+
+Install the required packages in the workspace - they will now be available to all application projects. Nice!
+
+> `yarn add @sparkdesignsystem/spark @sparkdesignsystem/spark-angular -D`
+
+The following warning was displayed after installing the packages.
+
+```ts
+$ ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points
+Warning: Entry point '@sparkdesignsystem/spark-angular' contains deep imports into 'D:/development/github/quicken-loans/workspace/node_modules/lodash/uniqueId'. This is probably not a
+problem, but may cause the compilation of entry points to be out of order.
+```
+
 ## Code Formatting
 
 Install the following packages.
 
-````json
+```json
 "husky": "^4.2.5",
 "pretty-quick": "^3.0.0",
-```json
+```
 
 > `yarn add husky pretty-quick`
 
-Add the `husky` configuration in the root of the *package.json* file.
+Add the `husky` configuration in the root of the _package.json_ file.
 
 ```json
 "husky": {
@@ -140,21 +154,27 @@ Add the `husky` configuration in the root of the *package.json* file.
       "pre-commit": "pretty-quick --staged  --pattern=\"**/*.*(ts|json)\" --verbose"
     }
   },
-````
+```
+
+Verify your lint configuration.
+
+> yarn lint
+
+Fix any formatting issues.
 
 ## Create Angular Library Projects
 
 ```ts
-ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=actions
-ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=components
-ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=configuration
-ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=error-handling
-ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=foundation
-ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=http-service
-ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=logging
-ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=notification
-ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=rules-engine
-ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=security
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=actions
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=components
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=configuration
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=error-handling
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=foundation
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=http-service
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=logging
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=notification
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=rules-engine
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=security
 ```
 
 ## Create Server Application Project
@@ -245,3 +265,7 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 ## Further help
 
 Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
+
+```
+
+```
