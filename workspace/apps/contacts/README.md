@@ -245,34 +245,32 @@ nx build <nest-app> --configuration=production
 Serve the application.
 
 ```
-nx serve video --port=<1234>
+nx serve <nest-app> --port=<1234>
 ```
 
 The output of the serve command.
 
 ```ts
-nx serve video
-
-> ng run video:serve
+ng serve contacts
 Starting type checking service...
 Using 6 workers with 2048MB memory limit
 Type checking in progress...
-Hash: 587bd377f031422cf474
-Built at: 07/07/2020 8:32:01 PM
+Hash: 1f50371ef6fa884e85fd
+Built at: 09/05/2020 1:04:14 PM
 Entrypoint main = main.js main.js.map
 chunk {main} main.js, main.js.map (main) 2.26 KiB [entry] [rendered]
-Debugger listening on ws://localhost:52847/849d058f-5f93-4c4e-9590-f20a6ba5390b
-Debugger listening on ws://localhost:52848/849d058f-5f93-4c4e-9590-f20a6ba5390b
+Debugger listening on ws://localhost:52440/60c03caa-d750-4526-9040-d8e89f03d08b
+Debugger listening on ws://localhost:52441/60c03caa-d750-4526-9040-d8e89f03d08b
 For help, see: https://nodejs.org/en/docs/inspector
+[Nest] 12364   - 09/05/2020, 1:04:20 PM   [NestFactory] Starting Nest application...
+[Nest] 12364   - 09/05/2020, 1:04:20 PM   [InstanceLoader] AppModule dependencies initialized +45ms
+[Nest] 12364   - 09/05/2020, 1:04:20 PM   [RoutesResolver] AppController {/api}: +119ms
+[Nest] 12364   - 09/05/2020, 1:04:20 PM   [RouterExplorer] Mapped {/api, GET} route +20ms
+[Nest] 12364   - 09/05/2020, 1:04:20 PM   [NestApplication] Nest application successfully started +8ms
+[Nest] 12364   - 09/05/2020, 1:04:21 PM   Listening at http://localhost:3333/api +478ms
 No type errors found
-Version: typescript 3.8.3
-Time: 11436ms
-[Nest] 23328   - 07/07/2020, 8:32:10 PM   [NestFactory] Starting Nest application...
-[Nest] 23328   - 07/07/2020, 8:32:11 PM   [InstanceLoader] AppModule dependencies initialized +713ms
-[Nest] 23328   - 07/07/2020, 8:32:12 PM   [RoutesResolver] AppController {/api}: +380ms
-[Nest] 23328   - 07/07/2020, 8:32:12 PM   [RouterExplorer] Mapped {/api, GET} route +732ms
-[Nest] 23328   - 07/07/2020, 8:32:13 PM   [NestApplication] Nest application successfully started +520ms
-[Nest] 23328   - 07/07/2020, 8:32:13 PM   Listening at http://localhost:3333/api +536ms
+Version: typescript 3.7.5
+Time: 9415ms
 ```
 
 Load the URL in the browser: http://localhost:3333/api
@@ -280,7 +278,7 @@ Load the URL in the browser: http://localhost:3333/api
 The api output is:
 
 ```json
-{ "message": "Welcome to video!" }
+{ "message": "Welcome to contacts!" }
 ```
 
 ### HTTP
@@ -309,24 +307,16 @@ nx test <nest-app>
 
 ## Going Serverless
 
-See: https://blog.theodo.com/2019/06/deploy-a-nestjs-app-in-5-minutes-with-serverless-framework/
+See [https://serverless.com](https://serverless.com) for more information about targeting
+multiple platforms (i.e., Google Cloud Platform, AWS, or Azure) with a single YAML
+configuration.
 
 > - requires AWS Account
 > - use Serverless package
 
-Install serverless package.
+Install _serverless_ package.
 
-```ts
-npm i serverless
-yarn global add serverless
-```
-
-### AWS Credentials
-
-Create a folder and file to contain the AWS credentials. The credentials contain:
-
-- AWS Access Key Id
-- AWS Secret Access Key
+> `yarn global add serverless`
 
 ### Serverless Build Endpoint
 
@@ -354,7 +344,7 @@ ex: apps\video\src\lambda.ts
 
 ## API Key and Secret Key
 
-Create a new IAM user in AWS. Copy or download the keys. Run the `serverless` command to create a credential store/file. On Windoes, the credential file is stored in the `.aws/credential` location in your local `users/<NAME>` folder.
+Create a new IAM user in AWS. Copy or download the keys. Run the `serverless` command to create a credential store/file. On Windows, the credential file is stored in the `.aws/credential` location in your local `users/<NAME>` folder.
 
 > Short video on creating a new IAM user and accessing keys.
 > https://www.youtube.com/watch?v=KngM5bfpttA
