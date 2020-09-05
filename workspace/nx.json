@@ -17,6 +17,36 @@
     "quicken-contacts-e2e": {
       "tags": [],
       "implicitDependencies": ["quicken-contacts"]
+    },
+    "actions": {
+      "tags": []
+    },
+    "components": {
+      "tags": []
+    },
+    "configuration": {
+      "tags": []
+    },
+    "error-handling": {
+      "tags": []
+    },
+    "foundation": {
+      "tags": []
+    },
+    "http-service": {
+      "tags": []
+    },
+    "logging": {
+      "tags": []
+    },
+    "notification": {
+      "tags": []
+    },
+    "rules-engine": {
+      "tags": []
+    },
+    "security": {
+      "tags": []
     }
   }
 }

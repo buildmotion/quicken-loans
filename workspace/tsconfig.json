@@ -15,7 +15,18 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@valencia/actions": ["libs/actions/src/index.ts"],
+      "@valencia/components": ["libs/components/src/index.ts"],
+      "@valencia/configuration": ["libs/configuration/src/index.ts"],
+      "@valencia/error-handling": ["libs/error-handling/src/index.ts"],
+      "@valencia/foundation": ["libs/foundation/src/index.ts"],
+      "@valencia/http-service": ["libs/http-service/src/index.ts"],
+      "@valencia/logging": ["libs/logging/src/index.ts"],
+      "@valencia/notification": ["libs/notification/src/index.ts"],
+      "@valencia/rules-engine": ["libs/rules-engine/src/index.ts"],
+      "@valencia/security": ["libs/security/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
