@@ -34,7 +34,7 @@ CREATE workspace/.vscode/extensions.json (164 bytes)
 PS D:\development\github\quicken-loans>
 ```
 
-###
+### Nrwl Angular Schematics
 
 Install the following package for the workspace environment to provide the Angular schematics.
 
@@ -86,6 +86,40 @@ UPDATE nx.json (417 bytes)
 \ Installing packages...                                                                                                  \
 √ Packages installed successfully.
 ```
+
+### Configure Chrome Launch Debugger
+
+Configure the Chrome launch debugger using the command pallete.
+
+> Ctrl + P
+> Debug: Open launch.json
+
+- update the port to `4200`
+- update the name to the target project
+
+```json
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Quicken Contacts",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}
+```
+
+### Build and Serve
+
+Use the CLI command below to build and serve the application. You can use the Chrome debugger to view the application using the `launch` configuration above - click `F5` to launch.
+
+> ng serve
 
 ## Create Angular Library Projects
 
