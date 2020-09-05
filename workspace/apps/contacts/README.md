@@ -344,13 +344,31 @@ ex: apps\video\src\lambda.ts
 
 ## API Key and Secret Key
 
-Create a new IAM user in AWS. Copy or download the keys. Run the `serverless` command to create a credential store/file. On Windows, the credential file is stored in the `.aws/credential` location in your local `users/<NAME>` folder.
+Create a new IAM user account in AWS. Copy or download the keys. Run the `serverless` command to create a credential store/file. On Windows, the credential file is stored in the `.aws/credential` location in your local `users/<NAME>` folder.
 
 > Short video on creating a new IAM user and accessing keys.
 > https://www.youtube.com/watch?v=KngM5bfpttA
 
+Your development environment requires AWS credentials. Use the `serverless` CLI to create the file with the API and secret keys. The file supports multiple _profilea_. Therefore, you can have different IAM user accounts associated to different profiles.
+
+The CLI has a `--help` to provide the information for a credentials file.
+
+```ts
+serverless config credentials --help
+Plugin: AwsConfigCredentials
+config credentials ............ Configures a new provider profile for the Serverless Framework
+    --provider / -p (required) ......... Name of the provider. Supported providers: "aws"
+    --key / -k (required) .............. Access key for the provider
+    --secret / -s (required) ........... Secret key for the provider
+    --profile / -n ..................... Name of the profile you wish to create. Defaults to "default"
+    --overwrite / -o ................... Overwrite the existing profile configuration in the credentials file
+```
+
+Use the serverless CLI command to create the credentials file using the _api_ and _secret_ key values from the AWS IAM account.
+
 ```ts
 serverless config credentials --provider aws --key <api-key> --secret <secret-key>
+serverless config credentials --provider aws --profile <default|custom-name> --key <api-key> --secret <secret-key>
 ```
 
 Running the `serverless deploy` command after setting the credentials will create

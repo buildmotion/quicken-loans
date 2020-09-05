@@ -15,11 +15,11 @@ Before executing or writing any code I went through a series of exercises to hel
 7. architecture planning
 8. API planning
 
-![](./resources/reexperience/experience.gif)
+![Experience is required.](./resources/reexperience/experience.gif)
 
 ## Use Cases
 
-![](./resources/reexperience/use-cases.jpg)
+![Action use cases.](./resources/reexperience/use-cases.jpg)
 
 The user needs/wants to use the application in the following ways. There is a set of default criteria for the test. These items are a _must have_ and should be part of the MVP solution. The code test also indicates that additional behaviors are acceptable.
 
