@@ -135,6 +135,16 @@ Warning: Entry point '@sparkdesignsystem/spark-angular' contains deep imports in
 problem, but may cause the compilation of entry points to be out of order.
 ```
 
+Update the application project's `styles.scss` file with the `import` of the spark SCSS file.
+
+> Note: If you are using an Angular Workspace the path will be
+> different from the site documentation.
+
+```css
+/* You can add global styles to this file, and also import other style files */
+@import './../../../node_modules/@sparkdesignsystem/spark/_spark.scss';
+```
+
 ## Application Modules and Configuration
 
 ### Core Module

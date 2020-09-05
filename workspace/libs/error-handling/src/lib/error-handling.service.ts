@@ -1,7 +1,7 @@
 import { Injectable, ErrorHandler } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoggingService, Severity } from '@valencia/logging';
-import { ConfigurationService, IConfiguration } from '@valencia/configuration';
+import { ConfigurationService, IConfiguration, ErrorHandlingConfig } from '@valencia/configuration';
 // import { ErrorHandlingConfig } from '../../../configuration/src/lib/config/error-handling-config';
 import { noop } from 'rxjs';
 import { take } from 'rxjs/operators';
