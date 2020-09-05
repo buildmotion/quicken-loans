@@ -1,7 +1,144 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "quicken-contacts": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/quicken-contacts",
+      "sourceRoot": "apps/quicken-contacts/src",
+      "prefix": "valencia",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/quicken-contacts",
+            "index": "apps/quicken-contacts/src/index.html",
+            "main": "apps/quicken-contacts/src/main.ts",
+            "polyfills": "apps/quicken-contacts/src/polyfills.ts",
+            "tsConfig": "apps/quicken-contacts/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/quicken-contacts/src/favicon.ico",
+              "apps/quicken-contacts/src/assets"
+            ],
+            "styles": ["apps/quicken-contacts/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/quicken-contacts/src/environments/environment.ts",
+                  "with": "apps/quicken-contacts/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "quicken-contacts:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "quicken-contacts:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "quicken-contacts:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/quicken-contacts/tsconfig.app.json",
+              "apps/quicken-contacts/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/quicken-contacts/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/quicken-contacts/jest.config.js",
+            "tsConfig": "apps/quicken-contacts/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/quicken-contacts/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "quicken-contacts-e2e": {
+      "root": "apps/quicken-contacts-e2e",
+      "sourceRoot": "apps/quicken-contacts-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/quicken-contacts-e2e/cypress.json",
+            "tsConfig": "apps/quicken-contacts-e2e/tsconfig.e2e.json",
+            "devServerTarget": "quicken-contacts:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "quicken-contacts:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/quicken-contacts-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/quicken-contacts-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  },
+  "defaultProject": "quicken-contacts"
 }

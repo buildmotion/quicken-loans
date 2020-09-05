@@ -10,5 +10,13 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "quicken-contacts": {
+      "tags": []
+    },
+    "quicken-contacts-e2e": {
+      "tags": [],
+      "implicitDependencies": ["quicken-contacts"]
+    }
+  }
 }

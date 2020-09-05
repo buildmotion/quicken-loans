@@ -1,4 +1,4 @@
-# Valencia :: Quicken Brand Marketing Code Test
+# @Valencia :: Quicken Brand Marketing Code Test
 
 ## Nx Workspace
 
@@ -31,8 +31,80 @@ CREATE workspace/tools/schematics/.gitkeep (0 bytes)
 CREATE workspace/.vscode/extensions.json (164 bytes)
 √ Packages installed successfully.
     Directory is already under version control. Skipping initialization of git.
-PS D:\development\github\quicken-loans> 
+PS D:\development\github\quicken-loans>
 ```
+
+###
+
+Install the following package for the workspace environment to provide the Angular schematics.
+
+> yarn add @nrwl/angular -D
+
+## Create Application Project
+
+Use the Angular CLI and the prompted options to create a new application projects for the workspace.
+
+```ts
+ng g application quicken-contacts
+? Which stylesheet format would you like to use? SASS(.scss)  [ http://sass-lang.com   ]
+? Would you like to configure routing for this application? Yes
+CREATE jest.config.js (250 bytes)
+CREATE tslint.json (2311 bytes)
+CREATE apps/quicken-contacts/tsconfig.json (97 bytes)
+CREATE apps/quicken-contacts/src/favicon.ico (15086 bytes)
+CREATE apps/quicken-contacts/browserslist (429 bytes)
+CREATE apps/quicken-contacts/tsconfig.app.json (163 bytes)
+CREATE apps/quicken-contacts/tslint.json (248 bytes)
+CREATE apps/quicken-contacts/src/index.html (339 bytes)
+CREATE apps/quicken-contacts/src/main.ts (375 bytes)
+CREATE apps/quicken-contacts/src/polyfills.ts (2836 bytes)
+CREATE apps/quicken-contacts/src/styles.scss (80 bytes)
+CREATE apps/quicken-contacts/src/assets/.gitkeep (0 bytes)
+CREATE apps/quicken-contacts/src/environments/environment.prod.ts (51 bytes)
+CREATE apps/quicken-contacts/src/environments/environment.ts (662 bytes)
+CREATE apps/quicken-contacts/src/app/app.module.ts (417 bytes)
+CREATE apps/quicken-contacts/src/app/app.component.html (3017 bytes)
+CREATE apps/quicken-contacts/src/app/app.component.spec.ts (1053 bytes)
+CREATE apps/quicken-contacts/src/app/app.component.ts (226 bytes)
+CREATE apps/quicken-contacts/src/app/app.component.scss (2088 bytes)
+CREATE apps/quicken-contacts/jest.config.js (369 bytes)
+CREATE apps/quicken-contacts/tsconfig.spec.json (233 bytes)
+CREATE apps/quicken-contacts/src/test-setup.ts (30 bytes)
+CREATE apps/quicken-contacts-e2e/tslint.json (97 bytes)
+CREATE apps/quicken-contacts-e2e/cypress.json (432 bytes)
+CREATE apps/quicken-contacts-e2e/tsconfig.e2e.json (188 bytes)
+CREATE apps/quicken-contacts-e2e/tsconfig.json (137 bytes)
+CREATE apps/quicken-contacts-e2e/src/fixtures/example.json (80 bytes)
+CREATE apps/quicken-contacts-e2e/src/integration/app.spec.ts (424 bytes)
+CREATE apps/quicken-contacts-e2e/src/plugins/index.js (832 bytes)
+CREATE apps/quicken-contacts-e2e/src/support/app.po.ts (47 bytes)
+CREATE apps/quicken-contacts-e2e/src/support/commands.ts (1068 bytes)
+CREATE apps/quicken-contacts-e2e/src/support/index.ts (599 bytes)
+UPDATE package.json (1988 bytes)
+UPDATE angular.json (4586 bytes)
+UPDATE nx.json (417 bytes)
+\ Installing packages...                                                                                                  \
+√ Packages installed successfully.
+```
+
+## Create Angular Library Projects
+
+```ts
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=actions
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=components
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=configuration
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=error-handling
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=foundation
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=http-service
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=logging
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=notification
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=rules-engine
+ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=mv --name=security
+```
+
+## Create Server Application Project
+
+## Create Server Library Projects
 
 ## Nx
 
