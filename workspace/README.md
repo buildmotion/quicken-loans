@@ -135,6 +135,175 @@ Warning: Entry point '@sparkdesignsystem/spark-angular' contains deep imports in
 problem, but may cause the compilation of entry points to be out of order.
 ```
 
+## Application Modules and Configuration
+
+### Core Module
+
+```ts
+import { NgModule, SkipSelf, Optional } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+const MODULES = [CommonModule, BrowserModule, BrowserAnimationsModule];
+
+@NgModule({
+  declarations: [],
+  imports: [...MODULES],
+  exports: [...MODULES],
+})
+export class CoreModule {
+  constructor(@Optional() @SkipSelf() core: CoreModule) {
+    if (core) {
+      throw new Error(`Application requires single instance of CoreModule.`);
+    }
+  }
+}
+```
+
+### Shared Module
+
+```ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+const MODULES = [CommonModule, FormsModule, HttpClientModule, HttpClientModule, ReactiveFormsModule, RouterModule];
+@NgModule({
+  declarations: [],
+  imports: [...MODULES],
+  exports: [...MODULES],
+})
+export class SharedModule {}
+```
+
+### Cross-Cutting Module
+
+```ts
+import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { APP_INITIALIZER, ErrorHandler, ModuleWithProviders, NgModule } from '@angular/core';
+import { ConfigurationModule, ConfigurationService, ConfigurationContext } from '@valencia/configuration';
+import { ErrorHandlingModule, ErrorHandlingService } from '@valencia/error-handling';
+import { HttpErrorInterceptor } from '@valencia/http-service';
+import { LogglyWriter, ConsoleWriter, LoggingModule, LoggingService } from '@valencia/logging';
+import { NotificationService } from '@valencia/notification';
+// tslint:disable-next-line:nx-enforce-module-boundaries
+import { AppConfig } from 'apps/quicken-contacts/src/config/app-config';
+import { LogglyService } from 'ngx-loggly-logger';
+
+/**
+ * The factory function to initialize the configuration service for the application.
+ * @param configService
+ */
+export function initializeConfiguration(configContext: ConfigurationContext, configService: ConfigurationService) {
+  return () => {
+    configService.settings = configContext.config;
+    return configService;
+  };
+}
+
+/**
+ * The factory function to initialize the logging service and writer for the
+ * application.
+ *
+ * @param loggingService
+ * @param consoleWriter
+ */
+export function initializeLogWriter(loggingService: LoggingService, consoleWriter: ConsoleWriter) {
+  return () => {
+    return consoleWriter;
+  };
+}
+
+@NgModule({
+  declarations: [],
+  imports: [CommonModule, ConfigurationModule, ErrorHandlingModule, LoggingModule],
+  providers: [],
+})
+export class CrossCuttingModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: CrossCuttingModule,
+      providers: [
+        {
+          provide: ConfigurationContext,
+          useValue: { config: AppConfig },
+        },
+        ConfigurationService,
+        LoggingService,
+        ConsoleWriter,
+        LogglyWriter,
+        {
+          provide: APP_INITIALIZER,
+          useFactory: initializeConfiguration,
+          deps: [ConfigurationContext, ConfigurationService],
+          multi: true,
+        },
+        ConsoleWriter,
+        LogglyService,
+        LogglyWriter,
+        LoggingService,
+        {
+          provide: ErrorHandler,
+          useClass: ErrorHandlingService,
+          deps: [ConfigurationService, LoggingService],
+        },
+        {
+          provide: APP_INITIALIZER,
+          useFactory: initializeLogWriter,
+          deps: [LoggingService, ConsoleWriter, LogglyWriter],
+          multi: true,
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: HttpErrorInterceptor,
+          multi: true,
+        },
+        NotificationService,
+      ],
+    };
+  }
+}
+```
+
+### App Module
+
+```ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+
+import { SparkAngularModule } from '@sparkdesignsystem/spark-angular';
+import { CrossCuttingModule } from './modules/cross-cutting/cross-cutting.module';
+import { SharedModule } from './modules/shared/shared.module';
+import { CoreModule } from './modules/core/core.module';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    CoreModule,
+    SharedModule,
+    CrossCuttingModule.forRoot(),
+    BrowserModule,
+    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    SparkAngularModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+### Configuration
+
+> `yarn add ngx-loggly-logger`
+
 ## Code Formatting
 
 Install the following packages.

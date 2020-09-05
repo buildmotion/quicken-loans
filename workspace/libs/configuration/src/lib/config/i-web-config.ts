@@ -13,6 +13,4 @@ export interface IWebConfig {
   email: string;
   blogURL: string;
   website: string;
-  motto: string;
-  bookPrice: string;
 }
