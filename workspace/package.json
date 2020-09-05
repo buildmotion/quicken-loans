@@ -50,7 +50,11 @@
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "typescript-dotnet-commonjs": "4.11.2",
-    "zone.js": "^0.10.2"
+    "zone.js": "^0.10.2",
+    "@nestjs/common": "^7.0.0",
+    "@nestjs/core": "^7.0.0",
+    "@nestjs/platform-express": "^7.0.0",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.901.0",
@@ -77,6 +81,10 @@
     "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.7.4"
+    "typescript": "~3.7.4",
+    "@nrwl/node": "9.6.0",
+    "@nestjs/schematics": "^7.0.0",
+    "@nestjs/testing": "^7.0.0",
+    "@nrwl/nest": "9.6.0"
   }
 }

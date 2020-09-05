@@ -486,6 +486,58 @@
           "style": "scss"
         }
       }
+    },
+    "contacts": {
+      "root": "apps/contacts",
+      "sourceRoot": "apps/contacts/src",
+      "projectType": "application",
+      "prefix": "contacts",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/contacts",
+            "main": "apps/contacts/src/main.ts",
+            "tsConfig": "apps/contacts/tsconfig.app.json",
+            "assets": ["apps/contacts/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/contacts/src/environments/environment.ts",
+                  "with": "apps/contacts/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "contacts:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/contacts/tsconfig.app.json", "apps/contacts/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/contacts/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/contacts/jest.config.js",
+            "tsConfig": "apps/contacts/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
