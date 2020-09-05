@@ -1,9 +1,24 @@
 {
-  "name": "@valencia/security",
+  "name": "@angular-architecture/security",
   "version": "0.0.1",
+  "description": "@angular-architecture/security provides security features for Angular applications.",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "typescript",
+    "business logic",
+    "business actions",
+    "business rules",
+    "angularlicious",
+    "validation",
+    "javascript rules",
+    "Matt Vaughn",
+    "AngularArchitecture.com"
+  ],
+  "author": "matt@angulararchitecture.com",
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
+    "@angular/common": "^9.0.6",
+    "@angular/core": "^9.0.6",
     "tslib": "^1.10.0"
   }
 }
