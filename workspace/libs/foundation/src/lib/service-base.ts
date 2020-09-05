@@ -1,5 +1,5 @@
-import { ServiceContext, MessageType, ServiceMessage } from '@angular-architecture/rules-engine';
-import { LoggingService, Severity } from '@angular-architecture/logging';
+import { ServiceContext, MessageType, ServiceMessage } from '@valencia/rules-engine';
+import { LoggingService, Severity } from '@valencia/logging';
 import { ErrorResponse } from './models/error-response.model';
 import { OAuthErrorResponse } from './models/oauth-error-response.model';
 import { BehaviorSubject } from 'rxjs';
@@ -51,7 +51,10 @@ export class ServiceBase {
    * }
    */
   handleUnexpectedError(error: Error): void {
-    const message = new ServiceMessage(error.name, error.message).WithDisplayToUser(true).WithMessageType(MessageType.Error).WithSource(this.serviceName);
+    const message = new ServiceMessage(error.name, error.message)
+      .WithDisplayToUser(true)
+      .WithMessageType(MessageType.Error)
+      .WithSource(this.serviceName);
 
     const tags: string[] = [`${this.serviceName}`];
     const logItem = `${message.toString()}; ${error.stack}`;
@@ -65,7 +68,10 @@ export class ServiceBase {
    * @param error
    */
   handleError(error: { name: string; message: string | undefined }): void {
-    const message = new ServiceMessage(error.name, error.message).WithDisplayToUser(true).WithMessageType(MessageType.Error).WithSource(this.serviceName);
+    const message = new ServiceMessage(error.name, error.message)
+      .WithDisplayToUser(true)
+      .WithMessageType(MessageType.Error)
+      .WithSource(this.serviceName);
 
     const tags: string[] = [`${this.serviceName}`];
 
@@ -138,7 +144,9 @@ export class ServiceBase {
     this.loggingService.log(this.serviceName, Severity.Information, `Request for [${sourceName}] by ${this.serviceName} is complete.`);
     if (this.serviceContext.hasErrors()) {
       this.loggingService.log(this.serviceName, Severity.Information, `Preparing to write any messages.`);
-      this.serviceContext.Messages.filter((f) => f.MessageType === MessageType.Error && f.DisplayToUser).forEach((e) => this.loggingService.log(this.serviceName, Severity.Error, e.toString()));
+      this.serviceContext.Messages.filter(f => f.MessageType === MessageType.Error && f.DisplayToUser).forEach(e =>
+        this.loggingService.log(this.serviceName, Severity.Error, e.toString())
+      );
     }
   }
 
@@ -167,7 +175,7 @@ export class ServiceBase {
    */
   writeMessages() {
     if (this.serviceContext && this.serviceContext.Messages) {
-      this.serviceContext.Messages.forEach((e) => {
+      this.serviceContext.Messages.forEach(e => {
         if (e.MessageType === MessageType.Error && e.DisplayToUser) {
           this.loggingService.log(this.serviceName, Severity.Error, e.toString());
         }

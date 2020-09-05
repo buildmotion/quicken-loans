@@ -1,7 +1,7 @@
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { ApiResponse, ApiMessage, ErrorApiResponse } from '@angular-architecture/foundation';
+import { ApiResponse, ApiMessage, ErrorApiResponse } from '@valencia/foundation';
 
 export class HttpErrorInterceptor implements HttpInterceptor {
   displayToUser = true;

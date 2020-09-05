@@ -1,4 +1,4 @@
-import * as rules from '@angular-architecture/rules-engine';
+import * as rules from '@valencia/rules-engine';
 import { CompositeRule } from './CompositeRule';
 
 /**
@@ -26,7 +26,9 @@ export class StringIsRegExMatch extends CompositeRule {
     const doNotShowRuleViolation = false;
 
     // determine if the target is a valid object;
-    this.rules.push(new rules.IsNotNullOrUndefined('StringIsNotNullOrUndefined', 'The target value is null or undefined.', this.target, doNotShowRuleViolation));
+    this.rules.push(
+      new rules.IsNotNullOrUndefined('StringIsNotNullOrUndefined', 'The target value is null or undefined.', this.target, doNotShowRuleViolation)
+    );
     if (this.target) {
       this.rules.push(new rules.IsTrue('StringIsRegExpMatch', 'The target value is not a match.', this.expression.test(this.target), doNotShowRuleViolation));
     }

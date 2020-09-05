@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ServiceBase } from '@angular-architecture/foundation';
-import { LoggingService, Severity } from '@angular-architecture/logging';
+import { ServiceBase } from '@valencia/foundation';
+import { LoggingService, Severity } from '@valencia/logging';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -28,10 +28,7 @@ export class AuthenticationService extends ServiceBase {
 
     this.initializeFirebase();
 
-    auth.authState.subscribe(
-      authState => this.handleAuthState(authState),
-      error => console.log(error)
-    );
+    auth.authState.subscribe(authState => this.handleAuthState(authState), error => console.log(error));
   }
 
   initializeFirebase() {
@@ -44,11 +41,7 @@ export class AuthenticationService extends ServiceBase {
       this.firestore
         .doc<User>(`users/${authState.uid}`)
         .valueChanges()
-        .subscribe(
-          user => this.handleUserValueChanges(user),
-          error => this.handleError(error),
-          () => `Finished handling user changes.`
-        );
+        .subscribe(user => this.handleUserValueChanges(user), error => this.handleError(error), () => `Finished handling user changes.`);
     }
   }
 

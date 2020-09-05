@@ -1,7 +1,7 @@
 {
-  "name": "@angular-architecture/error-handling",
+  "name": "@valencia/error-handling",
   "version": "0.0.1",
-  "description": "@angular-architecture/error-handling provides a best practice approach to the default Angular mechanism.",
+  "description": "@valencia/error-handling provides a best practice approach to the default Angular mechanism.",
   "license": "MIT",
   "keywords": [
     "angular",

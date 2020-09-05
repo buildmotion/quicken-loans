@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { ComponentBase } from '@angular-architecture/foundation';
-import { LoggingService, Severity } from '@angular-architecture/logging';
+import { ComponentBase } from '@valencia/foundation';
+import { LoggingService, Severity } from '@valencia/logging';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { User } from '../../models/user.model';
@@ -41,7 +41,7 @@ export class LoginComponent extends ComponentBase implements OnInit, OnDestroy {
   }
 
   private retrieveRedirectUrl() {
-    this.subscription = this.route.queryParams.subscribe((params) => (this.authenticationService.redirectUrl = params['return']));
+    this.subscription = this.route.queryParams.subscribe(params => (this.authenticationService.redirectUrl = params['return']));
   }
 
   private login() {
@@ -56,7 +56,7 @@ export class LoginComponent extends ComponentBase implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(AuthProviderDialogComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(result => {
       this.loggingService.log(this.componentName, Severity.Information, `${result}`, ['security']);
     });
   }

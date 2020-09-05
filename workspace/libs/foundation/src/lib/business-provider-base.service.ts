@@ -1,9 +1,9 @@
-import { LoggingService } from '@angular-architecture/logging';
+import { LoggingService } from '@valencia/logging';
 
-import { ServiceContext } from '@angular-architecture/rules-engine';
-import { ServiceMessage } from '@angular-architecture/rules-engine';
-import { MessageType } from '@angular-architecture/rules-engine';
-import { Severity } from '@angular-architecture/logging';
+import { ServiceContext } from '@valencia/rules-engine';
+import { ServiceMessage } from '@valencia/rules-engine';
+import { MessageType } from '@valencia/rules-engine';
+import { Severity } from '@valencia/logging';
 
 /**
  * Use the business provider base class to access common elements of the business provider.
@@ -48,7 +48,9 @@ export class BusinessProviderBase {
     this.loggingService.log(this.providerName, Severity.Information, `Request for [${sourceName}] by ${this.providerName} is complete.`);
     if (this.serviceContext.hasErrors()) {
       this.loggingService.log(this.providerName, Severity.Information, `Preparing to write out the errors.`);
-      this.serviceContext.Messages.filter(f => f.DisplayToUser && f.MessageType === MessageType.Error).forEach(e => this.loggingService.log(this.providerName, Severity.Error, e.toString()));
+      this.serviceContext.Messages.filter(f => f.DisplayToUser && f.MessageType === MessageType.Error).forEach(e =>
+        this.loggingService.log(this.providerName, Severity.Error, e.toString())
+      );
     }
   }
 }

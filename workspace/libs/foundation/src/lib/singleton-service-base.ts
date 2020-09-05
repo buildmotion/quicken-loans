@@ -1,6 +1,6 @@
 import { Type, inject, InjectFlags } from '@angular/core';
 import { ServiceBase } from './service-base';
-import { LoggingService } from '@angular-architecture/logging';
+import { LoggingService } from '@valencia/logging';
 
 export class SingletonServiceBase extends ServiceBase {
   constructor(type: Type<any>, loggingService: LoggingService, serviceName: string) {

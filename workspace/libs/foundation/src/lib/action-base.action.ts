@@ -1,17 +1,17 @@
 import { Observable, throwError } from 'rxjs';
 // // import { Response } from '@angular/http';
 
-import { Action } from '@angular-architecture/actions';
-import { ValidationContext } from '@angular-architecture/rules-engine';
-import { ServiceMessage } from '@angular-architecture/rules-engine';
-import { MessageType } from '@angular-architecture/rules-engine';
-import { ServiceContext } from '@angular-architecture/rules-engine';
-import { ActionResult } from '@angular-architecture/actions';
-import { CompositeRule } from '@angular-architecture/rules-engine';
-import { RuleResult } from '@angular-architecture/rules-engine';
+import { Action } from '@valencia/actions';
+import { ValidationContext } from '@valencia/rules-engine';
+import { ServiceMessage } from '@valencia/rules-engine';
+import { MessageType } from '@valencia/rules-engine';
+import { ServiceContext } from '@valencia/rules-engine';
+import { ActionResult } from '@valencia/actions';
+import { CompositeRule } from '@valencia/rules-engine';
+import { RuleResult } from '@valencia/rules-engine';
 
-import { LoggingService } from '@angular-architecture/logging';
-import { Severity } from '@angular-architecture/logging';
+import { LoggingService } from '@valencia/logging';
+import { Severity } from '@valencia/logging';
 import { HttpBaseService } from './http-base.service';
 import { ErrorResponse } from './models/error-response.model';
 
@@ -58,7 +58,7 @@ export class ActionBase<T> extends Action {
       this.loggingService.log(this.actionName, Severity.Information, `The target contains validation errors in ${this.actionName}`);
 
       // Load the error/rule violations into the ServiceContext so that the information bubbles up to the caller of the service;
-      this.validationContext.results.forEach((result) => {
+      this.validationContext.results.forEach(result => {
         if (!result.isValid) {
           this.publishRuleResult(result);
           this.retrieveRuleDetails(result);
@@ -69,7 +69,7 @@ export class ActionBase<T> extends Action {
 
   postExecuteAction() {
     if (this.actionResult === ActionResult.Fail) {
-      this.serviceContext.Messages.forEach((e) => {
+      this.serviceContext.Messages.forEach(e => {
         if (e.MessageType === MessageType.Error) {
           this.loggingService.log(this.actionName, Severity.Error, e.toString());
         }
@@ -105,9 +105,9 @@ export class ActionBase<T> extends Action {
     if (ruleResult.rulePolicy instanceof CompositeRule) {
       const composite = ruleResult.rulePolicy as CompositeRule;
       if (composite && composite.hasErrors) {
-        const errors = composite.results.filter((result) => !result.isValid && result.rulePolicy.isDisplayable);
+        const errors = composite.results.filter(result => !result.isValid && result.rulePolicy.isDisplayable);
 
-        errors.forEach((errorResult) => {
+        errors.forEach(errorResult => {
           this.publishRuleResult(errorResult);
 
           if (errorResult.rulePolicy instanceof CompositeRule) {

@@ -1,5 +1,5 @@
 ﻿import { StringIsRegExMatch } from './StringIsRegExMatch';
-import * as rules from '@angular-architecture/rules-engine';
+import * as rules from '@valencia/rules-engine';
 import { CompositeRule } from './CompositeRule';
 
 /**
@@ -30,9 +30,13 @@ export class GuidIsValid extends CompositeRule {
     const guidExpression = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i; // Guid RegExp (with hyphens)
 
     // determine if the target is a valid guid;
-    this.rules.push(new rules.IsNotNullOrUndefined('GuidStringIsNotNullOrUndefined', 'The target value is null or undefined.', this.target, doNotShowRuleViolation));
+    this.rules.push(
+      new rules.IsNotNullOrUndefined('GuidStringIsNotNullOrUndefined', 'The target value is null or undefined.', this.target, doNotShowRuleViolation)
+    );
     if (this.target) {
-      this.rules.push(new rules.AreEqual('GuidStringLengthIsValid', 'The length of the target value is not valid.', this.target.length, guidLength, doNotShowRuleViolation));
+      this.rules.push(
+        new rules.AreEqual('GuidStringLengthIsValid', 'The length of the target value is not valid.', this.target.length, guidLength, doNotShowRuleViolation)
+      );
       this.rules.push(new StringIsRegExMatch('GuidIsValid', 'The target value is not a valid guid.', this.target, guidExpression, doNotShowRuleViolation));
     }
   }

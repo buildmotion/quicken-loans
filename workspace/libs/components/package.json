@@ -1,7 +1,7 @@
 {
-  "name": "@angular-architecture/components",
+  "name": "@valencia/components",
   "version": "0.0.1",
-  "description": "Use @angular-architecture/components for common pipes and directives.",
+  "description": "Use @valencia/components for common pipes and directives.",
   "license": "MIT",
   "keywords": [
     "angular",

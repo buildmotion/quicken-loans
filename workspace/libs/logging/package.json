@@ -1,7 +1,7 @@
 {
-  "name": "@angular-architecture/logging",
+  "name": "@valencia/logging",
   "version": "0.0.1",
-  "description": "@angular-architecture/logging provides logging capabilities beyond the console.log.",
+  "description": "@valencia/logging provides logging capabilities beyond the console.log.",
   "license": "MIT",
   "keywords": [
     "angular",

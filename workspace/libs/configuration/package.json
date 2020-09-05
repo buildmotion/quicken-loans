@@ -1,7 +1,7 @@
 {
-  "name": "@angular-architecture/configuration",
+  "name": "@valencia/configuration",
   "version": "0.0.1",
-  "description": "@angular-architecture/configuration enables sharing configuration between applications and libraries.",
+  "description": "@valencia/configuration enables sharing configuration between applications and libraries.",
   "license": "MIT",
   "keywords": [
     "angular",

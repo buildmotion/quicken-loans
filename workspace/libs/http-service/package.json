@@ -1,7 +1,7 @@
 {
-  "name": "@angular-architecture/http-service",
+  "name": "@valencia/http-service",
   "version": "0.0.1",
-  "description": "@angular-architecture/http-service provides HTTP operations for Angular applications that communicate with HTTP/APIs.",
+  "description": "@valencia/http-service provides HTTP operations for Angular applications that communicate with HTTP/APIs.",
   "license": "MIT",
   "keywords": [
     "angular",

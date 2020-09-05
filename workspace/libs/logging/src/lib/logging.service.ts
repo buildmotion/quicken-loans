@@ -1,12 +1,12 @@
 import { Injectable, Optional } from '@angular/core';
 
 import { Severity } from './severity.enum';
-import { IConfiguration } from '@angular-architecture/configuration';
-import { ConfigurationService } from '@angular-architecture/configuration';
+import { IConfiguration } from '@valencia/configuration';
+import { ConfigurationService } from '@valencia/configuration';
 import { LogEntry } from './log-entry';
 import { ReplaySubject, Observable } from 'rxjs';
 import { ILogEntry } from './i-log-entry';
-import { LoggingConfig } from '@angular-architecture/configuration';
+import { LoggingConfig } from '@valencia/configuration';
 import { Guid } from 'guid-typescript';
 import { take } from 'rxjs/operators';
 

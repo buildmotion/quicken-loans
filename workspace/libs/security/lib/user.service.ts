@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
-import { LoggingService } from '@angular-architecture/logging';
-import { ServiceBase } from '@angular-architecture/foundation';
+import { LoggingService } from '@valencia/logging';
+import { ServiceBase } from '@valencia/foundation';
 import { Observable } from 'rxjs';
 import { BusinessProviderService } from './business/business-provider.service';
 

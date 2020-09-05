@@ -1,10 +1,10 @@
 import { LogWriter } from './log-writer';
 import { ILogEntry } from '../i-log-entry';
-import { ConfigurationService } from '@angular-architecture/configuration';
+import { ConfigurationService } from '@valencia/configuration';
 import { Optional, Injectable } from '@angular/core';
 import { LogglyService } from 'ngx-loggly-logger';
 import { LoggingService } from '../logging.service';
-import { IConfiguration, LogglyConfig } from '@angular-architecture/configuration';
+import { IConfiguration, LogglyConfig } from '@valencia/configuration';
 
 @Injectable()
 export class LogglyWriter extends LogWriter {

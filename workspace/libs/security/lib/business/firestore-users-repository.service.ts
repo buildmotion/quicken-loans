@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ServiceBase } from '@angular-architecture/foundation';
+import { ServiceBase } from '@valencia/foundation';
 
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { LoggingService, Severity } from '@angular-architecture/logging';
+import { LoggingService, Severity } from '@valencia/logging';
 import { Observable, from } from 'rxjs';
 import { User } from './../models/user.model';
 import { map } from 'rxjs/operators';

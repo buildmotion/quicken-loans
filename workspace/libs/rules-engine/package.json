@@ -1,7 +1,7 @@
 {
-  "name": "@angular-architecture/rules-engine",
+  "name": "@valencia/rules-engine",
   "version": "0.0.1",
-  "description": "@angular-architecture/rule-engine is a robust rule engine based on inference/rete patterns. Use pre-built rules and/or custom rules.",
+  "description": "@valencia/rule-engine is a robust rule engine based on inference/rete patterns. Use pre-built rules and/or custom rules.",
   "license": "MIT",
   "keywords": [
     "angular",

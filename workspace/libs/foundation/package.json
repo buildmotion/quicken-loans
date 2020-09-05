@@ -1,7 +1,7 @@
 {
-  "name": "@angular-architecture/foundation",
+  "name": "@valencia/foundation",
   "version": "0.0.1",
-  "description": "@angular-architecture/foundation provides base classes for components and services.",
+  "description": "@valencia/foundation provides base classes for components and services.",
   "license": "MIT",
   "keywords": [
     "angular",

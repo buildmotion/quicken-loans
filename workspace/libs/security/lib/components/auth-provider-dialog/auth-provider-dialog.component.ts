@@ -2,9 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { AuthProviderData } from '../../models/auth-provider-data.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthenticationService } from '../../authentication.service';
-import { ComponentBase } from '@angular-architecture/foundation';
+import { ComponentBase } from '@valencia/foundation';
 import { Router } from '@angular/router';
-import { LoggingService } from '@angular-architecture/logging';
+import { LoggingService } from '@valencia/logging';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -27,8 +27,8 @@ export class AuthProviderDialogComponent extends ComponentBase implements OnInit
 
   ngOnInit() {
     this.authService.userSubject.subscribe(
-      (userUpdate) => this.handleUserUpdate(userUpdate),
-      (error) => this.handleServiceErrors(error),
+      userUpdate => this.handleUserUpdate(userUpdate),
+      error => this.handleServiceErrors(error),
       () => this.finishRequest(`Finished handling changes to user/security.`)
     );
   }

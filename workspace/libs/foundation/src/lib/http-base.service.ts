@@ -7,8 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 
 import { HttpRequestOptions } from './models/http-request-options';
 import { HttpRequestMethod } from './models/http-request-methods.enum';
-import { Severity } from '@angular-architecture/logging';
-import { LoggingService } from '@angular-architecture/logging';
+import { Severity } from '@valencia/logging';
+import { LoggingService } from '@valencia/logging';
 import { ErrorResponse } from './models/error-response.model';
 import { ServiceResponse } from './models/service-response.model';
 import { ApiResponse } from './models/api/api-response';
@@ -32,7 +32,11 @@ export class HttpBaseService {
    * Use to create a [Header] for [multipart/form-data].
    */
   createMultipartFormDataHeader(requiresAuthToken: boolean) {
-    this.loggingService.log(this.serviceName, Severity.Information, `Preparing to create header for the [multipart/form-data] HTTP request. RequiresAuthToken: ${requiresAuthToken}.`);
+    this.loggingService.log(
+      this.serviceName,
+      Severity.Information,
+      `Preparing to create header for the [multipart/form-data] HTTP request. RequiresAuthToken: ${requiresAuthToken}.`
+    );
     const headers = new HttpHeaders();
     if (requiresAuthToken) {
       // create header request with security token;
@@ -58,7 +62,11 @@ export class HttpBaseService {
    * @param isSecure
    */
   createHeader(requiresAuthToken: boolean) {
-    this.loggingService.log(this.serviceName, Severity.Information, `Preparing to create header for the HTTP request. RequiresAuthToken: ${requiresAuthToken}.`);
+    this.loggingService.log(
+      this.serviceName,
+      Severity.Information,
+      `Preparing to create header for the HTTP request. RequiresAuthToken: ${requiresAuthToken}.`
+    );
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     if (requiresAuthToken) {
       headers.append('Authorization', `Bearer ${this.accessToken}`);

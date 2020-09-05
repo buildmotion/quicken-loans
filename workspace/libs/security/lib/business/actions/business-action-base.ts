@@ -1,5 +1,5 @@
-import { LoggingService } from '@angular-architecture/logging';
-import { ActionBase, ApiResponse } from '@angular-architecture/foundation';
+import { LoggingService } from '@valencia/logging';
+import { ActionBase, ApiResponse } from '@valencia/foundation';
 import { Observable } from 'rxjs';
 import { BusinessProviderService } from './../business-provider.service';
 

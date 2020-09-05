@@ -1,7 +1,7 @@
 {
-  "name": "@angular-architecture/actions",
+  "name": "@valencia/actions",
   "version": "0.0.1",
-  "description": "@angular-architecture/actions is a framework to build amazing business logic.",
+  "description": "@valencia/actions is a framework to build amazing business logic.",
   "license": "MIT",
   "keywords": [
     "angular",

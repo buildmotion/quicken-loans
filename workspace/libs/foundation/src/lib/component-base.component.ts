@@ -1,9 +1,9 @@
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { MessageType, ServiceContext, ServiceMessage } from '@angular-architecture/rules-engine';
+import { MessageType, ServiceContext, ServiceMessage } from '@valencia/rules-engine';
 import { ErrorResponse } from './models/error-response.model';
-import { LoggingService, Severity } from '@angular-architecture/logging';
+import { LoggingService, Severity } from '@valencia/logging';
 import { AlertNotification } from './models/alert-notification.model';
 import { AlertTypes } from './models/alert-types.constants';
 import { Guid } from 'guid-typescript';
@@ -21,7 +21,7 @@ export class ComponentBase {
     this.alertNotification = new AlertNotification('', '');
 
     this.loggingService.log(this.componentName, Severity.Information, `Preparing to load [${this.componentName}] component.`, [`ComponentId:${this.id}`]);
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.googleAnalyticsPageview(event);
         this.updateUrls(event);
@@ -133,7 +133,7 @@ export class ComponentBase {
    */
   retrieveServiceContextErrorMessages(serviceContext: ServiceContext): Array<string> {
     const messages = Array<string>();
-    serviceContext.Messages.forEach((e) => {
+    serviceContext.Messages.forEach(e => {
       if (e.MessageType === MessageType.Error && e.DisplayToUser) {
         messages.push(e.Message);
       }
@@ -147,7 +147,7 @@ export class ComponentBase {
   retrieveResponseErrorMessages(errorResponse: ErrorResponse) {
     const errors = new Array<string>();
     if (errorResponse && errorResponse.Errors) {
-      errorResponse.Errors.forEach((e) => {
+      errorResponse.Errors.forEach(e => {
         if (e.DisplayToUser) {
           errors.push(e.Message);
         }
@@ -172,7 +172,11 @@ export class ComponentBase {
     try {
       this.router.navigate([routeName]);
     } catch (error) {
-      this.loggingService.log(this.componentName, Severity.Error, `Error while attempting to navigate to [${routeName}] route from ${this.componentName}. Error: ${error.toString()}`);
+      this.loggingService.log(
+        this.componentName,
+        Severity.Error,
+        `Error while attempting to navigate to [${routeName}] route from ${this.componentName}. Error: ${error.toString()}`
+      );
     }
   }
 

@@ -1,7 +1,7 @@
 {
-  "name": "@angular-architecture/security",
+  "name": "@valencia/security",
   "version": "0.0.1",
-  "description": "@angular-architecture/security provides security features for Angular applications.",
+  "description": "@valencia/security provides security features for Angular applications.",
   "license": "MIT",
   "keywords": [
     "angular",
