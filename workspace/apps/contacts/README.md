@@ -371,6 +371,22 @@ serverless config credentials --provider aws --key <api-key> --secret <secret-ke
 serverless config credentials --provider aws --profile <default|custom-name> --key <api-key> --secret <secret-key>
 ```
 
+Use the `serverless deploy` command to use the `default` AWS profile. If you only have 1, then it is the default. An environment with multiple profiles will have a credential file that looks like the following sample (_not real values_).
+
+```ts
+[default]
+aws_access_key_id=AKIAW7K
+aws_secret_access_key=sX/flzzjJHEMPLJG1/jKCAD
+
+[quicken]
+aws_access_key_id=AKIAJVWCJ
+aws_secret_access_key=cxENQdXHpF/z6Xq9JYxW
+```
+
+To target a specific profile, use the `serverless deploy` command with the option `--aws-profile`.
+
+> `serverless deploy --aws-profile quicken`
+
 Running the `serverless deploy` command after setting the credentials will create
 
 ```ts
@@ -412,6 +428,48 @@ Serverless: Publishing service to the Serverless Dashboard...
 Serverless: Successfully published your service to the Serverless Dashboard: https://dashboard.serverless.com/tenants/angulararchi
 ```
 
+## Lambda Function Entry Point
+
+Typically, the entry point to a NextJS node application is the `main.ts` which uses a factory to create the application and hosting with _Express_. However, the purpose of the `lambda.ts` file is to provide an entry point for the server application on AWS Lambda Function. It loads the server application's `AppModule` and available _Controllers_.
+
+> Create a `lambda.ts` file in the `src` folder of the server
+> application. Configure it to use and load the application's
+> `AppModule`
+
+```ts
+import { Handler, Context } from 'aws-lambda';
+import { Server } from 'http';
+import { createServer, proxy } from 'aws-serverless-express';
+import { eventContext } from 'aws-serverless-express/middleware';
+
+import { NestFactory } from '@nestjs/core';
+import { ExpressAdapter } from '@nestjs/platform-express';
+import { AppModule } from './app/app.module';
+
+const express = require('express');
+
+const binaryMimeTypes: string[] = [];
+
+let cachedServer: Server;
+
+async function bootstrapServer(): Promise<Server> {
+  if (!cachedServer) {
+    const expressApp = express();
+    const nestApp = await NestFactory.create(AppModule, new ExpressAdapter(expressApp));
+    nestApp.use(eventContext());
+    await nestApp.init();
+    cachedServer = createServer(expressApp, undefined, binaryMimeTypes);
+  }
+  return cachedServer;
+}
+
+// Export the handler : the entry point of the Lambda function
+export const main: Handler = async (event: any, context: Context) => {
+  cachedServer = await bootstrapServer();
+  return proxy(cachedServer, event, context, 'PROMISE').promise;
+};
+```
+
 ## Serverless Configuration (serverless.yml)
 
 The function `name` identifies the function and the map to the specified:
@@ -426,14 +484,19 @@ The `plugins` configuration allows the build and deploy process to use the plugi
 > Note The .zip output file size is limited to 250MB More [information](https://seed.run/docs/serverless-errors/unzipped-size-must-be-smaller-than-bytes.html).
 
 ```yml
-service: video-serverless-test
+service: contacts
+# app and org for use with dashboard.serverless.com
 org: angulararchitecture
-app: video-serverless
+app: quicken
 
 plugins:
   - serverless-plugin-typescript
   - serverless-plugin-optimize
-  - serverless-offline
+  # - serverless-offline
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion: "=X.X.X"
 
 provider:
   name: aws
@@ -442,31 +505,17 @@ provider:
   stage: ${opt:stage, 'dev'}
 
 functions:
-  hello:
-    handler: ./apps/video/src/lambda.hello
+  api:
+    handler: ./apps/contacts/src/lambda.main
     events:
       - http:
-          path: hello
-          method: get
-```
-
-## Lambda Function Code
-
-I updated the lambda function code to not use the NestJS application just to verify the setup.
-
-```ts
-import { Handler, Context } from 'aws-lambda';
-
-// Export the handler : the entry point of the Lambda function
-export const hello = async (event: any, context: Context) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Hello Serverless Videos...',
-      input: event,
-    }),
-  };
-};
+          cors: true
+          method: any
+          path: /{any+}
+      - http:
+          cors: true
+          method: any
+          path: /
 ```
 
 ## Deploy
