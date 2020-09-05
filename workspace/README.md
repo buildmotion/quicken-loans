@@ -121,6 +121,27 @@ Use the CLI command below to build and serve the application. You can use the Ch
 
 > ng serve
 
+## Code Formatting
+
+Install the following packages.
+
+````json
+"husky": "^4.2.5",
+"pretty-quick": "^3.0.0",
+```json
+
+> `yarn add husky pretty-quick`
+
+Add the `husky` configuration in the root of the *package.json* file.
+
+```json
+"husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged  --pattern=\"**/*.*(ts|json)\" --verbose"
+    }
+  },
+````
+
 ## Create Angular Library Projects
 
 ```ts
