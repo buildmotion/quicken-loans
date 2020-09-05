@@ -353,12 +353,28 @@ ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss 
 ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=logging
 ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=notification
 ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=rules-engine
-ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=security
 ```
 
 ## Create Server Application Project
 
 ## Create Server Library Projects
+
+## Test
+
+Use the following commands to run the test suites in each project
+
+```ts
+yarn run test --project=quicken-contacts --watch
+yarn run test --project=actions --watch
+yarn run test --project=components --watch
+yarn run test --project=configuration --watch
+yarn run test --project=error-handling --watch
+yarn run test --project=foundation --watch
+yarn run test --project=http-service --watch
+yarn run test --project=logging --watchhttps
+yarn run test --project=notification --watch
+yarn run test --project=rules-engine --watch
+```
 
 ## Nx
 

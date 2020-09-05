@@ -44,9 +44,6 @@
     },
     "rules-engine": {
       "tags": []
-    },
-    "security": {
-      "tags": []
     }
   }
 }

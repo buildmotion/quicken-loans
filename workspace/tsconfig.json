@@ -24,8 +24,7 @@
       "@valencia/http-service": ["libs/http-service/src/index.ts"],
       "@valencia/logging": ["libs/logging/src/index.ts"],
       "@valencia/notification": ["libs/notification/src/index.ts"],
-      "@valencia/rules-engine": ["libs/rules-engine/src/index.ts"],
-      "@valencia/security": ["libs/security/src/index.ts"]
+      "@valencia/rules-engine": ["libs/rules-engine/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

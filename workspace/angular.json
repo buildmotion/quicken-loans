@@ -21,10 +21,7 @@
             "polyfills": "apps/quicken-contacts/src/polyfills.ts",
             "tsConfig": "apps/quicken-contacts/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/quicken-contacts/src/favicon.ico",
-              "apps/quicken-contacts/src/assets"
-            ],
+            "assets": ["apps/quicken-contacts/src/favicon.ico", "apps/quicken-contacts/src/assets"],
             "styles": ["apps/quicken-contacts/src/styles.scss"],
             "scripts": []
           },
@@ -79,10 +76,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/quicken-contacts/tsconfig.app.json",
-              "apps/quicken-contacts/tsconfig.spec.json"
-            ],
+            "tsConfig": ["apps/quicken-contacts/tsconfig.app.json", "apps/quicken-contacts/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!apps/quicken-contacts/**/*"]
           }
         },
@@ -145,10 +139,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/actions/tsconfig.lib.json",
-              "libs/actions/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/actions/tsconfig.lib.json", "libs/actions/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!libs/actions/**/*"]
           }
         },
@@ -189,10 +180,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/components/tsconfig.lib.json",
-              "libs/components/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/components/tsconfig.lib.json", "libs/components/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!libs/components/**/*"]
           }
         },
@@ -233,10 +221,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/configuration/tsconfig.lib.json",
-              "libs/configuration/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/configuration/tsconfig.lib.json", "libs/configuration/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!libs/configuration/**/*"]
           }
         },
@@ -277,10 +262,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/error-handling/tsconfig.lib.json",
-              "libs/error-handling/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/error-handling/tsconfig.lib.json", "libs/error-handling/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!libs/error-handling/**/*"]
           }
         },
@@ -321,10 +303,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/foundation/tsconfig.lib.json",
-              "libs/foundation/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/foundation/tsconfig.lib.json", "libs/foundation/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!libs/foundation/**/*"]
           }
         },
@@ -365,10 +344,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/http-service/tsconfig.lib.json",
-              "libs/http-service/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/http-service/tsconfig.lib.json", "libs/http-service/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!libs/http-service/**/*"]
           }
         },
@@ -409,10 +385,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/logging/tsconfig.lib.json",
-              "libs/logging/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/logging/tsconfig.lib.json", "libs/logging/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!libs/logging/**/*"]
           }
         },
@@ -453,10 +426,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/notification/tsconfig.lib.json",
-              "libs/notification/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/notification/tsconfig.lib.json", "libs/notification/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!libs/notification/**/*"]
           }
         },
@@ -497,10 +467,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/rules-engine/tsconfig.lib.json",
-              "libs/rules-engine/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/rules-engine/tsconfig.lib.json", "libs/rules-engine/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "!libs/rules-engine/**/*"]
           }
         },
@@ -511,50 +478,6 @@
             "tsConfig": "libs/rules-engine/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/rules-engine/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
-    "security": {
-      "projectType": "library",
-      "root": "libs/security",
-      "sourceRoot": "libs/security/src",
-      "prefix": "mv",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/security/tsconfig.lib.json",
-            "project": "libs/security/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/security/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/security/tsconfig.lib.json",
-              "libs/security/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/security/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/security/jest.config.js",
-            "tsConfig": "libs/security/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/security/src/test-setup.ts"
           }
         }
       },
