@@ -2,23 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ContactsItemComponent } from '../contacts-item/contacts-item.component';
-import { ContactsLandingComponent } from '../contacts-landing/contacts-landing.component';
-import { ContactsListComponent } from '../contacts-list/contacts-list.component';
-
 const routes: Routes = [
-  {
-    path: 'landing',
-    component: ContactsLandingComponent,
-  },
-  {
-    path: 'list',
-    component: ContactsListComponent,
-  },
-  {
-    path: 'item:id',
-    component: ContactsItemComponent,
-  },
+  { path: 'landing', loadChildren: () => import('../landing/landing.module').then(m => m.LandingModule) },
+  { path: 'list', loadChildren: () => import('../list/list.module').then(m => m.ListModule) },
+  { path: 'item/edit:id', loadChildren: () => import('../item/item.module').then(m => m.ItemModule) },
+  { path: 'add', loadChildren: () => import('../add/add.module').then(m => m.AddModule) },
 ];
 
 @NgModule({

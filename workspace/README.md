@@ -422,21 +422,55 @@ Run the following CLI commands to create the components in the micro-frontend li
 > terminal to see the execution results and command details.
 
 ```ts
-ng generate @schematics/angular:component --name=contacts-landing --project=quicken-micro-apps-contacts-app --module=contacts-app.module --style=scss --changeDetection=OnPush --entryComponent --no-interactive
-ng generate @schematics/angular:component --name=contacts-list --project=quicken-micro-apps-contacts-app --module=contacts-app.module --style=scss --changeDetection=OnPush --entryComponent --no-interactive
-ng generate @schematics/angular:component --name=contacts-item --project=quicken-micro-apps-contacts-app --module=contacts-app.module --style=scss --changeDetection=OnPush --entryComponent --no-interactive
+ng generate @schematics/angular:module --name=landing --project=quicken-micro-apps-contacts-app --module=app-routing/app-routing.module --no-commonModule --lintFix --route=landing --routing
+ng generate @schematics/angular:module --name=list --project=quicken-micro-apps-contacts-app --module=app-routing/app-routing.module --no-commonModule --lintFix --route=list --routing
+ng generate @schematics/angular:module --name=item --project=quicken-micro-apps-contacts-app --module=app-routing/app-routing.module --no-commonModule --lintFix --route=item --routing
+ng generate @schematics/angular:module --name=add --project=quicken-micro-apps-contacts-app --module=app-routing/app-routing.module --no-commonModule --lintFix --route=add --routing
 ```
 
 See the sample output below for the `contact-item` component:
 
 ```ts
-ng generate @schematics/angular:component --name=contacts-item --project=quicken-micro-apps-contacts-app --module=contacts-app.module --style=scss --changeDetection=OnPush --lintFix <
+ng generate @schematics/angular:module --name=landing --project=quicken-micro-apps-contacts-app --module=app-routing/app-routing.module --no-commonModule --lintFix --route=landing --routing <
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/landing/landing-routing.module.ts (348 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/landing/landing.module.ts (290 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/landing/landing.component.html (22 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/landing/landing.component.spec.ts (635 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/landing/landing.component.ts (284 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/landing/landing.component.css (0 bytes)
+UPDATE libs/quicken/micro-apps/contacts-app/src/lib/app-routing/app-routing.module.ts (901 bytes)
+```
 
-CREATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-item/contacts-item.component.html (28 bytes)
-CREATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-item/contacts-item.component.spec.ts (671 bytes)
-CREATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-item/contacts-item.component.ts (384 bytes)
-CREATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-item/contacts-item.component.scss (0 bytes)
-UPDATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-app.module.ts (605 bytes)
+#### Component UI Services
+
+Each of the UI components will have a designated UI service to coordinate UI/UX state and any data operations with the domain service. The UI service
+
+- data operations
+  - handles the response
+  - manages the publishing of data using Async Observables
+  - manages the publishing of UI events using Async Observables
+
+```ts
+ng generate @schematics/angular:service --name=AddContactUI --project=quicken-micro-apps-contacts-app --lintFix --skipTests --no-interactive --dry-run <
+
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/add-contact-ui.service.ts (141 bytes)
+```
+
+The UI service extends from the `ServiceBase` class to provide common behavior for Angular services. A _Logging_ provider is injected into the service via the constructor.
+
+```ts
+import { Injectable } from '@angular/core';
+import { ServiceBase } from '@valencia/foundation';
+import { LoggingService } from '@valencia/logging';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AddContactUIService extends ServiceBase {
+  constructor(loggingService: LoggingService) {
+    super('AddContactUIService', loggingService);
+  }
+}
 ```
 
 ### Add Routing to Micro-Frontend
