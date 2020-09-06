@@ -538,6 +538,39 @@
           }
         }
       }
+    },
+    "api-contacts": {
+      "root": "libs/api/contacts",
+      "sourceRoot": "libs/api/contacts/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/api/contacts/tsconfig.lib.json", "libs/api/contacts/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/api/contacts/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/contacts/jest.config.js",
+            "tsConfig": "libs/api/contacts/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/api/contacts",
+            "tsConfig": "libs/api/contacts/tsconfig.lib.json",
+            "packageJson": "libs/api/contacts/package.json",
+            "main": "libs/api/contacts/src/index.ts",
+            "assets": ["libs/api/contacts/*.md"]
+          }
+        }
+      }
     }
   },
   "cli": {

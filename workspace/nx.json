@@ -47,6 +47,9 @@
     },
     "contacts": {
       "tags": []
+    },
+    "api-contacts": {
+      "tags": []
     }
   }
 }

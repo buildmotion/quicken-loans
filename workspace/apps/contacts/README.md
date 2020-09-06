@@ -387,47 +387,6 @@ To target a specific profile, use the `serverless deploy` command with the optio
 
 > `serverless deploy --aws-profile quicken`
 
-Running the `serverless deploy` command after setting the credentials will create
-
-```ts
-serverless config credentials --provider aws --key YOUR-KEY --secret SECRET-KEY -o
-Serverless: Setting up AWS...
-PS D:\development\gitlab\angular-architecture-website\workspace\apps\video>
-PS D:\development\gitlab\angular-architecture-website\workspace\apps\video>
-PS D:\development\gitlab\angular-architecture-website\workspace\apps\video>
-PS D:\development\gitlab\angular-architecture-website\workspace\apps\video> serverless deploy
-Serverless: Packaging service...
-Serverless: Excluding development dependencies...
-Serverless: Creating Stack...
-Serverless: Checking Stack create progress...
-........
-Serverless: Stack create finished...
-Serverless: Uploading CloudFormation file to S3...
-Serverless: Uploading artifacts...
-Serverless: Uploading service video-serverless.zip file to S3 (131.82 KB)...
-Serverless: Validating template...
-Serverless: Updating Stack...
-Serverless: Checking Stack update progress...
-......................
-Serverless: Stack update finished...
-Service Information
-service: video-serverless
-stage: dev
-region: us-east-1
-stack: video-serverless-dev
-resources: 8
-api keys:
-  None
-endpoints:
-  None
-functions:
-  hello: video-serverless-dev-hello
-layers:
-  None
-Serverless: Publishing service to the Serverless Dashboard...
-Serverless: Successfully published your service to the Serverless Dashboard: https://dashboard.serverless.com/tenants/angulararchi
-```
-
 ## Lambda Function Entry Point
 
 Typically, the entry point to a NextJS node application is the `main.ts` which uses a factory to create the application and hosting with _Express_. However, the purpose of the `lambda.ts` file is to provide an entry point for the server application on AWS Lambda Function. It loads the server application's `AppModule` and available _Controllers_.
@@ -790,127 +749,73 @@ export class AppController {
 }
 ```
 
-Build the new configuration:
-
-```ts
-serverless deploy
-Serverless: Compiling with Typescript...
-Serverless: Using local tsconfig.json
-Serverless: Typescript compiled.
-Serverless: Optimize: starting engines
-Serverless: Optimize: video-serverless-test-dev-api
-Serverless: Packaging service...
-Serverless: Excluding development dependencies...
-Serverless: Installing dependencies for custom CloudFormation resources...
-Serverless: Uploading CloudFormation file to S3...
-Serverless: Uploading artifacts...
-Serverless: Uploading service video-serverless-test.zip file to S3 (990.31 KB)...
-Serverless: Uploading custom CloudFormation resources...
-Serverless: Validating template...
-Serverless: Updating Stack...
-Serverless: Checking Stack update progress...
-service: video-serverless-test
-stage: dev
-region: us-west-1
-stack: video-serverless-test-dev
-resources: 21
-api keys:
-service: video-serverless-test
-stage: dev
-region: us-west-1
-stack: video-serverless-test-dev
-resources: 21
-api keys:
-  None
-endpoints:
-  ANY - https://XXXXXXXX.execute-api.us-west-1.amazonaws.com/dev/{any+}
-  ANY - https://XXXXXXXX.execute-api.us-west-1.amazonaws.com/dev/
-functions:
-  api: video-serverless-test-dev-api
-layers:
-  None
-Serverless: Removing old service artifacts from S3...
-Serverless: Publishing service to the Serverless Dashboard...
-Serverless: Successfully published your service to the Serverless Dashboard: https://dashboard.serverless.com/tenants/angulararchitecture/applications/video-serverless/services/video-serverless-test/stage/dev/region/us-west-1
-```
-
-1. `/` an empty path that maps to the `getData()` operation.
-
-> Returns: `{"message":"Welcome to SERVERLESS VIDEOS!"}`
-
-2. the `/hello` path that maps to the `sayHello()` operation
-
-> Returns: Hello Serverless from NestJS + Express application!
-
 ## Nest Domain Library
 
-Create a server-side library for the NestJs application.
+Create a server-side library for the NestJs application. Use the Nx command:
 
-> Use the Nx command:
-> `nx generate @nrwl/nest:library api/videos --service --global --buildable`
+> `nx generate @nrwl/nest:library api/contacts --service --global --buildable`
 
 The output of the CLI command is:
 
 ```ts
-nx generate @nrwl/nest:library api/videos --service --global --buildable
-CREATE libs/api/videos/tslint.json (94 bytes)
-CREATE libs/api/videos/README.md (174 bytes)
-CREATE libs/api/videos/tsconfig.json (147 bytes)
-CREATE libs/api/videos/tsconfig.lib.json (256 bytes)
-CREATE libs/api/videos/src/index.ts (83 bytes)
-CREATE libs/api/videos/jest.config.js (279 bytes)
-CREATE libs/api/videos/tsconfig.spec.json (252 bytes)
-CREATE libs/api/videos/package.json (71 bytes)
-CREATE libs/api/videos/src/lib/api-videos.module.ts (245 bytes)
-CREATE libs/api/videos/src/lib/api-videos.service.spec.ts (433 bytes)
-CREATE libs/api/videos/src/lib/api-videos.service.ts (113 bytes)
-UPDATE tsconfig.json (2092 bytes)
-UPDATE angular.json (31975 bytes)
-UPDATE nx.json (1581 bytes)
+nx generate @nrwl/nest:library api/contacts --service --global --buildable
+CREATE libs/api/contacts/tslint.json (94 bytes)
+CREATE libs/api/contacts/README.md (178 bytes)
+CREATE libs/api/contacts/tsconfig.json (147 bytes)
+CREATE libs/api/contacts/src/index.ts (87 bytes)
+CREATE libs/api/contacts/jest.config.js (283 bytes)
+CREATE libs/api/contacts/tsconfig.spec.json (252 bytes)
+CREATE libs/api/contacts/package.json (61 bytes)
+CREATE libs/api/contacts/src/lib/api-contacts.module.ts (255 bytes)
+CREATE libs/api/contacts/src/lib/api-contacts.service.spec.ts (445 bytes)
+CREATE libs/api/contacts/src/lib/api-contacts.service.ts (115 bytes)
+UPDATE tsconfig.json (1171 bytes)
+UPDATE angular.json (19018 bytes)
+UPDATE nx.json (908 bytes)
 ```
 
 The _angular.json_ is updated with the new _library_ project for the API.
 
 ```json
-"api-videos": {
-  "root": "libs/api/videos",
-  "sourceRoot": "libs/api/videos/src",
+"api-contacts": {
+  "root": "libs/api/contacts",
+  "sourceRoot": "libs/api/contacts/src",
   "projectType": "library",
   "schematics": {},
   "architect": {
     "lint": {
       "builder": "@angular-devkit/build-angular:tslint",
       "options": {
-        "tsConfig": ["libs/api/videos/tsconfig.lib.json", "libs/api/videos/tsconfig.spec.json"],
-        "exclude": ["**/node_modules/**", "!libs/api/videos/**/*"]
+        "tsConfig": ["libs/api/contacts/tsconfig.lib.json", "libs/api/contacts/tsconfig.spec.json"],
+        "exclude": ["**/node_modules/**", "!libs/api/contacts/**/*"]
       }
     },
     "test": {
       "builder": "@nrwl/jest:jest",
       "options": {
-        "jestConfig": "libs/api/videos/jest.config.js",
-        "tsConfig": "libs/api/videos/tsconfig.spec.json",
+        "jestConfig": "libs/api/contacts/jest.config.js",
+        "tsConfig": "libs/api/contacts/tsconfig.spec.json",
         "passWithNoTests": true
       }
     },
     "build": {
       "builder": "@nrwl/node:package",
       "options": {
-        "outputPath": "dist/libs/api/videos",
-        "tsConfig": "libs/api/videos/tsconfig.lib.json",
-        "packageJson": "libs/api/videos/package.json",
-        "main": "libs/api/videos/src/index.ts",
-        "assets": ["libs/api/videos/*.md"]
+        "outputPath": "dist/libs/api/contacts",
+        "tsConfig": "libs/api/contacts/tsconfig.lib.json",
+        "packageJson": "libs/api/contacts/package.json",
+        "main": "libs/api/contacts/src/index.ts",
+        "assets": ["libs/api/contacts/*.md"]
       }
     }
   }
 }
 ```
 
-The _tsconfig.json_ `paths` contains a new entry for the library project. It is using the `@angular-architecture` npm scope name.
+The _tsconfig.json_ `paths` contains a new entry for the library project. It is using the `@valencia` npm scope name.
 
 ```json
-"@angular-architecture/api/videos": ["libs/api/videos/src/index.ts"]
+"@valencia/api/contacts": ["libs/api/contacts/src/index.ts"]
 ```
 
 ## Resources
