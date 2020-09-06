@@ -405,10 +405,73 @@ Angular UI modules need routing modules with routes to components. Add a routing
 
 > `ng g m appRouting --module=contacts-app.module --project=quicken-micro-apps-contacts-app`
 
+The routing module is created. The CLI also updates the library module to import the routing module. When the routing module is set up with routes - the micro-frontend application will initialize the routes with a `forChild()` call.
+
 ```ts
 ng g m appRouting  --module=contacts-app.module --project=quicken-micro-apps-contacts-app
 CREATE libs/quicken/micro-apps/contacts-app/src/lib/app-routing/app-routing.module.ts (196 bytes)
 UPDATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-app.module.ts (254 bytes)
+```
+
+### Add Components to Micro-Frontend
+
+Run the following CLI commands to create the components in the micro-frontend library project.
+
+> Pro Tip: Install the [Nx Console extension](https://github.com/nrwl/nx-console) for Visual Studio Code. It provides
+> a UI to collect and configure a CLI command. You can capture the command in a
+> terminal to see the execution results and command details.
+
+```ts
+ng generate @schematics/angular:component --name=contacts-landing --project=quicken-micro-apps-contacts-app --module=contacts-app.module --style=scss --changeDetection=OnPush --entryComponent --no-interactive
+ng generate @schematics/angular:component --name=contacts-list --project=quicken-micro-apps-contacts-app --module=contacts-app.module --style=scss --changeDetection=OnPush --entryComponent --no-interactive
+ng generate @schematics/angular:component --name=contacts-item --project=quicken-micro-apps-contacts-app --module=contacts-app.module --style=scss --changeDetection=OnPush --entryComponent --no-interactive
+```
+
+See the sample output below for the `contact-item` component:
+
+```ts
+ng generate @schematics/angular:component --name=contacts-item --project=quicken-micro-apps-contacts-app --module=contacts-app.module --style=scss --changeDetection=OnPush --lintFix <
+
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-item/contacts-item.component.html (28 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-item/contacts-item.component.spec.ts (671 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-item/contacts-item.component.ts (384 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-item/contacts-item.component.scss (0 bytes)
+UPDATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-app.module.ts (605 bytes)
+```
+
+### Add Routing to Micro-Frontend
+
+Update the `AppRoutingModule` with routes and register the routes using the
+`RouterModule.forChild(routes)` call in the module's _import_ section.
+
+```ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
+import { ContactsLandingComponent } from '../contacts-landing/contacts-landing.component';
+import { ContactsListComponent } from '../contacts-list/contacts-list.component';
+import { ContactsItemComponent } from '../contacts-item/contacts-item.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ContactsLandingComponent,
+  },
+  {
+    path: 'list',
+    component: ContactsListComponent,
+  },
+  {
+    path: 'item:id',
+    component: ContactsItemComponent,
+  },
+];
+
+@NgModule({
+  declarations: [],
+  imports: [CommonModule, RouterModule.forChild(routes)],
+})
+export class AppRoutingModule {}
 ```
 
 ## Create Domain Library Projects
