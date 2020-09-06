@@ -184,7 +184,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/contacts/dev/1599347362967-2020-09-05T23:09:22.967Z/contacts.zip"
+                "S3Key": "serverless/contacts/dev/1599367351033-2020-09-06T04:42:31.033Z/contacts.zip"
               },
               "FunctionName": "contacts-dev-api",
               "Handler": "s_api.handler",
@@ -197,14 +197,14 @@
             },
             "DependsOn": ["ApiLogGroup"]
           },
-          "ApiLambdaVersiongGi3mytnoYll7yMAGAV1pwSMSFFhujM75WCzyVabI": {
+          "ApiLambdaVersionWrMQXRRYbPNQaHvIEBslxS1XLOkfHQwu26rGO8sF0wo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "+JWTOgfKCsKXArdviOk2tcX3kXwhZE0n1IHmSKLXhsE="
+              "CodeSha256": "R5Iy6Mrd3hxlANIkx4LrPDY9+t6TGtYvVkOB9me8DIY="
             }
           },
           "ApiGatewayRestApi": {
@@ -399,7 +399,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1599346795442": {
+          "ApiGatewayDeployment1599366318091": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -530,7 +530,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/contacts/dev/1599347362967-2020-09-05T23:09:22.967Z/custom-resources.zip"
+                "S3Key": "serverless/contacts/dev/1599367351033-2020-09-06T04:42:31.033Z/custom-resources.zip"
               },
               "FunctionName": "contacts-dev-custom-resource-apigw-cw-role",
               "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -542,6 +542,36 @@
               }
             },
             "DependsOn": ["IamRoleCustomResourcesLambdaExecution"]
+          },
+          "contactsTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "contactsTable",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "contactId",
+                  "AttributeType": "S"
+                },
+                {
+                  "AttributeName": "noteId",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "contactId",
+                  "KeyType": "HASH"
+                },
+                {
+                  "AttributeName": "noteId",
+                  "KeyType": "RANGE"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
+              }
+            }
           },
           "CloudWatchLogsSubscriptionFilterApiLogGroup": {
             "Type": "AWS::Logs::SubscriptionFilter",
@@ -578,7 +608,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersiongGi3mytnoYll7yMAGAV1pwSMSFFhujM75WCzyVabI"
+              "Ref": "ApiLambdaVersionWrMQXRRYbPNQaHvIEBslxS1XLOkfHQwu26rGO8sF0wo"
             }
           },
           "ServiceEndpoint": {
@@ -724,8 +754,43 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersiongGi3mytnoYll7yMAGAV1pwSMSFFhujM75WCzyVabI"
+        "versionLogicalId": "ApiLambdaVersionWrMQXRRYbPNQaHvIEBslxS1XLOkfHQwu26rGO8sF0wo"
       }
+    },
+    "resources": {
+      "Resources": {
+        "contactsTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "contactsTable",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "contactId",
+                "AttributeType": "S"
+              },
+              {
+                "AttributeName": "noteId",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "contactId",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "noteId",
+                "KeyType": "RANGE"
+              }
+            ],
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 1,
+              "WriteCapacityUnits": 1
+            }
+          }
+        }
+      },
+      "Outputs": {}
     },
     "configValidationMode": "warn",
     "serviceFilename": "serverless.yml",
@@ -747,6 +812,9 @@
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
+      },
+      "resources": {
+        "$ref": "$[\"service\"][\"resources\"]"
       }
     },
     "isDashboardMonitoringPreconfigured": true,
@@ -756,7 +824,7 @@
     "artifact": "D:\\development\\github\\quicken-loans\\workspace\\.build\\.serverless\\contacts.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/contacts/dev/1599347362967-2020-09-05T23:09:22.967Z",
+    "artifactDirectoryName": "serverless/contacts/dev/1599367351033-2020-09-06T04:42:31.033Z",
     "artifact": "contacts.zip"
   }
 }
