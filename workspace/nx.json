@@ -50,6 +50,9 @@
     },
     "api-contacts": {
       "tags": []
+    },
+    "quicken-micro-apps-contacts-app": {
+      "tags": []
     }
   }
 }

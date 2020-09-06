@@ -571,6 +571,47 @@
           }
         }
       }
+    },
+    "quicken-micro-apps-contacts-app": {
+      "projectType": "library",
+      "root": "libs/quicken/micro-apps/contacts-app",
+      "sourceRoot": "libs/quicken/micro-apps/contacts-app/src",
+      "prefix": "valencia",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/quicken/micro-apps/contacts-app/tsconfig.lib.json",
+            "project": "libs/quicken/micro-apps/contacts-app/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/quicken/micro-apps/contacts-app/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/quicken/micro-apps/contacts-app/tsconfig.lib.json", "libs/quicken/micro-apps/contacts-app/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/quicken/micro-apps/contacts-app/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/quicken/micro-apps/contacts-app/jest.config.js",
+            "tsConfig": "libs/quicken/micro-apps/contacts-app/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/quicken/micro-apps/contacts-app/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

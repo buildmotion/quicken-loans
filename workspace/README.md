@@ -355,9 +355,63 @@ ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss 
 ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=rules-engine
 ```
 
-## Create Server Application Project
+## Create Micro-Frontend (Application Project)
 
-## Create Server Library Projects
+Create a new library project that will have the responsibility of a _Contacts_ UI. Using a library project type for UI implements provides an effective and efficient strategy to share and reuse UI code as _micro-applications_ or _micro-frontends_. A micro-frontend allows for the following:
+
+- multiple application projects can reuse a single micro-application
+- application projects are composable using micro-applications as aggregates
+  - single-source of truth
+  - higher quality
+  - no versioning required
+  - eliminates scattered code throughout different applications
+  - no copy/past coding
+  - can be shared/reused by other micro-frontends
+- single micro-frontend applications are modular
+  - encapsulate UI and specific feature sets
+- allows for shared application state, resources, styles, and assets
+  - global services: security, logging, configuration
+  - SCSS
+  - images, fonts, configuration
+
+### Generate Micro-Frontend with CLI
+
+Use the Angular CLI to generate a micro-frontend library project.
+
+> `ng g library contactsApp --simple-module-name --directory=quicken/micro-apps --publishable`
+
+```ts
+ng g library contactsApp --simple-module-name --directory=quicken/micro-apps  --publishable
+? Which stylesheet format would you like to use? SASS(.scss)  [ http://sass-lang.com   ]
+CREATE libs/quicken/micro-apps/contacts-app/ng-package.json (193 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/package.json (196 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/README.md (186 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/tsconfig.lib.json (414 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/tsconfig.lib.prod.json (97 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-app.module.ts (167 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/tsconfig.json (129 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/jest.config.js (413 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/tsconfig.spec.json (239 bytes)
+CREATE libs/quicken/micro-apps/contacts-app/src/test-setup.ts (30 bytes)
+UPDATE angular.json (20567 bytes)
+UPDATE nx.json (973 bytes)
+UPDATE tsconfig.json (1277 bytes)
+√ Packages installed successfully.
+```
+
+### Add Routing Module to Micro-Frontend
+
+Angular UI modules need routing modules with routes to components. Add a routing module to the micro-frontend library project using the CLI.
+
+> `ng g m appRouting --module=contacts-app.module --project=quicken-micro-apps-contacts-app`
+
+```ts
+ng g m appRouting  --module=contacts-app.module --project=quicken-micro-apps-contacts-app
+CREATE libs/quicken/micro-apps/contacts-app/src/lib/app-routing/app-routing.module.ts (196 bytes)
+UPDATE libs/quicken/micro-apps/contacts-app/src/lib/contacts-app.module.ts (254 bytes)
+```
+
+## Create Domain Library Projects
 
 ## Test
 
@@ -384,7 +438,7 @@ This project was generated using [Nx](https://nx.dev).
 
 🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
 
-## Quick Start & Documentation
+### Quick Start & Documentation
 
 [Nx Documentation](https://nx.dev/angular)
 
@@ -392,7 +446,7 @@ This project was generated using [Nx](https://nx.dev).
 
 [Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
 
-## Adding capabilities to your workspace
+### Adding capabilities to your workspace
 
 Nx supports many plugins which add capabilities for developing different types of applications and different tools.
 
@@ -413,7 +467,7 @@ Below are some plugins which you can add to your workspace:
 - [Node](https://nodejs.org)
   - `ng add @nrwl/node`
 
-## Generate an application
+### Generate an application
 
 Run `ng g @nrwl/angular:app my-app` to generate an application.
 
@@ -421,7 +475,7 @@ Run `ng g @nrwl/angular:app my-app` to generate an application.
 
 When using Nx, you can create multiple applications and libraries in the same workspace.
 
-## Generate a library
+### Generate a library
 
 Run `ng g @nrwl/angular:lib my-lib` to generate a library.
 
@@ -429,35 +483,35 @@ Run `ng g @nrwl/angular:lib my-lib` to generate a library.
 
 Libraries are sharable across libraries and applications. They can be imported from `@workspace/mylib`.
 
-## Development server
+### Development server
 
 Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+### Code scaffolding
 
 Run `ng g component my-component --project=my-app` to generate a new component.
 
-## Build
+### Build
 
 Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+### Running unit tests
 
 Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
 
 Run `nx affected:test` to execute the unit tests affected by a change.
 
-## Running end-to-end tests
+### Running end-to-end tests
 
 Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
 Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 
-## Understand your workspace
+### Understand your workspace
 
 Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
-## Further help
+### Further help
 
 Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
 

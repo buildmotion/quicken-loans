@@ -1,7 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { AppService } from './app.service';
-
 import { ApiContactsService } from '@valencia/api/contacts';
 
 @Controller()

@@ -171,7 +171,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/contacts/dev/1599367351033-2020-09-06T04:42:31.033Z/contacts.zip"
+          "S3Key": "serverless/contacts/dev/1599407359769-2020-09-06T15:49:19.769Z/contacts.zip"
         },
         "FunctionName": "contacts-dev-api",
         "Handler": "s_api.handler",
@@ -184,14 +184,14 @@
       },
       "DependsOn": ["ApiLogGroup"]
     },
-    "ApiLambdaVersionWrMQXRRYbPNQaHvIEBslxS1XLOkfHQwu26rGO8sF0wo": {
+    "ApiLambdaVersionSq4M8btund0dL1EHo8stbZljJYILkZQxevtAMQAA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "R5Iy6Mrd3hxlANIkx4LrPDY9+t6TGtYvVkOB9me8DIY="
+        "CodeSha256": "FHIkGYC04neTO3+cY708cEakY9NJLJ2Om8JEUUg0nys="
       }
     },
     "ApiGatewayRestApi": {
@@ -386,7 +386,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1599366318091": {
+    "ApiGatewayDeployment1599406385099": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -517,7 +517,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/contacts/dev/1599367351033-2020-09-06T04:42:31.033Z/custom-resources.zip"
+          "S3Key": "serverless/contacts/dev/1599407359769-2020-09-06T15:49:19.769Z/custom-resources.zip"
         },
         "FunctionName": "contacts-dev-custom-resource-apigw-cw-role",
         "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -595,7 +595,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionWrMQXRRYbPNQaHvIEBslxS1XLOkfHQwu26rGO8sF0wo"
+        "Ref": "ApiLambdaVersionSq4M8btund0dL1EHo8stbZljJYILkZQxevtAMQAA"
       }
     },
     "ServiceEndpoint": {

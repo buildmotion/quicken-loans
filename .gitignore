@@ -1,2 +1,5 @@
 workspace/.build/
 workspace/.serverless
+workspace/.serverless/cloudformation-template-update-stack.json
+workspace/.serverless/contacts.zip
+workspace/.serverless/serverless-state.json
