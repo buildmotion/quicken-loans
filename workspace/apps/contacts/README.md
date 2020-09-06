@@ -331,16 +331,16 @@ ex: apps\video\src\lambda.ts
 >
 > - [aws-serverless-express](https://www.npmjs.com/package/aws-serverless-express)
 > - [aws-lambda](https://www.npmjs.com/package/aws-lambda)
->
-> ```ts
-> yarn add --dev aws-serverless-express
-> yarn add --dev @types/aws-serverless-express
-> yarn add --dev aws-lambda
-> yarn add --dev @types/aws-lambda
-> yarn add --dev @hewmen/serverless-plugin-typescript
-> yarn add --dev serverless-plugin-optimize
-> yarn add --dev serverless-offline
-> ```
+
+```ts
+yarn add --dev @types/aws-lambda
+yarn add --dev @types/aws-serverless-express
+yarn add --dev aws-lambda
+yarn add --dev aws-serverless-express
+yarn add --dev serverless-offline
+yarn add --dev serverless-plugin-optimize
+yarn add --dev serverless-plugin-typescript
+```
 
 ## API Key and Secret Key
 
@@ -487,7 +487,7 @@ The `plugins` configuration allows the build and deploy process to use the plugi
 service: contacts
 # app and org for use with dashboard.serverless.com
 org: angulararchitecture
-app: quicken
+app: quicken-contacts
 
 plugins:
   - serverless-plugin-typescript
@@ -518,43 +518,73 @@ functions:
           path: /
 ```
 
-## Deploy
+### Application Name
 
-Running the `serverless deploy` commnad produces the following output.
+The application name must exist on your [https://app.serverless.com/](https://app.serverless.com/). The name must match the configuration of the `app` name in the `serverless.yml` file.
+
+> `app: quicken-contacts`
 
 ```ts
-serverless deploy
+Error: {"errorMessage":"Application not found. - Please contact support and provide this identifier to reference this issue - 4WDV3L4LDWCS"}
+```
+
+## Deploy
+
+Running the `serverless deploy --aws-profile quicken-contacts` command produces the following output.
+
+```ts
+serverless deploy --aws-profile quicken
 Serverless: Compiling with Typescript...
 Serverless: Using local tsconfig.json
 Serverless: Typescript compiled.
 Serverless: Optimize: starting engines
-Serverless: Optimize: video-serverless-test-dev-hello
+Serverless: Optimize: contacts-dev-api
 Serverless: Packaging service...
 Serverless: Excluding development dependencies...
 Serverless: Installing dependencies for custom CloudFormation resources...
+Serverless: Deprecation warning: Safeguards support has been moved to the @serverless/safeguards-plugin external plugin and will be removed from the core with next major release.
+
+                        Please visit https://github.com/serverless/safeguards-plugin/ to migrate your safeguards to the new plugin.
+                        You may also disable safeguards by setting "custom.safeguards.isDisabled: true" in service config
+
+Serverless: Creating Stack...
+Serverless: Checking Stack create progress...
+........
+Serverless: Stack create finished...
 Serverless: Uploading CloudFormation file to S3...
 Serverless: Uploading artifacts...
-Serverless: Uploading service video-serverless-test.zip file to S3 (990.26 KB)...
+Serverless: Uploading service contacts.zip file to S3 (997.73 KB)...
 Serverless: Uploading custom CloudFormation resources...
 Serverless: Validating template...
 Serverless: Updating Stack...
 Serverless: Checking Stack update progress...
-................
+............................................................
 Serverless: Stack update finished...
 Service Information
+service: contacts
 stage: dev
-stack: video-serverless-test-dev
-resources: 18
+region: us-west-1
+stack: contacts-dev
+resources: 21
+api keys:
+Serverless: Stack update finished...
+Service Information
+service: contacts
+stage: dev
+region: us-west-1
+stack: contacts-dev
+resources: 21
 api keys:
   None
 endpoints:
-  GET - https://XXXXXXX.execute-api.us-west-1.amazonaws.com/dev/hello
+  ANY - https://juz537ocx2.execute-api.us-west-1.amazonaws.com/dev/{any+}
+  ANY - https://juz537ocx2.execute-api.us-west-1.amazonaws.com/dev/
 functions:
-  hello: video-serverless-test-dev-hello
+  api: contacts-dev-api
 layers:
   None
 Serverless: Publishing service to the Serverless Dashboard...
-Serverless: Successfully published your service to the Serverless Dashboard: https://dashboard.serverless.com/tenants/angulararchitecture/applications/video-serverless/services/video-serverless-test/stage/dev/region/us-west-1
+Serverless: Successfully published your service to the Serverless Dashboard: https://dashboard.serverless.com/tenants/angulararchitecture/applications/quicken-contacts/services/contacts/stage/dev/region/us-west-1
 ```
 
 ## Results
@@ -886,3 +916,4 @@ The _tsconfig.json_ `paths` contains a new entry for the library project. It is 
 ## Resources
 
 - [NestJs + TypeScript with Serverless](https://www.serverless.com/examples/aws-node-typescript-nest)
+- [Multiple AWS Profiles](https://serverless-stack.com/chapters/configure-multiple-aws-profiles.html)

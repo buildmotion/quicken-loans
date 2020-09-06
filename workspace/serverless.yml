@@ -14,7 +14,7 @@
 service: contacts
 # app and org for use with dashboard.serverless.com
 org: angulararchitecture
-app: quicken
+app: quicken-contacts
 
 plugins:
   - serverless-plugin-typescript
