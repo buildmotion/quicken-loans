@@ -612,6 +612,47 @@
           "style": "scss"
         }
       }
+    },
+    "quicken-domain-contacts-service": {
+      "projectType": "library",
+      "root": "libs/quicken/domain/contacts-service",
+      "sourceRoot": "libs/quicken/domain/contacts-service/src",
+      "prefix": "valencia",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/quicken/domain/contacts-service/tsconfig.lib.json",
+            "project": "libs/quicken/domain/contacts-service/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/quicken/domain/contacts-service/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/quicken/domain/contacts-service/tsconfig.lib.json", "libs/quicken/domain/contacts-service/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/quicken/domain/contacts-service/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/quicken/domain/contacts-service/jest.config.js",
+            "tsConfig": "libs/quicken/domain/contacts-service/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/quicken/domain/contacts-service/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

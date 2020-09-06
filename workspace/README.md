@@ -454,7 +454,7 @@ import { ContactsItemComponent } from '../contacts-item/contacts-item.component'
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'landing',
     component: ContactsLandingComponent,
   },
   {
@@ -474,7 +474,59 @@ const routes: Routes = [
 export class AppRoutingModule {}
 ```
 
+Update the host application to load the micro-frontend application using lazy-loading.
+
+```ts
+import { NgModule } from '@angular/core';
+import { Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'contacts/landing',
+    loadChildren: () => import('@valencia/quicken/micro-apps/contacts-app').then(m => m.ContactsAppModule),
+  },
+];
+
+@NgModule({
+  declarations: [],
+  imports: [],
+})
+export class AppRoutingModule {}
+```
+
 ## Create Domain Library Projects
+
+A domain library encapsulates all of the business logic for the specified _service_.s
+
+```ts
+Executing task: ng generate @nrwl/angular:library --name=contactsService --style=scss --directory=quicken/domain --publishable --simpleModuleName <
+
+CREATE libs/quicken/domain/contacts-service/ng-package.json (193 bytes)
+CREATE libs/quicken/domain/contacts-service/package.json (196 bytes)
+CREATE libs/quicken/domain/contacts-service/README.md (186 bytes)
+CREATE libs/quicken/domain/contacts-service/tsconfig.lib.json (414 bytes)
+CREATE libs/quicken/domain/contacts-service/tsconfig.lib.prod.json (97 bytes)
+CREATE libs/quicken/domain/contacts-service/tslint.json (254 bytes)
+CREATE libs/quicken/domain/contacts-service/src/index.ts (47 bytes)
+CREATE libs/quicken/domain/contacts-service/src/lib/contacts-service.module.ts (171 bytes)
+CREATE libs/quicken/domain/contacts-service/tsconfig.json (129 bytes)
+CREATE libs/quicken/domain/contacts-service/jest.config.js (413 bytes)
+CREATE libs/quicken/domain/contacts-service/tsconfig.spec.json (239 bytes)
+CREATE libs/quicken/domain/contacts-service/src/test-setup.ts (30 bytes)
+UPDATE angular.json (22116 bytes)
+UPDATE nx.json (1038 bytes)
+UPDATE tsconfig.json (1383 bytes)
+√ Packages installed successfully.
+```
+
+### API Service for Domain Library
+
+The library project will require a service as an entry point. Create a new service for the library project - the responsibility of the service is to provide an API for any consumers of _ContractsService_.
+
+```ts
+ng generate @schematics/angular:service --name=contacts --project=quicken-domain-contacts-service --lintFix --skipTests <
+CREATE libs/quicken/domain/contacts-service/src/lib/contacts.service.ts (137 bytes)
+```
 
 ## Test
 

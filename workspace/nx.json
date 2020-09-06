@@ -53,6 +53,9 @@
     },
     "quicken-micro-apps-contacts-app": {
       "tags": []
+    },
+    "quicken-domain-contacts-service": {
+      "tags": []
     }
   }
 }
