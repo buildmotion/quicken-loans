@@ -569,6 +569,39 @@ UPDATE tsconfig.json (1525 bytes)
 √ Packages installed successfully.
 ```
 
+#### Contact DTO (Data Transfer Object)
+
+Create a DTO for the contact information.
+
+> Note that the _contact_ item also contains an
+> `options` list of numbers.
+
+```ts
+export class ContactDto {
+  address1: string;
+  address2: string;
+  city: string;
+  company: string;
+  emailAddress: string;
+  firstName: string;
+  lastName: string;
+  options: number[] = [];
+  phone: string;
+  postalCode: string;
+  state: string;
+}
+```
+
+Add a `Contact` model that contains the same information in the DTO, but also has an identifier for the a specific contact item.
+
+```ts
+import { ContactDto } from './contact.dto';
+
+export class Contact extends ContactDto {
+  contactId: string;
+}
+```
+
 ### API Service for Domain Library
 
 The library project will require a service as an entry point. Create a new service for the library project - the responsibility of the service is to provide an API for any consumers of _ContractsService_.

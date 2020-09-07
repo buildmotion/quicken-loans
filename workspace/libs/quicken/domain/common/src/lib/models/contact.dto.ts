@@ -6,6 +6,7 @@ export class ContactDto {
   emailAddress: string;
   firstName: string;
   lastName: string;
+  options: number[] = [];
   phone: string;
   postalCode: string;
   state: string;
