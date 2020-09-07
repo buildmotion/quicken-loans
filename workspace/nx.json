@@ -59,6 +59,9 @@
     },
     "common": {
       "tags": []
+    },
+    "quicken-domain-common": {
+      "tags": []
     }
   }
 }

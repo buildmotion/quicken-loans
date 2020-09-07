@@ -546,6 +546,29 @@ UPDATE tsconfig.json (1383 bytes)
 √ Packages installed successfully.
 ```
 
+### Common Domain Library
+
+```ts
+ng generate @nrwl/angular:library --name=common --style=scss --directory=quicken/domain --publishable --simpleModuleName <
+
+CREATE libs/quicken/domain/common/ng-package.json (183 bytes)
+CREATE libs/quicken/domain/common/package.json (186 bytes)
+CREATE libs/quicken/domain/common/README.md (166 bytes)
+CREATE libs/quicken/domain/common/tsconfig.lib.json (414 bytes)
+CREATE libs/quicken/domain/common/tsconfig.lib.prod.json (97 bytes)
+CREATE libs/quicken/domain/common/tslint.json (254 bytes)
+CREATE libs/quicken/domain/common/src/index.ts (37 bytes)
+CREATE libs/quicken/domain/common/src/lib/common.module.ts (162 bytes)
+CREATE libs/quicken/domain/common/tsconfig.json (129 bytes)
+CREATE libs/quicken/domain/common/jest.config.js (393 bytes)
+CREATE libs/quicken/domain/common/tsconfig.spec.json (239 bytes)
+CREATE libs/quicken/domain/common/src/test-setup.ts (30 bytes)
+UPDATE angular.json (24794 bytes)
+UPDATE nx.json (1133 bytes)
+UPDATE tsconfig.json (1525 bytes)
+√ Packages installed successfully.
+```
+
 ### API Service for Domain Library
 
 The library project will require a service as an entry point. Create a new service for the library project - the responsibility of the service is to provide an API for any consumers of _ContractsService_.
