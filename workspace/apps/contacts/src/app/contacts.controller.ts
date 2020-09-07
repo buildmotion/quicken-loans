@@ -1,5 +1,4 @@
 import { Body, Controller, Delete, Get, Patch, Post, Put, Res, HttpStatus } from '@nestjs/common';
-// import { ContactDto, Contact } from '../../../../libs/quicken/domain/common/src/index';
 
 import { ApiContactsService } from './api-contacts.service';
 import { ContactDto } from './models/contact.dto';

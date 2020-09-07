@@ -1,0 +1,13 @@
+{
+  "options": [],
+  "address1": "1234 MAIN ST",
+  "address2": "Apt #1",
+  "city": "Denver",
+  "company": "Build Motion",
+  "emailAddress": "matt@buildmotion.com",
+  "firstName": "Matt",
+  "lastName": "Vaughn",
+  "phone": "303.356.6273",
+  "postalCode": "80504",
+  "state": "Colorado"
+}
