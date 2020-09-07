@@ -569,6 +569,22 @@ UPDATE tsconfig.json (1525 bytes)
 √ Packages installed successfully.
 ```
 
+```ts
+ng generate @nrwl/workspace:library --name=common --directory=quicken/domain <
+
+CREATE libs/quicken/domain/common/tslint.json (97 bytes)
+CREATE libs/quicken/domain/common/README.md (196 bytes)
+CREATE libs/quicken/domain/common/tsconfig.json (129 bytes)
+CREATE libs/quicken/domain/common/tsconfig.lib.json (178 bytes)
+CREATE libs/quicken/domain/common/src/index.ts (45 bytes)
+CREATE libs/quicken/domain/common/src/lib/quicken-domain-common.ts (0 bytes)
+CREATE libs/quicken/domain/common/jest.config.js (280 bytes)
+CREATE libs/quicken/domain/common/tsconfig.spec.json (255 bytes)
+UPDATE tsconfig.json (1525 bytes)
+UPDATE angular.json (24199 bytes)
+UPDATE nx.json (1133 bytes)
+```
+
 #### Contact DTO (Data Transfer Object)
 
 Create a DTO for the contact information.

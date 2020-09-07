@@ -1,10 +1,12 @@
+import { Observable } from 'rxjs';
+
 import { Inject, Injectable } from '@angular/core';
+import { ApiResponse } from '@valencia/common';
 import { ServiceBase } from '@valencia/foundation';
 import { LoggingService } from '@valencia/logging';
+import { ContactDto } from '@valencia/quicken/domain/common';
 
 import { BusinessProviderService } from './business/business-provider.service';
-import { Observable } from 'rxjs';
-import { ApiResponse } from '@valencia/common';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +17,7 @@ export class ContactsService extends ServiceBase {
     this.businessProvider.serviceContext = this.serviceContext;
   }
 
-  add<T>(): Observable<ApiResponse<T>> {
-    return this.businessProvider.add<T>();
+  add<T>(contact: ContactDto): Observable<ApiResponse<T>> {
+    return this.businessProvider.add<T>(contact);
   }
 }

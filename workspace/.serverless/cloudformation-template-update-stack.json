@@ -171,7 +171,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/contacts/dev/1599407359769-2020-09-06T15:49:19.769Z/contacts.zip"
+          "S3Key": "serverless/contacts/dev/1599515456132-2020-09-07T21:50:56.132Z/contacts.zip"
         },
         "FunctionName": "contacts-dev-api",
         "Handler": "s_api.handler",
@@ -184,14 +184,14 @@
       },
       "DependsOn": ["ApiLogGroup"]
     },
-    "ApiLambdaVersionSq4M8btund0dL1EHo8stbZljJYILkZQxevtAMQAA": {
+    "ApiLambdaVersionSBmszseu9p81teDqa36sXmsSjCws1nbQS3MyIMchM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "FHIkGYC04neTO3+cY708cEakY9NJLJ2Om8JEUUg0nys="
+        "CodeSha256": "D2+HlXg3jpBZHQxm7BTJ2ZtqwvhykbuWMV8mw6Gsipo="
       }
     },
     "ApiGatewayRestApi": {
@@ -386,7 +386,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1599406385099": {
+    "ApiGatewayDeployment1599514854759": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -517,7 +517,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/contacts/dev/1599407359769-2020-09-06T15:49:19.769Z/custom-resources.zip"
+          "S3Key": "serverless/contacts/dev/1599515456132-2020-09-07T21:50:56.132Z/custom-resources.zip"
         },
         "FunctionName": "contacts-dev-custom-resource-apigw-cw-role",
         "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -533,14 +533,14 @@
     "contactsTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
-        "TableName": "contactsTable",
+        "TableName": "contactsTable2",
         "AttributeDefinitions": [
           {
             "AttributeName": "contactId",
             "AttributeType": "S"
           },
           {
-            "AttributeName": "noteId",
+            "AttributeName": "optionId",
             "AttributeType": "S"
           }
         ],
@@ -550,7 +550,7 @@
             "KeyType": "HASH"
           },
           {
-            "AttributeName": "noteId",
+            "AttributeName": "optionId",
             "KeyType": "RANGE"
           }
         ],
@@ -595,7 +595,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionSq4M8btund0dL1EHo8stbZljJYILkZQxevtAMQAA"
+        "Ref": "ApiLambdaVersionSBmszseu9p81teDqa36sXmsSjCws1nbQS3MyIMchM"
       }
     },
     "ServiceEndpoint": {

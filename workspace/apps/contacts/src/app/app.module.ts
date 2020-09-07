@@ -1,13 +1,12 @@
 import { Module } from '@nestjs/common';
 
+import { ApiContactsService } from './api-contacts.service';
 import { AppController } from './app.controller';
-// import { ApiContactsService } from '@valencia/api/contacts';
+import { ContactsController } from './contacts.controller';
 
 @Module({
   imports: [],
-  controllers: [AppController],
-  providers: [
-    // ApiContactsService
-  ],
+  controllers: [AppController, ContactsController],
+  providers: [ApiContactsService],
 })
 export class AppModule {}

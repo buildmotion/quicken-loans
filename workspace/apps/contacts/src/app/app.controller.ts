@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Patch } from '@nestjs/common';
 
 // import { ApiContactsService } from '@valencia/api/contacts';
 

@@ -7,6 +7,7 @@ import { ApiResponse } from '@valencia/common';
 import { Observable } from 'rxjs';
 import { IBusinessProviderService } from './i-business-provider.service';
 import { AddContactAction } from './actions/add-contact.action';
+import { ContactDto } from '@valencia/quicken/domain/common';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +27,8 @@ export class BusinessProviderService extends ServiceBase implements IBusinessPro
   //   return action.response;
   // }
 
-  add<T>(): Observable<ApiResponse<T>> {
-    const action = new AddContactAction<T>();
+  add<T>(contact: ContactDto): Observable<ApiResponse<T>> {
+    const action = new AddContactAction<T>(contact);
     action.Do(this);
     return action.response;
   }

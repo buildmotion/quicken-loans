@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
+import { ContactDto } from '@valencia/quicken/domain/common';
 
 export interface IHttpContactsRepositoryService {
-  addContact(): Observable<any>;
+  addContact(contact: ContactDto): Observable<any>;
 }

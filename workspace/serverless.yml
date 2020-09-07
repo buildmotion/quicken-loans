@@ -128,7 +128,7 @@ resources: # CloudFormation template syntax from here on.
     contactsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: contactsTable
+        TableName: contactsTable2
         AttributeDefinitions:
           - AttributeName: contactId
             AttributeType: S

@@ -3,12 +3,13 @@ import { StringIsNotNullEmptyRange, IsNotNullOrUndefined } from '@valencia/rules
 import { Severity } from '@valencia/logging';
 import { ApiResponse } from '@valencia/common';
 import { of } from 'rxjs';
+import { ContactDto } from '@valencia/quicken/domain/common';
 
 /**
  * Use this action to perform business logic with validation and business rules.
  */
 export class AddContactAction<T> extends BusinessActionBase<T> {
-  constructor() {
+  constructor(private contact: ContactDto) {
     super('AddContactAction');
   }
 
@@ -27,6 +28,6 @@ export class AddContactAction<T> extends BusinessActionBase<T> {
    */
   performAction() {
     this.loggingService.log(this.actionName, Severity.Information, `Preparing to call API to complete action.`);
-    this.response = this.businessProvider.apiService.addContact<T>();
+    this.response = this.businessProvider.apiService.addContact<T>(this.contact);
   }
 }

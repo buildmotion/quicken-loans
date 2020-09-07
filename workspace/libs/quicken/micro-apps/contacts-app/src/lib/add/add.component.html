@@ -1,1 +1,1 @@
-<p>{{ title }}</p>
+<p *ngIf="contact$ | async as contact">{{ contact.firstName }}</p>

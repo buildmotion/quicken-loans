@@ -1,13 +1,13 @@
-import { Handler, Context } from 'aws-lambda';
-import { Server } from 'http';
+import { Context, Handler } from 'aws-lambda';
 import { createServer, proxy } from 'aws-serverless-express';
 import { eventContext } from 'aws-serverless-express/middleware';
+import { Server } from 'http';
 
+import { NestApplicationContextOptions } from '@nestjs/common/interfaces/nest-application-context-options.interface';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
+
 import { AppModule } from './app/app.module';
-import { NestApplicationContextOptions } from '@nestjs/common/interfaces/nest-application-context-options.interface';
-// import { AppModule } from './app.module';
 
 const express = require('express');
 
