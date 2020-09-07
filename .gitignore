@@ -3,3 +3,10 @@ workspace/.serverless
 workspace/.serverless/cloudformation-template-update-stack.json
 workspace/.serverless/contacts.zip
 workspace/.serverless/serverless-state.json
+workspace/.serverless/cloudformation-template-update-stack.json
+workspace/.serverless/contacts.zip
+workspace/.serverless/custom-resources.zip
+workspace/.serverless/serverless-state.json
+workspace/.serverless/cloudformation-template-update-stack.json
+workspace/.serverless/contacts.zip
+workspace/.serverless/serverless-state.json

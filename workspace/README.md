@@ -478,27 +478,20 @@ export class AddContactUIService extends ServiceBase {
 Update the `AppRoutingModule` with routes and register the routes using the
 `RouterModule.forChild(routes)` call in the module's _import_ section.
 
+> Pro Tip: Use the Nx Console mentioned in the [Add Components to
+> Micro-Frontend](#add-components-to-micro-frontend) section. This will
+> automatically update application routing module with lazy-loaded routes to the SCAMs
+
 ```ts
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { ContactsLandingComponent } from '../contacts-landing/contacts-landing.component';
-import { ContactsListComponent } from '../contacts-list/contacts-list.component';
-import { ContactsItemComponent } from '../contacts-item/contacts-item.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: 'landing',
-    component: ContactsLandingComponent,
-  },
-  {
-    path: 'list',
-    component: ContactsListComponent,
-  },
-  {
-    path: 'item:id',
-    component: ContactsItemComponent,
-  },
+  { path: 'landing', loadChildren: () => import('../landing/landing.module').then(m => m.LandingModule) },
+  { path: 'list', loadChildren: () => import('../list/list.module').then(m => m.ListModule) },
+  { path: 'item/edit:id', loadChildren: () => import('../item/item.module').then(m => m.ItemModule) },
+  { path: 'add', loadChildren: () => import('../add/add.module').then(m => m.AddModule) },
 ];
 
 @NgModule({
@@ -577,6 +570,29 @@ yarn run test --project=http-service --watch
 yarn run test --project=logging --watchhttps
 yarn run test --project=notification --watch
 yarn run test --project=rules-engine --watch
+```
+
+## Common Module
+
+```ts
+ng generate @nrwl/angular:library --name=common --style=scss --publishable --simpleModuleName <
+
+CREATE libs/common/ng-package.json (156 bytes)
+CREATE libs/common/package.json (171 bytes)
+CREATE libs/common/README.md (136 bytes)
+CREATE libs/common/tsconfig.lib.json (408 bytes)
+CREATE libs/common/tsconfig.lib.prod.json (97 bytes)
+CREATE libs/common/tslint.json (248 bytes)
+CREATE libs/common/src/index.ts (37 bytes)
+CREATE libs/common/src/lib/common.module.ts (162 bytes)
+CREATE libs/common/tsconfig.json (123 bytes)
+CREATE libs/common/jest.config.js (351 bytes)
+CREATE libs/common/tsconfig.spec.json (233 bytes)
+CREATE libs/common/src/test-setup.ts (30 bytes)
+UPDATE angular.json (23365 bytes)
+UPDATE nx.json (1078 bytes)
+UPDATE tsconfig.json (1439 bytes)
+√ Packages installed successfully.
 ```
 
 ## Nx

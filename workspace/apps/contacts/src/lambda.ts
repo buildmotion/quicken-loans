@@ -6,6 +6,7 @@ import { eventContext } from 'aws-serverless-express/middleware';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { AppModule } from './app/app.module';
+import { NestApplicationContextOptions } from '@nestjs/common/interfaces/nest-application-context-options.interface';
 // import { AppModule } from './app.module';
 
 const express = require('express');
@@ -22,7 +23,12 @@ let cachedServer: Server;
 async function bootstrapServer(): Promise<Server> {
   if (!cachedServer) {
     const expressApp = express();
-    const nestApp = await NestFactory.create(AppModule, new ExpressAdapter(expressApp));
+    const nestApp = await NestFactory.create(AppModule, new ExpressAdapter(expressApp), { cors: true });
+    nestApp.enableCors({
+      origin: true,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+      credentials: true,
+    });
     nestApp.use(eventContext());
     await nestApp.init();
     cachedServer = createServer(expressApp, undefined, binaryMimeTypes);

@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'list', loadChildren: () => import('../list/list.module').then(m => m.ListModule) },
   { path: 'item/edit:id', loadChildren: () => import('../item/item.module').then(m => m.ItemModule) },
   { path: 'add', loadChildren: () => import('../add/add.module').then(m => m.AddModule) },
+  { path: '', loadChildren: () => import('../add/add.module').then(m => m.AddModule) },
 ];
 
 @NgModule({

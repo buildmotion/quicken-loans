@@ -1,7 +1,7 @@
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { ApiResponse, ApiMessage, ErrorApiResponse } from '@valencia/foundation';
+import { ApiResponse, ApiMessage, ApiMessageType } from '@valencia/common';
 
 export class HttpErrorInterceptor implements HttpInterceptor {
   displayToUser = true;
@@ -19,21 +19,21 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   /**
    * Use to handle errors during HTTP/Web API operations. The caller expects
    * an Observable response - this method will either return the response from
-   * the server or a new [ErrorApiResponse] as an Observable for the client to
+   * the server or a new [ApiResponse] as an Observable for the client to
    * handle.
    *
    * @param error The error from the HTTP response.
    */
   protected handleError(error: HttpErrorResponse): Observable<any> {
-    const apiErrorResponse = new ErrorApiResponse();
-    apiErrorResponse.IsSuccess = false;
-    apiErrorResponse.Message = 'Unexpected HTTP error.';
-    apiErrorResponse.Timestamp = new Date();
+    const apiErrorResponse = new ApiResponse();
+    apiErrorResponse.isSuccess = false;
+    apiErrorResponse.message = 'Unexpected HTTP error.';
+    apiErrorResponse.timestamp = new Date();
 
     // Use the base error object to determine if the error type is a general or an all-purpose error.
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-      apiErrorResponse.Errors.push(new ApiMessage(`A client-side or network error occurred.`, false, ''));
+      apiErrorResponse.messages.push(new ApiMessage(`A client-side or network error occurred.`, ApiMessageType.Error));
       return throwError(apiErrorResponse);
     } else {
       // The API returned an unsuccessful response (failure status code).
@@ -47,7 +47,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         return throwError(error);
       } else {
         // An unhandled error/exception - may not want to display this information to an end-user.
-        apiErrorResponse.Errors.push(new ApiMessage(`${error.status}: ${error.statusText}. ${error.message}`, false, ''));
+        apiErrorResponse.messages.push(new ApiMessage(`${error.status}: ${error.statusText}. ${error.message}`, ApiMessageType.Error));
         return throwError(apiErrorResponse);
       }
     }

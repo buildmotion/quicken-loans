@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './modules/core/core.module';
 import { CrossCuttingModule } from './modules/cross-cutting/cross-cutting.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [CoreModule, SharedModule, CrossCuttingModule.forRoot(), BrowserModule, SparkAngularModule, AppRoutingModule],
+  imports: [RouterModule, CoreModule, SharedModule, CrossCuttingModule.forRoot(), BrowserModule, SparkAngularModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

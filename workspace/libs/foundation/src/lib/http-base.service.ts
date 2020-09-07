@@ -1,17 +1,14 @@
-import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ApiResponse } from '@valencia/common';
+import { LoggingService, Severity } from '@valencia/logging';
 
-import { Observable } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
-
-import { HttpRequestOptions } from './models/http-request-options';
-import { HttpRequestMethod } from './models/http-request-methods.enum';
-import { Severity } from '@valencia/logging';
-import { LoggingService } from '@valencia/logging';
 import { ErrorResponse } from './models/error-response.model';
+import { HttpRequestMethod } from './models/http-request-methods.enum';
+import { HttpRequestOptions } from './models/http-request-options';
 import { ServiceResponse } from './models/service-response.model';
-import { ApiResponse } from './models/api/api-response';
 
 /**
  * Use to create and execute HTTP service requests.
@@ -49,7 +46,11 @@ export class HttpBaseService {
    * Use to create a [Header] for Content-Type [application/x-www-form-urlencoded].
    */
   createFormUrlencodedHeader() {
-    this.loggingService.log(this.serviceName, Severity.Information, `Preparing to create header for the [application/x-www-form-urlencoded] HTTP request.`);
+    this.loggingService.log(
+      this.serviceName,
+      Severity.Information,
+      `Preparing to create header for the [application/x-www-form-urlencoded] HTTP request.`
+    );
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     });

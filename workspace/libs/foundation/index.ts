@@ -15,6 +15,3 @@ export { HttpRequestOptions } from './src/lib/models/http-request-options';
 export { HttpRequestMethod } from './src/lib/models/http-request-methods.enum';
 
 export { ApiMessage as ApiErrorMessage } from './src/lib/models/api/api-message';
-export { ApiResponse } from './src/lib/models/api/api-response';
-export { ErrorApiResponse } from './src/lib/models/api/error-api-response';
-export { SuccessApiResponse } from './src/lib/models/api/success-api-response';
