@@ -9,12 +9,15 @@ plugins:
 
 provider:
   name: aws
+  tracing:
+    apiGateway: true
   runtime: nodejs12.x
   region: us-west-1
   stage: ${opt:stage, 'dev'}
   environment:
     CONTACTS_TABLE_NAME: ${self:custom.ContactsTable.name}
-
+package:
+  individually: true
 functions:
   api:
     handler: ./apps/contacts/src/lambda.main
@@ -32,4 +35,4 @@ resources:
     ContactsTable: ${file(aws/contactsTable.yml):ContactsTable}
 custom:
   ContactsTable:
-    name: !Ref contactsTable
+    name: !Ref ContactsTable

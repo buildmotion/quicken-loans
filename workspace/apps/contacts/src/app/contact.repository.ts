@@ -45,7 +45,7 @@ export class ContactRepository {
     try {
       await new AWS.DynamoDB.DocumentClient()
         .put({
-          TableName: process.env.ORDERS_TABLE_NAME,
+          TableName: process.env.CONTACTS_TABLE_NAME,
           Item: newContact,
         })
         .promise();

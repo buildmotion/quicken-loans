@@ -14,6 +14,21 @@ export class ContactsController {
     try {
       const newContact: Contact = await this.contactService.add(contactDto);
 
+      // const newContact = {
+      //   contactId: '1234',
+      //   options: [],
+      //   address1: '1234 MAIN ST',
+      //   address2: 'Apt #1',
+      //   city: 'Denver',
+      //   company: 'Build Motion',
+      //   emailAddress: 'matt@buildmotion.com',
+      //   firstName: 'Matt',
+      //   lastName: 'Vaughn',
+      //   phone: '303.356.6273',
+      //   postalCode: '80504',
+      //   state: 'Colorado',
+      // };
+
       this.addCorsToHeader(response);
       if (newContact && this.contactService) {
         return response.status(HttpStatus.CREATED).json({
