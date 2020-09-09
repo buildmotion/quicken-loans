@@ -1,0 +1,13 @@
+ContactsTable:
+  Type: AWS::DynamoDB::Table
+  Properties:
+    TableName: ContactsTable-${self:provider.stage}
+    AttributeDefinitions:
+      - AttributeName: contactId
+        AttributeType: S
+    KeySchema:
+      - AttributeName: contactId
+        KeyType: HASH
+    ProvisionedThroughput:
+      ReadCapacityUnits: 1
+      WriteCapacityUnits: 1
