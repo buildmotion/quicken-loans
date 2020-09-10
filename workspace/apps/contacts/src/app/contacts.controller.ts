@@ -8,7 +8,7 @@ import { Contact } from './models/contact.model';
 export class ContactsController {
   constructor(private readonly contactService: ApiContactsService) {}
 
-  @Post('/add')
+  @Post('add')
   async createContact(@Body() contactDto: ContactDto, @Res() response: any) {
     try {
       const newContact: Contact = await this.contactService.add(contactDto);
@@ -35,7 +35,7 @@ export class ContactsController {
     }
   }
 
-  @Get('/item/:contactId')
+  @Get(':contactId')
   async retrieveContact(@Param('contactId') id: string, @Res() response: any) {
     try {
       const contact: any = await this.contactService.retrieveContactById(id);
@@ -85,6 +85,33 @@ export class ContactsController {
         isSuccess: false,
         message: `Error while attempting to retrieve contacts. Error: ${JSON.stringify(error)}`,
         messages: [{ code: 'CONTACT_ERROR', message: 'Unexpected error while attempting to retrieve contacts', messageType: 'Error' }],
+      });
+    }
+  }
+
+  @Delete(':contactId')
+  async removeContact(@Param('contactId') id: string, @Res() response: any) {
+    try {
+      const isRemoved: boolean = await this.contactService.removeContact(id);
+      if (isRemoved && this.contactService) {
+        return response.status(HttpStatus.OK).json({
+          isSuccess: true,
+          data: isRemoved,
+          message: 'Successfully removed contact.',
+        });
+      } else {
+        return response.status(HttpStatus.BAD_REQUEST).json({
+          isSuccess: false,
+          data: null,
+          message: 'Failed to removed contact.',
+          messages: [{ code: 'CONTACT_FAILURE', message: 'Unexpected error while attempting to remove contact', messageType: 'Error' }],
+        });
+      }
+    } catch (error) {
+      return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        isSuccess: false,
+        message: `Error while attempting to remove contacts. Error: ${JSON.stringify(error)}`,
+        messages: [{ code: 'CONTACT_ERROR', message: 'Unexpected error while attempting to remove contact', messageType: 'Error' }],
       });
     }
   }

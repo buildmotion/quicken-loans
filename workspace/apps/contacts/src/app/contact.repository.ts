@@ -39,6 +39,28 @@ export class ContactRepository {
     return newContact;
   }
 
+  async removeContact(id: string) {
+    let isRemoved;
+    try {
+      const result = await new AWS.DynamoDB.DocumentClient()
+        .delete({
+          TableName: 'ContactsTable-dev',
+          Key: { contactId: id },
+        })
+        .promise();
+
+      isRemoved = result;
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+
+    if (!isRemoved) {
+      throw new NotFoundException(`Contact not found for ID: ${id}.`);
+    }
+
+    return isRemoved;
+  }
+
   /**
    * Use to retrieve a [contact] item from the data store.
    *
@@ -50,7 +72,7 @@ export class ContactRepository {
       const result = await new AWS.DynamoDB.DocumentClient()
         .get({
           TableName: 'ContactsTable-dev',
-          Key: { id },
+          Key: { contactId: id },
         })
         .promise();
 

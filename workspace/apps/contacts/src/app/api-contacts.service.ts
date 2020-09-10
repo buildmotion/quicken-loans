@@ -21,6 +21,10 @@ export class ApiContactsService {
     return this.repository.add(contactDto);
   }
 
+  removeContact(id: string): boolean | PromiseLike<boolean> {
+    return this.repository.removeContact(id);
+  }
+
   retrieveAllContacts(): any {
     return this.repository.retrieveAllContacts();
   }
