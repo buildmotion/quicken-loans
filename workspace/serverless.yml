@@ -24,6 +24,7 @@ provider:
         - 'dynamodb:GetItem'
         - 'dynamodb:UpdateItem'
         - 'dynamodb:DeleteItem'
+        - 'dynamodb:Scan'
       Resource: 'arn:aws:dynamodb:us-west-1:516631029472:table/ContactsTable-dev'
 package:
   individually: true

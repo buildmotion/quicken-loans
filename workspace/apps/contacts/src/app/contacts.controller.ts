@@ -35,7 +35,7 @@ export class ContactsController {
     }
   }
 
-  @Get('item/:contactId')
+  @Get('/item/:contactId')
   async retrieveContact(@Param('contactId') id: string, @Res() response: any) {
     try {
       const contact: any = await this.contactService.retrieveContactById(id);
