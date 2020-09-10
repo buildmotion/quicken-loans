@@ -5,6 +5,7 @@ import { HttpService, HttpRequestMethod } from '@valencia/http-service';
 import { LoggingService, Severity } from '@valencia/logging';
 import { Observable } from 'rxjs';
 import { IHttpContactsRepositoryService } from './i-http-contacts-repository.service';
+// tslint:disable-next-line: nx-enforce-module-boundaries
 import { ContactDto } from '@valencia/quicken/domain/common';
 
 @Injectable({

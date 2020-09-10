@@ -33,6 +33,8 @@ export class HttpService {
   createHeader(): HttpHeaders {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('x-api-key', 'AKIAXQSM343QAEJJVWCJ');
+    // x-api-key
     return headers;
   }
 

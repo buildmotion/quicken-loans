@@ -16,6 +16,15 @@ provider:
   stage: ${opt:stage, 'dev'}
   environment:
     CONTACTS_TABLE_NAME: ${self:custom.ContactsTable.name}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'dynamodb:Query'
+        - 'dynamodb:PutItem'
+        - 'dynamodb:GetItem'
+        - 'dynamodb:UpdateItem'
+        - 'dynamodb:DeleteItem'
+      Resource: 'arn:aws:dynamodb:us-west-1:516631029472:table/ContactsTable-dev'
 package:
   individually: true
 functions:

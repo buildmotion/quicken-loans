@@ -1,34 +1,17 @@
-import { Body, Controller, Delete, Get, Patch, Post, Put, Res, HttpStatus } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Put, Res } from '@nestjs/common';
 
 import { ApiContactsService } from './api-contacts.service';
 import { ContactDto } from './models/contact.dto';
 import { Contact } from './models/contact.model';
-// import { ContactDto, Contact } from '@valencia/quicken/domain/common';
 
 @Controller('contacts')
 export class ContactsController {
   constructor(private readonly contactService: ApiContactsService) {}
 
   @Post('/add')
-  async createOrder(@Body() contactDto: ContactDto, @Res() response: any) {
+  async createContact(@Body() contactDto: ContactDto, @Res() response: any) {
     try {
       const newContact: Contact = await this.contactService.add(contactDto);
-
-      // const newContact = {
-      //   contactId: '1234',
-      //   options: [],
-      //   address1: '1234 MAIN ST',
-      //   address2: 'Apt #1',
-      //   city: 'Denver',
-      //   company: 'Build Motion',
-      //   emailAddress: 'matt@buildmotion.com',
-      //   firstName: 'Matt',
-      //   lastName: 'Vaughn',
-      //   phone: '303.356.6273',
-      //   postalCode: '80504',
-      //   state: 'Colorado',
-      // };
-
       this.addCorsToHeader(response);
       if (newContact && this.contactService) {
         return response.status(HttpStatus.CREATED).json({
@@ -46,8 +29,62 @@ export class ContactsController {
     } catch (error) {
       return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         isSuccess: false,
-        message: 'Error while attempting to create new contact.',
-        messages: [{ code: 'CONTACT_FAILURE', message: 'Unexpected error while attempting to create new contact', messageType: 'Error' }],
+        message: `Error while attempting to create new contact. ${JSON.stringify(error)}`,
+        messages: [{ code: 'CONTACT_ERROR', message: 'Unexpected error while attempting to create new contact', messageType: 'Error' }],
+      });
+    }
+  }
+
+  @Get('item/:contactId')
+  async retrieveContact(@Param('contactId') id: string, @Res() response: any) {
+    try {
+      const contact: any = await this.contactService.retrieveContactById(id);
+      if (contact && this.contactService) {
+        return response.status(HttpStatus.OK).json({
+          isSuccess: true,
+          data: contact,
+          message: 'Successfully retrieved contact.',
+        });
+      } else {
+        return response.status(HttpStatus.BAD_REQUEST).json({
+          isSuccess: false,
+          data: null,
+          message: 'Failed to retrieve contact.',
+          messages: [{ code: 'CONTACT_ERROR', message: 'Unexpected error while attempting to retrieve contact', messageType: 'Error' }],
+        });
+      }
+    } catch (error) {
+      return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        isSuccess: false,
+        message: `Error while attempting to retrieve contact. Error: ${JSON.stringify(error)}`,
+        messages: [{ code: 'CONTACT_ERROR', message: 'Unexpected error while attempting to retrieve contact', messageType: 'Error' }],
+      });
+    }
+  }
+
+  @Get()
+  async retrieveAllContacts(@Res() response: any) {
+    try {
+      const contacts: any = await this.contactService.retrieveAllContacts();
+      if (contacts && this.contactService) {
+        return response.status(HttpStatus.OK).json({
+          isSuccess: true,
+          data: contacts,
+          message: 'Successfully retrieved contacts.',
+        });
+      } else {
+        return response.status(HttpStatus.BAD_REQUEST).json({
+          isSuccess: false,
+          data: null,
+          message: 'Failed to retrieve contacts.',
+          messages: [{ code: 'CONTACT_FAILURE', message: 'Unexpected error while attempting to retrieve contact', messageType: 'Error' }],
+        });
+      }
+    } catch (error) {
+      return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        isSuccess: false,
+        message: `Error while attempting to retrieve contacts. Error: ${JSON.stringify(error)}`,
+        messages: [{ code: 'CONTACT_ERROR', message: 'Unexpected error while attempting to retrieve contacts', messageType: 'Error' }],
       });
     }
   }

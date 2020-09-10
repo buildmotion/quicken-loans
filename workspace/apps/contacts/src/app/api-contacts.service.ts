@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { ContactDto } from './models/contact.dto';
 import { Contact } from './models/contact.model';
 import { ContactRepository } from './contact.repository';
-// import { Contact, ContactDto } from '@valencia/quicken/domain/common';
 
 @Injectable()
 export class ApiContactsService {
@@ -20,5 +19,13 @@ export class ApiContactsService {
      * 8. RETRIEVE NEW ITEM USING UUID
      */
     return this.repository.add(contactDto);
+  }
+
+  retrieveAllContacts(): any {
+    return this.repository.retrieveAllContacts();
+  }
+
+  retrieveContactById(id: string): any {
+    return this.repository.retrieveContact(id);
   }
 }

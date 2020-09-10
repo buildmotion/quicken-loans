@@ -1,35 +1,18 @@
 import * as AWS from 'aws-sdk';
-import { v4 as uuid } from 'uuid';
 
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 
 import { ContactDto } from './models/contact.dto';
 import { Contact } from './models/contact.model';
+import { Guid } from 'guid-typescript';
 
 @Injectable()
 export class ContactRepository {
   constructor() {}
 
-  async add2(contactDto: ContactDto) {
-    let contact: Contact;
-    try {
-      contact = Object.assign(contact, contactDto);
-      contact.contactId = uuid();
-      await new AWS.DynamoDB.DocumentClient()
-        .put({
-          TableName: 'contactsTable3',
-          Item: contact,
-        })
-        .promise();
-    } catch (error) {
-      throw new InternalServerErrorException(error);
-    }
-    return contact;
-  }
-
   async add(contactDto: ContactDto) {
     const newContact: Contact = {
-      contactId: uuid(),
+      contactId: Guid.create().toString(),
       address1: contactDto.address1,
       address2: contactDto.address2,
       city: contactDto.city,
@@ -45,7 +28,7 @@ export class ContactRepository {
     try {
       await new AWS.DynamoDB.DocumentClient()
         .put({
-          TableName: process.env.CONTACTS_TABLE_NAME,
+          TableName: 'ContactsTable-dev',
           Item: newContact,
         })
         .promise();
@@ -56,12 +39,17 @@ export class ContactRepository {
     return newContact;
   }
 
+  /**
+   * Use to retrieve a [contact] item from the data store.
+   *
+   * @param id The unique identifier/primary key for the [contact] item.
+   */
   async retrieveContact(id: string) {
     let contact;
     try {
       const result = await new AWS.DynamoDB.DocumentClient()
         .get({
-          TableName: 'contactsTable3',
+          TableName: 'ContactsTable-dev',
           Key: { id },
         })
         .promise();
@@ -72,9 +60,29 @@ export class ContactRepository {
     }
 
     if (!contact) {
-      throw new NotFoundException(`Order with ID "${id}" not found`);
+      throw new NotFoundException(`Contact not found for ID: ${id}.`);
     }
 
     return contact;
+  }
+
+  async retrieveAllContacts() {
+    let contacts = [];
+    try {
+      const result = await new AWS.DynamoDB.DocumentClient()
+        .scan({
+          TableName: 'ContactsTable-dev',
+        })
+        .promise();
+
+      contacts = result.Items;
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+
+    if (!contacts) {
+      throw new NotFoundException(`Unable to find any contacts.`);
+    }
+    return contacts;
   }
 }

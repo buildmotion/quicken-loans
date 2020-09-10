@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["angulararchitecture", "nestjs", "sparkdesignsystem"]
+  "cSpell.words": ["angulararchitecture", "nestjs", "sparkdesignsystem"],
+  "editor.fontFamily": "'Source Code Pro Light', Consolas, 'Courier New', monospace"
 }

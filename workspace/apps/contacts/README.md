@@ -820,6 +820,22 @@ The _tsconfig.json_ `paths` contains a new entry for the library project. It is 
 "@valencia/api/contacts": ["libs/api/contacts/src/index.ts"]
 ```
 
+## Postman
+
+```json
+{
+  "isSuccess": false,
+  "message": "Error while attempting to retrieve contact. Error: {\"response\":{\"message\":\"User: arn:aws:sts::516631029472:assumed-role/contacts-dev-us-west-1-lambdaRole/contacts-dev-api is not authorized to perform: dynamodb:GetItem on resource: arn:aws:dynamodb:us-west-1:516631029472:table/ContactsTable-dev\",\"code\":\"AccessDeniedException\",\"time\":\"2020-09-10T01:57:30.830Z\",\"requestId\":\"8J32LVTNKKIPSVPAN836POQ483VV4KQNSO5AEMVJF66Q9ASUAAJG\",\"statusCode\":400,\"retryable\":false,\"retryDelay\":27.598537698082804},\"status\":500,\"message\":\"User: arn:aws:sts::516631029472:assumed-role/contacts-dev-us-west-1-lambdaRole/contacts-dev-api is not authorized to perform: dynamodb:GetItem on resource: arn:aws:dynamodb:us-west-1:516631029472:table/ContactsTable-dev\"}",
+  "messages": [
+    {
+      "code": "CONTACT_ERROR",
+      "message": "Unexpected error while attempting to retrieve contact",
+      "messageType": "Error"
+    }
+  ]
+}
+```
+
 ## Resources
 
 - [NestJs + TypeScript with Serverless](https://www.serverless.com/examples/aws-node-typescript-nest)
