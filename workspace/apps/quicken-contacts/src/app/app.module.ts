@@ -7,13 +7,12 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './modules/core/core.module';
 import { CrossCuttingModule } from './modules/cross-cutting/cross-cutting.module';
 import { SharedModule } from './modules/shared/shared.module';
-import { RouterModule } from '@angular/router';
 import { SiteModule } from './modules/site/site.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    RouterModule,
     CoreModule,
     SharedModule,
     CrossCuttingModule.forRoot(),
@@ -21,8 +20,10 @@ import { SiteModule } from './modules/site/site.module';
     SparkAngularModule,
     AppRoutingModule,
     SiteModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
+  exports: [SiteModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

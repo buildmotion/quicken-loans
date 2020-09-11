@@ -5,8 +5,10 @@ import { HeaderComponent } from './header/header.component';
 import { LayoutComponent } from './layout/layout.component';
 import { SharedModule } from '../shared/shared.module';
 
+import { SparkAngularModule } from '@sparkdesignsystem/spark-angular';
+
 const COMPONENTS = [FooterComponent, HeaderComponent, LayoutComponent];
-const MODULES = [SharedModule];
+const MODULES = [SharedModule, SparkAngularModule];
 
 @NgModule({
   declarations: [...COMPONENTS],

@@ -7,6 +7,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
+  defaultNarrowLinks;
   constructor() {}
 
   ngOnInit(): void {}

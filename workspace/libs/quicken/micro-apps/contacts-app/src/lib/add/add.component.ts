@@ -4,19 +4,19 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComponentBase } from '@valencia/foundation';
 import { LoggingService, Severity } from '@valencia/logging';
-import { Contact, ContactDto } from '@valencia/quicken/domain/common';
+// tslint:disable-next-line:nx-enforce-module-boundaries
+import { Contact } from '@valencia/quicken/domain/common';
 
 import { AddContactUIService } from '../add-contact-ui.service';
 
 @Component({
   selector: 'valencia-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css'],
+  styleUrls: ['./add.component.scss'],
 })
 export class AddComponent extends ComponentBase implements OnInit {
   contact$: Observable<Contact> = this.uiService.contact$;
 
-  title = 'Getting some data...';
   constructor(private uiService: AddContactUIService, loggingService: LoggingService, router: Router) {
     super('AddComponent', loggingService, router);
   }
@@ -27,18 +27,18 @@ export class AddComponent extends ComponentBase implements OnInit {
 
   submit() {
     this.loggingService.log(this.componentName, Severity.Information, `Preparing to add a new [contact].`);
-    const contact = new ContactDto();
-    contact.address1 = '1234 MAIN ST';
-    contact.address2 = 'Apt #1';
-    contact.city = 'Denver';
-    contact.company = 'Build Motion';
-    contact.emailAddress = 'matt@buildmotion.com';
-    contact.firstName = 'Matt';
-    contact.lastName = 'Vaughn';
-    contact.phone = '303.356.6273';
-    contact.postalCode = '80504';
-    contact.state = 'Colorado';
+    // const contact = new ContactDto();
+    // contact.address1 = '1234 MAIN ST';
+    // contact.address2 = 'Apt #1';
+    // contact.city = 'Denver';
+    // contact.company = 'Build Motion';
+    // contact.emailAddress = 'matt@buildmotion.com';
+    // contact.firstName = 'Matt';
+    // contact.lastName = 'Vaughn';
+    // contact.phone = '303.356.6273';
+    // contact.postalCode = '80504';
+    // contact.state = 'Colorado';
 
-    this.uiService.add(contact);
+    // this.uiService.add(contact);
   }
 }

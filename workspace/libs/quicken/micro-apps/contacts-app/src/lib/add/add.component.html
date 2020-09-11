@@ -1,1 +1,23 @@
-<p *ngIf="contact$ | async as contact">{{ contact.firstName }}</p>
+<div class="container">
+  <sprk-highlight-board
+    heading="Hello, Welcome To Spark Design System"
+    ctaText="Designers"
+    ctaHref="#nogo"
+    ctaText2="Developers"
+    ctaHref2="#nogo"
+    imgSrc="https://spark-assets.netlify.app/desktop.jpg"
+    imgAlt="placeholder"
+    idString="highlightboard-1"
+  >
+  </sprk-highlight-board>
+
+  <section id="default" class="qc-new-contact--default">
+    <div class="qc-new-contact--default-item">
+      <h1>New Contact</h1>
+      <sprk-stack itemSpacing="large" splitAt="large" additionalClasses="sprk-o-Stack--center-row">
+        <div class="sprk-c-Card__container sprk-o-Stack__item--flex@l" sprkStackItem></div>
+        <div class="sprk-c-Card__container sprk-o-Stack__item--flex@l" sprkStackItem></div>
+      </sprk-stack>
+    </div>
+  </section>
+</div>

@@ -22,7 +22,11 @@
             "tsConfig": "apps/quicken-contacts/tsconfig.app.json",
             "aot": true,
             "assets": ["apps/quicken-contacts/src/favicon.ico", "apps/quicken-contacts/src/assets"],
-            "styles": ["apps/quicken-contacts/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "apps/quicken-contacts/src/themes/valencia.scss",
+              "apps/quicken-contacts/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
