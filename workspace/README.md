@@ -644,6 +644,47 @@ yarn run test --project=notification --watch
 yarn run test --project=rules-engine --watch
 ```
 
+## Application Components
+
+```ts
+ng generate @schematics/angular:module --name=modules/site --project=quicken-contacts --module=app.module
+CREATE apps/quicken-contacts/src/app/modules/site/site.module.ts (190 bytes)
+UPDATE apps/quicken-contacts/src/app/app.module.ts (854 bytes)
+```
+
+### Add Site Layout Component
+
+```ts
+ng generate @schematics/angular:component --name=modules/site/layout --project=quicken-contacts --module=site.module --style=scss --changeDetection=OnPush --lintFix --skipTests <
+
+CREATE apps/quicken-contacts/src/app/modules/site/layout/layout.component.html (21 bytes)
+CREATE apps/quicken-contacts/src/app/modules/site/layout/layout.component.ts (357 bytes)
+CREATE apps/quicken-contacts/src/app/modules/site/layout/layout.component.scss (0 bytes)
+UPDATE apps/quicken-contacts/src/app/modules/site/site.module.ts (422 bytes)
+```
+
+### Add Site Header Component
+
+```ts
+ng generate @schematics/angular:component --name=modules/header/layout --project=quicken-contacts --module=header.module --style=scss --changeDetection=OnPush --lintFix --skipTests <
+
+CREATE apps/quicken-contacts/src/app/modules/header/layout/layout.component.html (21 bytes)
+CREATE apps/quicken-contacts/src/app/modules/header/layout/layout.component.ts (357 bytes)
+CREATE apps/quicken-contacts/src/app/modules/header/layout/layout.component.scss (0 bytes)
+UPDATE apps/quicken-contacts/src/app/modules/header/header.module.ts (422 bytes)
+```
+
+### Add Site Footer Component
+
+```ts
+ng generate @schematics/angular:component --name=modules/header/footer --project=quicken-contacts --module=header.module --style=scss --changeDetection=OnPush --lintFix --skipTests <
+
+CREATE apps/quicken-contacts/src/app/modules/header/footer/footer.component.html (21 bytes)
+CREATE apps/quicken-contacts/src/app/modules/header/footer/footer.component.ts (357 bytes)
+CREATE apps/quicken-contacts/src/app/modules/header/footer/footer.component.scss (0 bytes)
+UPDATE apps/quicken-contacts/src/app/modules/header/header.module.ts (422 bytes)
+```
+
 ## Common Module
 
 ```ts

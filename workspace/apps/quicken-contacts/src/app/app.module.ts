@@ -8,10 +8,20 @@ import { CoreModule } from './modules/core/core.module';
 import { CrossCuttingModule } from './modules/cross-cutting/cross-cutting.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { SiteModule } from './modules/site/site.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [RouterModule, CoreModule, SharedModule, CrossCuttingModule.forRoot(), BrowserModule, SparkAngularModule, AppRoutingModule],
+  imports: [
+    RouterModule,
+    CoreModule,
+    SharedModule,
+    CrossCuttingModule.forRoot(),
+    BrowserModule,
+    SparkAngularModule,
+    AppRoutingModule,
+    SiteModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
