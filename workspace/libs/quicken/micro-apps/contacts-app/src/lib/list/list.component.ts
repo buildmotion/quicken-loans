@@ -1,12 +1,35 @@
 import { Component, OnInit } from '@angular/core';
+import { ComponentBase } from '@valencia/foundation';
+import { LoggingService, Severity } from '@valencia/logging';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ContactListUIService } from './contact-list-ui.service';
+// tslint:disable-next-line:nx-enforce-module-boundaries
+import { Contact } from '@valencia/quicken/domain/common';
 
 @Component({
   selector: 'valencia-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css'],
+  styleUrls: ['./list.component.scss'],
 })
-export class ListComponent implements OnInit {
-  constructor() {}
+export class ListComponent extends ComponentBase implements OnInit {
+  showSpinner$: Observable<boolean> = this.uiService.showSpinner$;
+  contacts$: Observable<Contact[]> = this.uiService.contacts$;
 
-  ngOnInit(): void {}
+  constructor(private uiService: ContactListUIService, loggingService: LoggingService, router: Router) {
+    super('ListComponent', loggingService, router);
+  }
+
+  ngOnInit(): void {
+    this.uiService.retrieveContacts();
+  }
+
+  addContact() {
+    this.routeTo('contacts/new-contact');
+  }
+
+  removeContact(contact: Contact) {
+    this.loggingService.log(this.componentName, Severity.Information, `Preparing to remove selected contact: ${contact.contactId}.`);
+    // this.uiService.removeContact(contact);
+  }
 }

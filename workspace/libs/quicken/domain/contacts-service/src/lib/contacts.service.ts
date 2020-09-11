@@ -4,6 +4,7 @@ import { Inject, Injectable } from '@angular/core';
 import { ApiResponse } from '@valencia/common';
 import { ServiceBase } from '@valencia/foundation';
 import { LoggingService } from '@valencia/logging';
+// tslint:disable-next-line: nx-enforce-module-boundaries
 import { ContactDto } from '@valencia/quicken/domain/common';
 
 import { BusinessProviderService } from './business/business-provider.service';
@@ -19,5 +20,9 @@ export class ContactsService extends ServiceBase {
 
   add<T>(contact: ContactDto): Observable<ApiResponse<T>> {
     return this.businessProvider.add<T>(contact);
+  }
+
+  retrieveContacts<T>(): Observable<ApiResponse<T>> {
+    return this.businessProvider.retrieveContacts<T>();
   }
 }

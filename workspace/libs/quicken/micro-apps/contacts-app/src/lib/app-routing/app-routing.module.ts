@@ -4,9 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('../landing/landing.module').then(m => m.LandingModule) },
-  { path: 'list', loadChildren: () => import('../list/list.module').then(m => m.ListModule) },
-  { path: 'item/edit:id', loadChildren: () => import('../item/item.module').then(m => m.ItemModule) },
-  { path: 'new-contact', loadChildren: () => import('../add/add.module').then(m => m.AddModule) },
+  { path: 'contacts/list', loadChildren: () => import('../list/list.module').then(m => m.ListModule) },
+  { path: 'contacts/item/edit:id', loadChildren: () => import('../item/item.module').then(m => m.ItemModule) },
+  { path: 'contacts/new-contact', loadChildren: () => import('../add/add.module').then(m => m.AddModule) },
   // { path: '', loadChildren: () => import('../add/add.module').then(m => m.AddModule) },
 ];
 

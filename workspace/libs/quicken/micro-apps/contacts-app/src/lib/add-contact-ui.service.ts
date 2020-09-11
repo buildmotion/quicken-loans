@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { ApiResponse } from '@valencia/common';
 import { ServiceBase } from '@valencia/foundation';
 import { LoggingService, Severity } from '@valencia/logging';
+// tslint:disable-next-line:nx-enforce-module-boundaries
 import { Contact, ContactDto } from '@valencia/quicken/domain/common';
 import { ContactsService } from '@valencia/quicken/domain/contacts-service';
 
@@ -12,17 +13,23 @@ import { ContactsService } from '@valencia/quicken/domain/contacts-service';
 })
 export class AddContactUIService extends ServiceBase {
   private contactSubject: BehaviorSubject<Contact> = new BehaviorSubject<Contact>(null);
-  private spinnerSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private failMessageSubject: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
+  private showSpinnerSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private successMessageSubject: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
 
   public readonly contact$: Observable<Contact> = this.contactSubject.asObservable();
-  public readonly spinner$: Observable<boolean> = this.spinnerSubject.asObservable();
+  public readonly failMessage$: Observable<string> = this.failMessageSubject.asObservable();
+  public readonly showSpinner$: Observable<boolean> = this.showSpinnerSubject.asObservable();
+  public readonly successMessage$: Observable<string> = this.successMessageSubject.asObservable();
+
+  private contact: Contact;
 
   constructor(private contactsService: ContactsService, loggingService: LoggingService) {
     super('AddContactUIService', loggingService);
   }
 
   add(contact: ContactDto): void {
-    this.spinnerSubject.next(true);
+    this.showSpinnerSubject.next(true);
 
     this.loggingService.log(this.serviceName, Severity.Information, `Preparing to add new [contact].`);
     this.contactsService
@@ -39,9 +46,12 @@ export class AddContactUIService extends ServiceBase {
     if (response) {
       if (response.isSuccess) {
         this.loggingService.log(this.serviceName, Severity.Information, `Preparing to process [successful] API response`);
+        this.contact = response.data;
         this.contactSubject.next(response.data);
+        this.successMessageSubject.next(`Successfully create contact for [${this.contact.firstName} ${this.contact.lastName}].`);
       } else {
         this.loggingService.log(this.serviceName, Severity.Information, `Preparing to process [unsuccessful] API response`);
+        this.failMessageSubject.next(response.message);
       }
     }
   }
@@ -51,6 +61,6 @@ export class AddContactUIService extends ServiceBase {
   }
 
   private finishAddContactRequest(): void {
-    this.spinnerSubject.next(false);
+    this.showSpinnerSubject.next(false);
   }
 }

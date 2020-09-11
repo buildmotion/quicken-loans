@@ -1,1 +1,52 @@
-<p>list works!</p>
+<div class="container">
+  <div class="qc-contact-list--default-item">
+    <ng-container *ngIf="showSpinner$ | async as showSpinner; else contactListTemplate">
+      <!-- PLEASE WAIT WHILE WE RETRIEVE YOUR CONTACTS -->
+      <sprk-modal [isVisible]="showSpinner" title="Retrieving contacts..." modalType="wait" idString="modal-wait-1">
+        <p class="sprk-c-Modal__content">
+          Please wait while we retrieve your contacts.
+        </p>
+      </sprk-modal>
+    </ng-container>
+    <ng-template #contactListTemplate>
+      <div class="qc-contact-list--default-item ">
+        <h1>Contacts</h1>
+      </div>
+      <div class="qc-contact-list--add-button">
+        <button (click)="addContact()" variant="secondary" idString="button-secondary" sprkButton>
+          Add contact
+        </button>
+      </div>
+      <ng-container *ngIf="contacts$ | async as contacts; else listTemplate">
+        <sprk-table idString="table-1">
+          <thead sprkTableHead>
+            <tr>
+              <th>Contact</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of contacts">
+              <td>{{ item.lastName }}, {{ item.firstName }}</td>
+              <td>{{ item.address1 }} ({{ item.address2 }}), {{ item.city }}, {{ item.state }} {{ item.postalCode }}</td>
+              <td>{{ item.emailAddress }}</td>
+              <td>{{ item.phone }}</td>
+              <td>
+                <button (click)="removeContact(item)" idString="button-primary" sprkButton>
+                  Remove contact
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </sprk-table>
+        <sprk-divider idString="divider-1"></sprk-divider>
+      </ng-container>
+      <ng-template #listTemplate>
+        <!-- DISPLAY NO DATA MESSAGE TO USER -->
+      </ng-template>
+    </ng-template>
+  </div>
+</div>

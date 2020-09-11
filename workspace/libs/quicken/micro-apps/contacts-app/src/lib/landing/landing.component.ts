@@ -34,11 +34,11 @@ export class LandingComponent extends ComponentBase implements OnInit {
 
   addContact() {
     this.loggingService.log(this.componentName, Severity.Information, `Preparing to navigate to add contact form.`);
-    this.routeTo('new-contact');
+    this.routeTo('contacts/new-contact');
   }
 
   viewContacts() {
     this.loggingService.log(this.componentName, Severity.Information, `Preparing to navigate to contacts list.`);
-    this.routeTo('list');
+    this.routeTo('contacts/list');
   }
 }
