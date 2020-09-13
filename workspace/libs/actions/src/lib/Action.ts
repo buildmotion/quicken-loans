@@ -60,7 +60,7 @@ export class Action implements IAction {
    * action.
    */
   execute() {
-    console.log('Preparing to execute action.');
+    // console.log('Preparing to execute action.');
     this.processActionPipeline();
   }
 
@@ -80,7 +80,7 @@ export class Action implements IAction {
    * process of the action pipeline.
    */
   private startAction() {
-    console.log('Starting action.');
+    // console.log('Starting action.');
     this.start();
     this.audit();
     this.preValidateAction();
@@ -93,7 +93,7 @@ export class Action implements IAction {
    * Use this method to execute the methods at the end of the action pipeline.
    */
   private finishAction() {
-    console.log('Finishing action.');
+    // console.log('Finishing action.');
     this.postExecuteAction();
     this.validateActionResult();
     this.finish();
@@ -107,7 +107,7 @@ export class Action implements IAction {
    * method that is called for this part of the action pipeline.
    */
   private processAction() {
-    console.log('Processing action.');
+    // console.log('Processing action.');
     this.performAction();
   }
 
@@ -125,7 +125,7 @@ export class Action implements IAction {
    * This function belongs to the pre-execute functions of the action pipeline.
    */
   start() {
-    console.log('Starting action.');
+    // console.log('Starting action.');
   }
 
   /**
@@ -133,7 +133,7 @@ export class Action implements IAction {
    * business logic.
    */
   audit() {
-    console.log('Auditing action.');
+    // console.log('Auditing action.');
   }
 
   /**
@@ -141,7 +141,7 @@ export class Action implements IAction {
    * function is called before [evaluateRules].
    */
   preValidateAction() {
-    console.log('Pre-validating action.');
+    // console.log('Pre-validating action.');
   }
 
   /**
@@ -149,7 +149,7 @@ export class Action implements IAction {
    * function is called after [preValidateAction].
    */
   evaluateRules() {
-    console.log('Evaluating action rules.');
+    // console.log('Evaluating action rules.');
     const context = this.validateAction();
     if (context.isValid) {
       this.allowExecution = true;
@@ -165,14 +165,14 @@ export class Action implements IAction {
    * function is called after the [evaluateRules].
    */
   postValidateAction() {
-    console.log('Post-Validation of action.');
+    // console.log('Post-Validation of action.');
   }
 
   /**
    * Use this function to perform any setup before the action is executed.
    */
   preExecuteAction() {
-    console.log('Pre-execution of action.');
+    // console.log('Pre-execution of action.');
   }
 
   /**
@@ -180,7 +180,7 @@ export class Action implements IAction {
    * the [performAction] has executed.
    */
   postExecuteAction() {
-    console.log('Post-execution of action');
+    // console.log('Post-execution of action');
   }
 
   /**
@@ -196,14 +196,14 @@ export class Action implements IAction {
    * by the action. This is the last function called during the pipeline.
    */
   finish() {
-    console.log('Finish action.');
+    // console.log('Finish action.');
   }
 
   /**
    * Implement this function to perform validation of business rules and data.
    */
   validateAction() {
-    console.log('Validating the action.');
+    // console.log('Validating the action.');
     return this.validationContext;
   }
 }

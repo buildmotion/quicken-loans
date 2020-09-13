@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { BusinessProviderService } from './business-provider.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ConfigurationService, ConfigurationServiceMock } from '@valencia/configuration';
-import { LoggingService, MockLoggingService } from '@valencia/logging';
+import { ConfigurationService } from '@valencia/configuration';
+import { LoggingService, LoggingServiceMock } from '@valencia/logging';
 
 describe('BusinessProviderService', () => {
   beforeEach(() =>
@@ -12,11 +12,11 @@ describe('BusinessProviderService', () => {
       providers: [
         {
           provide: ConfigurationService,
-          useClass: ConfigurationServiceMock,
+          useClass: ConfigurationService,
         },
         {
           provide: LoggingService,
-          useClass: MockLoggingService,
+          useClass: LoggingServiceMock,
         },
       ],
     })

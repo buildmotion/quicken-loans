@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Severity } from './severity.enum';
-import { ILoggingConfig, IConfiguration } from '@tc/configuration';
+import { ILoggingConfig, IConfiguration } from '@valencia/configuration';
 import { Subject } from 'rxjs';
 import { ILogEntry } from './i-log-entry';
 

@@ -633,6 +633,7 @@ Use the following commands to run the test suites in each project
 
 ```ts
 yarn run test --project=quicken-contacts --watch
+yarn run test --project=quicken-domain-contacts-service --watch
 yarn run test --project=actions --watch
 yarn run test --project=components --watch
 yarn run test --project=configuration --watch
@@ -642,6 +643,46 @@ yarn run test --project=http-service --watch
 yarn run test --project=logging --watchhttps
 yarn run test --project=notification --watch
 yarn run test --project=rules-engine --watch
+```
+
+asdf
+
+```ts
+ng test --project=quicken-domain-contacts-service --test-file=add-contact.action.spec.ts --watch
+```
+
+```ts
+ng test --project=quicken-domain-contacts-service --watch
+ PASS  libs/quicken/domain/contacts-service/src/lib/business/actions/add-contact.action.spec.ts (8.583s)
+  VerifyAccountsAction
+    √ should create an instance (48ms)
+    √ should contain validation error for MIN LENGTH first name (24ms)
+    √ should contain validation error for MIN LENGTH last name (16ms)
+    √ should contain validation error for MIN LENGTH company (16ms)
+    √ should contain validation error for MIN LENGTH phone (16ms)
+    √ should contain validation error for MIN LENGTH email address (24ms)
+    √ should contain validation error for MIN LENGTH postal code (24ms)
+    √ should contain validation error for MIN LENGTH state (16ms)
+    √ should contain validation error for MIN LENGTH city (16ms)
+    √ should contain validation error for MAX LENGTH first name (32ms)
+    √ should contain validation error for MAX LENGTH last name (16ms)
+    √ should contain validation error for MAX LENGTH company (16ms)
+    √ should contain validation error for MAX LENGTH email address (8ms)
+    √ should contain validation error for MAX LENGTH phone (24ms)
+    √ should contain validation error for MAX LENGTH city (8ms)
+    √ should contain validation error for MAX LENGTH state (16ms)
+    √ should contain validation error for MAX LENGTH postal code (16ms)
+    √ should contain validation error for MAX LENGTH address 2 (8ms)
+    √ should contain validation error for MAX LENGTH address 1 (24ms)
+    √ should contain validation error for MIN LENGTH address 1 (16ms)
+    √ should contain validation error for UNDEFINED address 1 (17ms)
+    √ should contain valid VALIDATION CONTEXT (15ms)
+    √ should contain email address format validation rule (16ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       23 passed, 23 total
+Snapshots:   0 total
+Time:        11.718s
 ```
 
 ## Application Components

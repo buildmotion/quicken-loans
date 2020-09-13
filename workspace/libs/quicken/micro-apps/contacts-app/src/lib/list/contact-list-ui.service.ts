@@ -47,7 +47,7 @@ export class ContactListUIService extends ServiceBase {
   }
 
   private handleRetrieveContactsError(error: any): void {
-    throw new Error('Method not implemented.');
+    this.handleError(error);
   }
 
   private finishRetrieveContactsRequest(): void {
