@@ -3,11 +3,15 @@ import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Put, Res
 import { ApiContactsService } from './api-contacts.service';
 import { ContactDto } from './models/contact.dto';
 import { Contact } from './models/contact.model';
+import { ApiResponse } from '@nestjs/swagger';
 
 @Controller('contacts')
 export class ContactsController {
   constructor(private readonly contactService: ApiContactsService) {}
 
+  @ApiResponse({ type: 'ContactDto', status: HttpStatus.CREATED, description: 'Create new contact.' })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Error while processing request to create new contact.' })
+  @ApiResponse({ status: HttpStatus.INTERNAL_SERVER_ERROR, description: 'Failed to create contact.' })
   @Post('add')
   async createContact(@Body() contactDto: ContactDto, @Res() response: any) {
     try {
@@ -62,6 +66,12 @@ export class ContactsController {
     }
   }
 
+  @ApiResponse({ status: HttpStatus.OK, description: 'Retrieve all available contact items.' })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Failed to retrieve contacts. See error messages for more details' })
+  @ApiResponse({
+    status: HttpStatus.INTERNAL_SERVER_ERROR,
+    description: 'Unexpected server error while attempting to process request to retrieve contacts.',
+  })
   @Get()
   async retrieveAllContacts(@Res() response: any) {
     try {
@@ -89,6 +99,9 @@ export class ContactsController {
     }
   }
 
+  @ApiResponse({ status: HttpStatus.OK, description: 'Successfully removed specified contact.' })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Failed to remove contact. See error messages for more details.' })
+  @ApiResponse({ status: HttpStatus.INTERNAL_SERVER_ERROR, description: 'Unexpected server error while attempting to delete contact item.' })
   @Delete(':contactId')
   async removeContact(@Param('contactId') id: string, @Res() response: any) {
     try {

@@ -7,3 +7,4 @@ export { LoggingServiceConfig } from './lib/logging.service.config';
 export { LogglyWriter } from './lib/log-writers/loggly-writer';
 export { LogWriter } from './lib/log-writers/log-writer';
 export { Severity } from './lib/severity.enum';
+export { LoggingServiceMock } from './lib/logging.service.mock';

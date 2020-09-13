@@ -8,6 +8,8 @@ import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
 
 import { AppModule } from './app/app.module';
+import { INestApplication, Options } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 const express = require('express');
 
@@ -30,10 +32,29 @@ async function bootstrapServer(): Promise<Server> {
       credentials: true,
     });
     nestApp.use(eventContext());
+    createApiDoc(nestApp);
     await nestApp.init();
     cachedServer = createServer(expressApp, undefined, binaryMimeTypes);
   }
   return cachedServer;
+}
+
+/**
+ * Use to create swagger documentation for the API endpoints. The
+ * API controller methods require [@nestjs/swagger] decorators.
+ *
+ * @param app The target NestJS application.
+ */
+function createApiDoc(app: INestApplication) {
+  const docOptions = new DocumentBuilder()
+    .setTitle('Quicken Contacts: API')
+    .setDescription('API documentation for the Quicken Contacts code challenge application.')
+    .setVersion('1.0.42')
+    .addTag('Quicken')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, docOptions);
+  SwaggerModule.setup('api', app, document);
 }
 
 // Export the handler : the entry point of the Lambda function

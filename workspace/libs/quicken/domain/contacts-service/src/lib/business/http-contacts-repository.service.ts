@@ -29,17 +29,4 @@ export class HttpContactsRepositoryService extends ServiceBase implements IHttpC
     const options = this.httpService.createOptions(HttpRequestMethod.get, this.httpService.createHeader(), requestURL, null, false);
     return this.httpService.execute(options);
   }
-
-  // removeAlert<T>(alertId: string): Observable<any> {
-  //   const requestURL = `${this.configService.settings.apiURL}REMOVE`;
-  //   this.loggingService.log(this.serviceName, Severity.Information, `Preparing to call API to [remove monitored].`);
-  //   const options = this.httpService.createOptions(
-  //     HttpRequestMethod.delete,
-  //     this.httpService.createHeader(),
-  //     requestURL,
-  //     { id: alertId },
-  //     false
-  //   );
-  //   return this.httpService.execute(options);
-  // }
 }

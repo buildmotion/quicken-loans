@@ -6,7 +6,6 @@ app: quicken-contacts
 plugins:
   - serverless-plugin-typescript
   - serverless-plugin-optimize
-
 provider:
   name: aws
   tracing:
@@ -46,3 +45,5 @@ resources:
 custom:
   ContactsTable:
     name: !Ref ContactsTable
+  # optimize:
+  #   external: ['swagger-ui-dist']

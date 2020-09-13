@@ -1,0 +1,132 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Quicken Contacts: API",
+    "description": "API documentation for the Quicken Contacts code challenge application.",
+    "version": "1.0.42",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "Quicken",
+      "description": ""
+    }
+  ],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "ContactDto": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getData",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contacts/add": {
+      "post": {
+        "operationId": "ContactsController_createContact",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Create new contact.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error while processing request to create new contact."
+          },
+          "500": {
+            "description": "Failed to create contact."
+          }
+        }
+      }
+    },
+    "/contacts/{contactId}": {
+      "get": {
+        "operationId": "ContactsController_retrieveContact",
+        "parameters": [
+          {
+            "name": "contactId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ContactsController_removeContact",
+        "parameters": [
+          {
+            "name": "contactId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully removed specified contact."
+          },
+          "400": {
+            "description": "Failed to remove contact. See error messages for more details."
+          },
+          "500": {
+            "description": "Unexpected server error while attempting to delete contact item."
+          }
+        }
+      }
+    },
+    "/contacts": {
+      "get": {
+        "operationId": "ContactsController_retrieveAllContacts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieve all available contact items."
+          },
+          "400": {
+            "description": "Failed to retrieve contacts. See error messages for more details"
+          },
+          "500": {
+            "description": "Unexpected server error while attempting to process request to retrieve contacts."
+          }
+        }
+      }
+    }
+  }
+}

@@ -820,6 +820,33 @@ The _tsconfig.json_ `paths` contains a new entry for the library project. It is 
 "@valencia/api/contacts": ["libs/api/contacts/src/index.ts"]
 ```
 
+## Swagger Documentation
+
+Use the following package to add decorators to the controller API endpoint methods. Learn more about the Swagger configuration at [https://medium.com/javascript-in-plain-english/serverless-nestjs-document-your-api-with-swagger-and-aws-api-gateway-64a53962e8a2](https://medium.com/javascript-in-plain-english/serverless-nestjs-document-your-api-with-swagger-and-aws-api-gateway-64a53962e8a2)
+
+> `yarn add @nestjs/swagger -S`
+
+Update the NestJS application loader to generate Swagger documentation using the `@nestjs/swagger` tools. Update the controller methods with decorators to include the details about the specified API and response.
+
+> [https://swagger.io/docs/open-source-tools/swagger-ui/usage/installation/](https://swagger.io/docs/open-source-tools/swagger-ui/usage/installation/)
+
+## Generate API Documentation
+
+Install the required package. It is used during the documentation build routines for Swagger.
+
+> `swagger-ui-dist`
+
+1. deploy the application using `serverless deploy --aws-profile quicken`
+2. Go to the endpoint and add `/api` to view the Swagger documentation
+3. add the `-json` to view the Swagger documentation in JSON format.
+4. load and view the JSON at [https://editor.swagger.io](https://editor.swagger.io)
+5. download the `.yml` file that contains your Swagger documentation.
+6. Use the AWS Console and import the `.yml` file in the Amazon API Gateway.
+7. Share the documentation via
+   1. Swagger
+   2. API Gateway
+   3. Postman
+
 ## Postman
 
 ```json
