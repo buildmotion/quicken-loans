@@ -1,5 +1,26 @@
 # Server Application Setup
 
+- [Server Application Setup](#server-application-setup)
+  - [Tools](#tools)
+  - [Create Applications](#create-applications)
+  - [Nest Application](#nest-application)
+  - [Build, Test, Serve Application](#build-test-serve-application)
+    - [HTTP](#http)
+  - [Going Serverless](#going-serverless)
+    - [Serverless Build Endpoint](#serverless-build-endpoint)
+  - [API Key and Secret Key](#api-key-and-secret-key)
+  - [Lambda Function Entry Point](#lambda-function-entry-point)
+  - [Serverless Configuration (serverless.yml)](#serverless-configuration-serverlessyml)
+    - [Application Name](#application-name)
+  - [Deploy](#deploy)
+  - [Results](#results)
+  - [Serverless with NestJS + Lambda Functions](#serverless-with-nestjs--lambda-functions)
+  - [Nest Domain Library](#nest-domain-library)
+  - [Swagger Documentation](#swagger-documentation)
+  - [Generate API Documentation](#generate-api-documentation)
+  - [Postman](#postman)
+  - [Resources](#resources)
+
 ## Tools
 
 Install Nx Nest developer tools.

@@ -1,3 +1,5 @@
+# @Valencia :: Quicken Brand Marketing Code Test
+
 - [@Valencia :: Quicken Brand Marketing Code Test](#valencia--quicken-brand-marketing-code-test)
   - [Nx Workspace](#nx-workspace)
     - [Nrwl Angular Schematics](#nrwl-angular-schematics)
@@ -42,7 +44,7 @@
     - [Running end-to-end tests](#running-end-to-end-tests)
     - [Understand your workspace](#understand-your-workspace)
     - [Further help](#further-help)
-# @Valencia :: Quicken Brand Marketing Code Test
+
 
 ## Nx Workspace
 
@@ -193,6 +195,8 @@ Update the application project's `styles.scss` file with the `import` of the spa
 
 ### Core Module
 
+The *CoreModule* provides a single instance module (singleton) for the Angular application for modules that only require a single instance.
+
 ```ts
 import { NgModule, SkipSelf, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -217,6 +221,8 @@ export class CoreModule {
 
 ### Shared Module
 
+The *SharedModule* is a convenience module to group a set of common modules that will be used by other application modules.
+
 ```ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -235,6 +241,17 @@ export class SharedModule {}
 ```
 
 ### Cross-Cutting Module
+
+The *CrossCuttingModule* allows for a set of application services to be injected into the application's global DI container. All of the cross-cutting concerns are accessed via the singleton instance available to all other application modules from the global *injector*.
+
+> This module is a must for enterprise-level application to provide cross-cutting
+> concerns:
+> * configuration
+> * logging
+> * error handling
+> * notifications
+
+The application has the capability to load different *writer* providers for the logging service. This allows logging in the console during development and logging to a centralized repository when deployed to production environments. 
 
 ```ts
 import { CommonModule } from '@angular/common';
