@@ -2,6 +2,14 @@
 
 This repository contains the application code and information on the steps taken to create the solution. See the [Brand Marketing Code Test](brand-marketing-code-test.md) for information and criteria for the code challenge.
 
+- Technical details located in the [Workspace REAME.md](./workspace/README.md)
+- The [server application documentation](./workspace/apps/contacts/README.md)
+  - NestJS
+  - Node/Express
+  - AWS API Gateway
+  - Lambda Functions
+  - DynamoDb database
+
 ## Experience and Planning
 
 Before executing or writing any code I went through a series of exercises to help me get define and organize the information about the project.

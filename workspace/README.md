@@ -1,3 +1,47 @@
+- [@Valencia :: Quicken Brand Marketing Code Test](#valencia--quicken-brand-marketing-code-test)
+  - [Nx Workspace](#nx-workspace)
+    - [Nrwl Angular Schematics](#nrwl-angular-schematics)
+  - [Create Application Project](#create-application-project)
+    - [Configure Chrome Launch Debugger](#configure-chrome-launch-debugger)
+    - [Build and Serve](#build-and-serve)
+    - [Install Spark Design System](#install-spark-design-system)
+  - [Application Modules and Configuration](#application-modules-and-configuration)
+    - [Core Module](#core-module)
+    - [Shared Module](#shared-module)
+    - [Cross-Cutting Module](#cross-cutting-module)
+    - [App Module](#app-module)
+    - [Configuration](#configuration)
+  - [Code Formatting](#code-formatting)
+  - [Create Angular Library Projects](#create-angular-library-projects)
+  - [Create Micro-Frontend (Application Project)](#create-micro-frontend-application-project)
+    - [Generate Micro-Frontend with CLI](#generate-micro-frontend-with-cli)
+    - [Add Routing Module to Micro-Frontend](#add-routing-module-to-micro-frontend)
+    - [Add Components to Micro-Frontend](#add-components-to-micro-frontend)
+      - [Component UI Services](#component-ui-services)
+    - [Add Routing to Micro-Frontend](#add-routing-to-micro-frontend)
+  - [Create Domain Library Projects](#create-domain-library-projects)
+    - [Common Domain Library](#common-domain-library)
+      - [Contact DTO (Data Transfer Object)](#contact-dto-data-transfer-object)
+    - [API Service for Domain Library](#api-service-for-domain-library)
+  - [Test](#test)
+  - [Application Components](#application-components)
+    - [Add Site Layout Component](#add-site-layout-component)
+    - [Add Site Header Component](#add-site-header-component)
+    - [Add Site Footer Component](#add-site-footer-component)
+  - [Common Module](#common-module)
+  - [Serverless Deploy Angular App](#serverless-deploy-angular-app)
+  - [Nx](#nx)
+    - [Quick Start & Documentation](#quick-start--documentation)
+    - [Adding capabilities to your workspace](#adding-capabilities-to-your-workspace)
+    - [Generate an application](#generate-an-application)
+    - [Generate a library](#generate-a-library)
+    - [Development server](#development-server)
+    - [Code scaffolding](#code-scaffolding)
+    - [Build](#build)
+    - [Running unit tests](#running-unit-tests)
+    - [Running end-to-end tests](#running-end-to-end-tests)
+    - [Understand your workspace](#understand-your-workspace)
+    - [Further help](#further-help)
 # @Valencia :: Quicken Brand Marketing Code Test
 
 ## Nx Workspace
@@ -771,7 +815,7 @@ Install the AWS CLI.
 > [BUCKET-NAME].s3-website.[BUCKET-ZONE].amazonaws.com
 > [http://quicken-contacts.s3-website-us-west-1.amazonaws.com/](http://quicken-contacts.s3-website-us-west-1.amazonaws.com/)
 
-asdf
+Attempting to access the web application without any public permissions will provide the following error message.
 
 ```ts
 403 Forbidden
