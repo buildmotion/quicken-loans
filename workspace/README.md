@@ -377,6 +377,11 @@ export class AppModule {}
 
 ## Code Formatting
 
+The Angular Workspace contains a single configuration for code formatting. This ensures that all project code is formatted against a predefined set of formatting rules. Code formatting is enforced during the commit process using a `pre-commit` hook. 
+
+> This allows a team of several developers to maintain consistent
+> code formatting.
+
 Install the following packages.
 
 ```json
@@ -403,6 +408,19 @@ Verify your lint configuration.
 Fix any formatting issues.
 
 ## Create Angular Library Projects
+
+The Angular Workspace supports *library* projects to share and reuse code throughout the Workspace in other application and library projects. This Workspace is enhanced with the Nrwl.io Nx developer tools - an Nx Workspace allows for libraries to be used without the overhead of:
+
+1. building/compiling packages
+2. rebuilding dependency packages
+3. managing package versions
+4. publishing packages
+5. consuming packages
+6. managing consumed package versions
+
+> Any JavaScript solution with multiple custom library/packages will require
+> a lot of maintenance to build and consume changes. Nx provides a
+> no build/no install solution.
 
 ```ts
 ng generate @nrwl/angular:library --publishable --simpleModuleName --style=scss --prefix=aa --name=actions
@@ -584,7 +602,7 @@ export class AppRoutingModule {}
 
 ## Create Domain Library Projects
 
-A domain library encapsulates all of the business logic for the specified _service_.s
+A domain library encapsulates all of the business logic for the specified _service_.
 
 ```ts
 Executing task: ng generate @nrwl/angular:library --name=contactsService --style=scss --directory=quicken/domain --publishable --simpleModuleName <
