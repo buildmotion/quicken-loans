@@ -31,7 +31,7 @@ export class AddContactAction<T> extends BusinessActionBase<T> {
             'Address1IsValid',
             'The address information 1 is required. Cannot be greater than 60 characters.',
             this.contact.address1,
-            1,
+            3,
             60,
             this.showRuleMessages
           )
@@ -71,7 +71,7 @@ export class AddContactAction<T> extends BusinessActionBase<T> {
             'EmailAddressIsValid',
             'The email is required. Cannot be greater than 80 characters.',
             this.contact.emailAddress,
-            1,
+            5,
             80,
             this.showRuleMessages
           )
@@ -109,7 +109,7 @@ export class AddContactAction<T> extends BusinessActionBase<T> {
             'PhoneIsValid',
             'The phone value is required. Cannot be greater than 25 characters.',
             this.contact.phone,
-            1,
+            10,
             25,
             this.showRuleMessages
           )
@@ -119,7 +119,7 @@ export class AddContactAction<T> extends BusinessActionBase<T> {
             'PostalCodeIsValid',
             'The postal code value is required. Cannot be greater than 25 characters.',
             this.contact.postalCode,
-            1,
+            5,
             25,
             this.showRuleMessages
           )
@@ -129,7 +129,7 @@ export class AddContactAction<T> extends BusinessActionBase<T> {
             'StateIsValid',
             'The state value is required. Cannot be greater than 45 characters.',
             this.contact.state,
-            1,
+            2,
             45,
             this.showRuleMessages
           )

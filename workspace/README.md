@@ -645,11 +645,20 @@ yarn run test --project=notification --watch
 yarn run test --project=rules-engine --watch
 ```
 
-asdf
+The _package.json_ contains scripts to run different types of tests
+
+```json
+"test:libs": "ng test --project=actions && ng test --project=components && ng test --project=configuration && ng test --project=error-handling && ng test --project=foundation && ng test --project=http-service && ng test --project=logging && ng test --project=notification && ng test --project=rules-engine",
+"test:quicken": "yarn run test --project=quicken-contacts && yarn run test --project=quicken-domain-contacts-service && yarn run test --project=quicken-micro-apps-contacts-app",
+```
+
+Use the `--test-file` option to target a specific file.
 
 ```ts
 ng test --project=quicken-domain-contacts-service --test-file=add-contact.action.spec.ts --watch
 ```
+
+The following is a the output for a single test file. The _business action_ provides the capability to verify the valdiation rules for in the inputs of a data operation.
 
 ```ts
 ng test --project=quicken-domain-contacts-service --watch

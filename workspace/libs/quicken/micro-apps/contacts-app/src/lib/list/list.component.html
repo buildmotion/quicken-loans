@@ -9,15 +9,15 @@
       </sprk-modal>
     </ng-container>
     <ng-template #contactListTemplate>
-      <div class="qc-contact-list--default-item ">
-        <h1>Contacts</h1>
-      </div>
-      <div class="qc-contact-list--add-button">
-        <button (click)="addContact()" variant="secondary" idString="button-secondary" sprkButton>
-          Add contact
-        </button>
-      </div>
       <ng-container *ngIf="contacts$ | async as contacts; else listTemplate">
+        <div class="qc-contact-list--default-item ">
+          <h1>Contacts</h1>
+        </div>
+        <div class="qc-contact-list--add-button">
+          <button (click)="addContact()" variant="secondary" idString="button-secondary" sprkButton>
+            Add contact
+          </button>
+        </div>
         <sprk-table idString="table-1">
           <thead sprkTableHead>
             <tr>
@@ -46,6 +46,9 @@
       </ng-container>
       <ng-template #listTemplate>
         <!-- DISPLAY NO DATA MESSAGE TO USER -->
+        <sprk-alert alertType="fail" idString="alert-fail-1" analyticsString="object.action.event">
+          The application attempted to retrieve your contacts - however, it was not successful.
+        </sprk-alert>
       </ng-template>
     </ng-template>
   </div>

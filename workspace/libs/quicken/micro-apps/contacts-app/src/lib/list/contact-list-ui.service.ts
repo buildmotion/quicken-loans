@@ -47,10 +47,13 @@ export class ContactListUIService extends ServiceBase {
   }
 
   private handleRetrieveContactsError(error: any): void {
+    this.showSpinnerSubject.next(false);
     this.handleError(error);
+    // display error message to user;
   }
 
   private finishRetrieveContactsRequest(): void {
+    this.loggingService.log(this.serviceName, Severity.Information, `Preparing to stop spinner for contact list.`);
     this.showSpinnerSubject.next(false);
   }
 }

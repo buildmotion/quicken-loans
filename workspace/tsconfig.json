@@ -29,7 +29,8 @@
       "@valencia/quicken/micro-apps/contacts-app": ["libs/quicken/micro-apps/contacts-app/src/index.ts"],
       "@valencia/quicken/domain/contacts-service": ["libs/quicken/domain/contacts-service/src/index.ts"],
       "@valencia/common": ["libs/common/src/index.ts"],
-      "@valencia/quicken/domain/common": ["libs/quicken/domain/common/src/index.ts"]
+      "@valencia/quicken/domain/common": ["libs/quicken/domain/common/src/index.ts"],
+      "@valencia/quicken/domain/validation": ["libs/quicken/domain/validation/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -7,6 +7,7 @@ import { LoggingService, Severity } from '@valencia/logging';
 import { AlertNotification } from './models/alert-notification.model';
 import { AlertTypes } from './models/alert-types.constants';
 import { Guid } from 'guid-typescript';
+import { FormGroup } from '@angular/forms';
 
 export class ComponentBase {
   componentName: string;
@@ -20,7 +21,9 @@ export class ComponentBase {
     this.componentName = componentName;
     this.alertNotification = new AlertNotification('', '');
 
-    this.loggingService.log(this.componentName, Severity.Information, `Preparing to load [${this.componentName}] component.`, [`ComponentId:${this.id}`]);
+    this.loggingService.log(this.componentName, Severity.Information, `Preparing to load [${this.componentName}] component.`, [
+      `ComponentId:${this.id}`,
+    ]);
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.googleAnalyticsPageview(event);
@@ -113,6 +116,17 @@ export class ComponentBase {
         this.loggingService.log(this.componentName, Severity.Error, `Error: ${errorResponse.Message}`);
       }
     }
+  }
+
+  /**
+   * Use to mark the form as touched; includes all form controls;
+   */
+  protected markFormAsTouched(form: FormGroup) {
+    form.markAsTouched({ onlySelf: false });
+
+    (<any>Object).values(form.controls).forEach(control => {
+      control.markAsTouched();
+    });
   }
 
   /**

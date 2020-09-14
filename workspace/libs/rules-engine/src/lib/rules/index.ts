@@ -15,4 +15,3 @@ export * from './RulePolicy';
 export * from './RuleResult';
 export * from './Severity';
 export * from './SimpleRule';
-export * from './StringIsNotNullEmptyRange';

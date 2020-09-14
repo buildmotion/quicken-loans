@@ -9,7 +9,8 @@ import { Contact, ContactDto } from '@valencia/quicken/domain/common';
 
 import { AddContactUIService } from '../add-contact-ui.service';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
-
+// tslint:disable-next-line:nx-enforce-module-boundaries
+import { ValidatorService } from '@valencia/quicken/domain/validation';
 @Component({
   selector: 'valencia-add',
   templateUrl: './add.component.html',
@@ -27,7 +28,13 @@ export class AddComponent extends ComponentBase implements OnInit {
 
   addContactForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private uiService: AddContactUIService, loggingService: LoggingService, router: Router) {
+  constructor(
+    private validatorService: ValidatorService,
+    private formBuilder: FormBuilder,
+    private uiService: AddContactUIService,
+    loggingService: LoggingService,
+    router: Router
+  ) {
     super('AddComponent', loggingService, router);
   }
 
@@ -48,6 +55,7 @@ export class AddComponent extends ComponentBase implements OnInit {
   }
 
   onSubmit() {
+    this.markFormAsTouched(this.addContactForm);
     if (this.addContactForm.valid) {
       this.loggingService.log(this.componentName, Severity.Information, `Preparing to add a new [contact].`);
 
@@ -72,7 +80,7 @@ export class AddComponent extends ComponentBase implements OnInit {
   private initializeForm() {
     this.addContactForm = this.formBuilder.group({
       address1: new FormControl(null, {
-        validators: [Validators.required, Validators.maxLength(60)],
+        validators: [Validators.required, Validators.minLength(3), Validators.maxLength(60)],
         asyncValidators: [],
         updateOn: 'blur',
       }),
@@ -82,42 +90,42 @@ export class AddComponent extends ComponentBase implements OnInit {
         updateOn: 'blur',
       }),
       city: new FormControl(null, {
-        validators: [Validators.required, Validators.maxLength(45)],
+        validators: [Validators.required, Validators.minLength(1), Validators.maxLength(45)],
         asyncValidators: [],
         updateOn: 'blur',
       }),
       company: new FormControl(null, {
-        validators: [Validators.required, Validators.maxLength(45)],
+        validators: [Validators.required, Validators.minLength(1), Validators.maxLength(45)],
         asyncValidators: [],
         updateOn: 'blur',
       }),
       emailAddress: new FormControl(null, {
-        validators: [Validators.required, Validators.maxLength(80)],
-        asyncValidators: [],
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(80)],
+        asyncValidators: [this.validatorService.EmailAddressFormat],
         updateOn: 'blur',
       }),
       firstName: new FormControl(null, {
-        validators: [Validators.required, Validators.maxLength(45)],
+        validators: [Validators.required, Validators.minLength(3), Validators.maxLength(45)],
         asyncValidators: [],
         updateOn: 'blur',
       }),
       lastName: new FormControl(null, {
-        validators: [Validators.required, Validators.maxLength(45)],
+        validators: [Validators.required, Validators.minLength(2), Validators.maxLength(45)],
         asyncValidators: [],
         updateOn: 'blur',
       }),
       phone: new FormControl(null, {
-        validators: [Validators.required, Validators.maxLength(25)],
+        validators: [Validators.required, Validators.minLength(10), Validators.maxLength(25)],
         asyncValidators: [],
         updateOn: 'blur',
       }),
       postalCode: new FormControl(null, {
-        validators: [Validators.required, Validators.maxLength(25)],
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(25)],
         asyncValidators: [],
         updateOn: 'blur',
       }),
       state: new FormControl(null, {
-        validators: [Validators.required, Validators.maxLength(45)],
+        validators: [Validators.required, Validators.minLength(2), Validators.maxLength(45)],
         asyncValidators: [],
         updateOn: 'blur',
       }),
@@ -126,43 +134,58 @@ export class AddComponent extends ComponentBase implements OnInit {
     this.addContactForm.valueChanges.subscribe(value => this.handleOnChange(value));
   }
 
+  /**
+   * Use to set the input form control to indicate an error
+   * if the specified input is [invalid] and [touched].
+   * @param inputName
+   */
+  hasError(inputName: string) {
+    if (inputName) {
+      const input = this.addContactForm.get(inputName);
+      if (input && input.touched && input.invalid) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   get firstName(): AbstractControl {
-    return this.addContactForm.get('firstName');
+    return this.addContactForm.get('firstName') as FormControl;
   }
 
   get lastName(): AbstractControl {
-    return this.addContactForm.get('lastName');
+    return this.addContactForm.get('lastName') as FormControl;
   }
 
   get address1(): AbstractControl {
-    return this.addContactForm.get('address1');
+    return this.addContactForm.get('address1') as FormControl;
   }
 
   get address2(): AbstractControl {
-    return this.addContactForm.get('address2');
+    return this.addContactForm.get('address2') as FormControl;
   }
 
   get city(): AbstractControl {
-    return this.addContactForm.get('city');
+    return this.addContactForm.get('city') as FormControl;
   }
 
   get emailAddress(): AbstractControl {
-    return this.addContactForm.get('emailAddress');
+    return this.addContactForm.get('emailAddress') as FormControl;
   }
 
   get company(): AbstractControl {
-    return this.addContactForm.get('company');
+    return this.addContactForm.get('company') as FormControl;
   }
 
   get phone(): AbstractControl {
-    return this.addContactForm.get('phone');
+    return this.addContactForm.get('phone') as FormControl;
   }
 
   get postalCode(): AbstractControl {
-    return this.addContactForm.get('postalCode');
+    return this.addContactForm.get('postalCode') as FormControl;
   }
 
   get state(): AbstractControl {
-    return this.addContactForm.get('state');
+    return this.addContactForm.get('state') as FormControl;
   }
 }

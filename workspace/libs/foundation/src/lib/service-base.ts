@@ -83,7 +83,10 @@ export class ServiceBase {
   /**
    * Use to handle HTTP errors when calling web api(s).
    */
-  handleHttpError(error: { toString: () => void; _body: any; json: () => ErrorResponse }, requestOptions: HttpRequestOptions): Observable<Response> {
+  handleHttpError(
+    error: { toString: () => void; _body: any; json: () => ErrorResponse },
+    requestOptions: HttpRequestOptions
+  ): Observable<Response> {
     const message = `${error.toString()} ${requestOptions.requestUrl}, ${JSON.stringify(requestOptions.body)}`;
     this.loggingService.log(this.serviceName, Severity.Error, message);
     if (error && error._body) {
@@ -150,6 +153,10 @@ export class ServiceBase {
     }
   }
 
+  logError(error: any, errorMessage: string) {
+    this.loggingService.log(this.serviceName, Severity.Error, `${errorMessage}; Error: ${error.message}`);
+  }
+
   /**
    * Use to reset the service context when you want to clear messages from the [ServiceContext]. If you want to
    * append messages from subsequent service calls, do not use this method.
@@ -166,7 +173,11 @@ export class ServiceBase {
     } else {
       this.loggingService.log(this.serviceName, Severity.Warning, `The current [ServiceContext] is not valid.`);
     }
-    this.loggingService.log(this.serviceName, Severity.Information, `Finished  processing request to [reset] the Messages of the current [ServiceContext].`);
+    this.loggingService.log(
+      this.serviceName,
+      Severity.Information,
+      `Finished  processing request to [reset] the Messages of the current [ServiceContext].`
+    );
   }
 
   /**
