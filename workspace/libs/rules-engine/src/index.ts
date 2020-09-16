@@ -1,6 +1,7 @@
 export { AreEqual } from './lib/rules/AreEqual';
 export { AreNotEqual } from './lib/rules/AreNotEqual';
 export { CompositeRule } from './lib/rules/CompositeRule';
+export { GuidIsValid } from './lib/rules/GuidIsValid';
 export { IRuleComponent } from './lib/rules/IRuleComponent';
 export { IsFalse } from './lib/rules/IsFalse';
 export { IsNotNullOrUndefined } from './lib/rules/IsNotNullOrUndefined';

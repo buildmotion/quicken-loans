@@ -12,6 +12,7 @@
     "nx": "nx",
     "start": "ng serve",
     "build": "ng build",
+    "build:quicken": "ng build --project=quicken-contacts --prod",
     "test": "ng test",
     "test:libs": "ng test --project=actions && ng test --project=components && ng test --project=configuration && ng test --project=error-handling && ng test --project=foundation && ng test --project=http-service && ng test --project=logging && ng test --project=notification && ng test --project=rules-engine",
     "test:quicken": "yarn run test --project=quicken-contacts && yarn run test --project=quicken-domain-contacts-service && yarn run test --project=quicken-micro-apps-contacts-app",

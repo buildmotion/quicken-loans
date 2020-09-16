@@ -8,6 +8,14 @@
         </p>
       </sprk-modal>
     </ng-container>
+    <ng-container *ngIf="removeContactSpinner$ | async as removeContactSpinner">
+      <!-- PLEASE WAIT WHILE WE [REMOVE] THE CONTACT -->
+      <sprk-modal [isVisible]="removeContactSpinner" title="Removing contact..." modalType="wait" idString="modal-wait-1">
+        <p class="sprk-c-Modal__content">
+          Please wait while we remove the selected contact.
+        </p>
+      </sprk-modal>
+    </ng-container>
     <ng-template #contactListTemplate>
       <ng-container *ngIf="contacts$ | async as contacts; else listTemplate">
         <div class="qc-contact-list--default-item ">
@@ -18,6 +26,7 @@
             Add contact
           </button>
         </div>
+        <!-- CONTACT(S) TABLE -->
         <sprk-table idString="table-1">
           <thead sprkTableHead>
             <tr>
@@ -36,7 +45,7 @@
               <td>{{ item.phone }}</td>
               <td>
                 <button (click)="removeContact(item)" idString="button-primary" sprkButton>
-                  Remove contact
+                  Remove
                 </button>
               </td>
             </tr>

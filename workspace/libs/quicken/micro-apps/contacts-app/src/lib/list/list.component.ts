@@ -13,8 +13,9 @@ import { Contact } from '@valencia/quicken/domain/common';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent extends ComponentBase implements OnInit {
-  showSpinner$: Observable<boolean> = this.uiService.showSpinner$;
   contacts$: Observable<Contact[]> = this.uiService.contacts$;
+  removeContactSpinner$: Observable<boolean> = this.uiService.removeContactSpinner$;
+  showSpinner$: Observable<boolean> = this.uiService.showSpinner$;
 
   constructor(private uiService: ContactListUIService, loggingService: LoggingService, router: Router) {
     super('ListComponent', loggingService, router);
@@ -30,6 +31,6 @@ export class ListComponent extends ComponentBase implements OnInit {
 
   removeContact(contact: Contact) {
     this.loggingService.log(this.componentName, Severity.Information, `Preparing to remove selected contact: ${contact.contactId}.`);
-    // this.uiService.removeContact(contact);
+    this.uiService.removeContact(contact);
   }
 }

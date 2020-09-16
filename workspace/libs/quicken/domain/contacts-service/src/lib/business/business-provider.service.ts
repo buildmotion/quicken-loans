@@ -8,8 +8,9 @@ import { Observable } from 'rxjs';
 import { IBusinessProviderService } from './i-business-provider.service';
 import { AddContactAction } from './actions/add-contact.action';
 // tslint:disable-next-line: nx-enforce-module-boundaries
-import { ContactDto } from '@valencia/quicken/domain/common';
+import { Contact, ContactDto } from '@valencia/quicken/domain/common';
 import { RetrieveContactsAction } from './actions/retrieve-contacts.action';
+import { RemoveContactAction } from './actions/remove-contact.action';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,12 @@ export class BusinessProviderService extends ServiceBase implements IBusinessPro
 
   add<T>(contact: ContactDto): Observable<ApiResponse<T>> {
     const action = new AddContactAction<T>(contact);
+    action.Do(this);
+    return action.response;
+  }
+
+  removeContact<T>(contact: Contact): Observable<ApiResponse<T>> {
+    const action = new RemoveContactAction<T>(contact);
     action.Do(this);
     return action.response;
   }
