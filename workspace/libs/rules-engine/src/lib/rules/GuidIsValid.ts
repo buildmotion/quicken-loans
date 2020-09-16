@@ -1,6 +1,7 @@
 ﻿import { StringIsRegExMatch } from './StringIsRegExMatch';
-import * as rules from '@valencia/rules-engine';
 import { CompositeRule } from './CompositeRule';
+import { IsNotNullOrUndefined } from './IsNotNullOrUndefined';
+import { AreEqual } from './AreEqual';
 
 /**
  * Use this rule to validate the target to determine if it is a valid
@@ -8,10 +9,10 @@ import { CompositeRule } from './CompositeRule';
  */
 export class GuidIsValid extends CompositeRule {
   /**
-   * Construcctor for the [GuidIsValid] composite rule.
+   * Constructor for the [GuidIsValid] composite rule.
    * @param name Use to indicate the name of the rule.
-   * @param message Use to indiate the message to display for a false evaluation.
-   * @param target Use to specify the target value to evalute.
+   * @param message Use to indicate the message to display for a false evaluation.
+   * @param target Use to specify the target value to evaluate.
    * @param isDisplayable Use to indicate if the rule result is displayable.
    */
   constructor(name: string, message: string, private target: string, isDisplayable: boolean) {
@@ -31,13 +32,21 @@ export class GuidIsValid extends CompositeRule {
 
     // determine if the target is a valid guid;
     this.rules.push(
-      new rules.IsNotNullOrUndefined('GuidStringIsNotNullOrUndefined', 'The target value is null or undefined.', this.target, doNotShowRuleViolation)
+      new IsNotNullOrUndefined('GuidStringIsNotNullOrUndefined', 'The target value is null or undefined.', this.target, doNotShowRuleViolation)
     );
     if (this.target) {
       this.rules.push(
-        new rules.AreEqual('GuidStringLengthIsValid', 'The length of the target value is not valid.', this.target.length, guidLength, doNotShowRuleViolation)
+        new AreEqual(
+          'GuidStringLengthIsValid',
+          'The length of the target value is not valid.',
+          this.target.length,
+          guidLength,
+          doNotShowRuleViolation
+        )
       );
-      this.rules.push(new StringIsRegExMatch('GuidIsValid', 'The target value is not a valid guid.', this.target, guidExpression, doNotShowRuleViolation));
+      this.rules.push(
+        new StringIsRegExMatch('GuidIsValid', 'The target value is not a valid guid.', this.target, guidExpression, doNotShowRuleViolation)
+      );
     }
   }
 }
