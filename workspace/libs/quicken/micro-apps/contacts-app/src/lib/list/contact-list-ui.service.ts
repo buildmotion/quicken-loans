@@ -78,10 +78,29 @@ export class ContactListUIService extends ServiceBase {
       if (response.isSuccess) {
         this.loggingService.log(this.serviceName, Severity.Information, `Preparing to process [successful] API response`);
         this.contacts = response.data;
+        this.sortContacts(this.contacts);
         this.contactsSubject.next(this.contacts);
       } else {
         this.loggingService.log(this.serviceName, Severity.Information, `Preparing to process [unsuccessful] API response`);
       }
+    }
+  }
+
+  private sortContacts(contacts: Contact[]) {
+    if (contacts && contacts.length > 0) {
+      const sorted = contacts.sort((o1, o2) => {
+        if (o1.lastName > o2.lastName) {
+          return 1;
+        }
+
+        if (o1.lastName < o2.lastName) {
+          return -1;
+        }
+
+        return 0;
+      });
+
+      this.contacts = sorted;
     }
   }
 

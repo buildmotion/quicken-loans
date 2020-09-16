@@ -78,7 +78,7 @@ export class AddComponent extends ComponentBase implements OnInit {
   }
 
   discard() {
-    this.routeTo('contacts/landing');
+    this.routeTo('/');
   }
 
   private initializeForm() {

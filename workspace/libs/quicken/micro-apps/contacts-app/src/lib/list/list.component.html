@@ -40,9 +40,13 @@
           <tbody>
             <tr *ngFor="let item of contacts">
               <td>{{ item.lastName }}, {{ item.firstName }}</td>
-              <td>{{ item.address1 }} ({{ item.address2 }}), {{ item.city }}, {{ item.state }} {{ item.postalCode }}</td>
-              <td>{{ item.emailAddress }}</td>
-              <td>{{ item.phone }}</td>
+              <td>{{ item.address1 }}, {{ item.city }}, {{ item.state }} {{ item.postalCode }}</td>
+              <td>
+                <a href="mailto:{{ item.emailAddress }}">{{ item.emailAddress }}</a>
+              </td>
+              <td>
+                <a href="tel:{{ item.phone }}">{{ item.phone }}</a>
+              </td>
               <td>
                 <button (click)="removeContact(item)" idString="button-primary" sprkButton>
                   Remove
