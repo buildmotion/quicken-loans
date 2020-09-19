@@ -15,7 +15,7 @@ export const AppConfig: IConfiguration = {
   },
   logglyConfig: {
     applicationName: 'quicken-contacts',
-    apiKey: '01e4b3aa-f301-43e7-bf60-40ba5d0729d4',
+    apiKey: '86b52c28-e0f2-4e97-b338-c2f4dba7def0',
     sendConsoleErrors: true,
   },
   webConfig: {
