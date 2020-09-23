@@ -29,4 +29,8 @@ export class ContactsService extends ServiceBase {
   retrieveContacts<T>(): Observable<ApiResponse<T>> {
     return this.businessProvider.retrieveContacts<T>();
   }
+
+  retrieveRates() {
+    return this.businessProvider.retrieveRates();
+  }
 }

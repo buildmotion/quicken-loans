@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'contacts/list',
     loadChildren: () => import('@valencia/quicken/micro-apps/contacts-app').then(m => m.ContactsAppModule),
   },
+  {
+    path: 'contacts/rates',
+    loadChildren: () => import('@valencia/quicken/micro-apps/contacts-app').then(m => m.ContactsAppModule),
+  },
 ];
 
 @NgModule({

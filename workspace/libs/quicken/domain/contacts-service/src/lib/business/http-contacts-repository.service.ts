@@ -36,4 +36,12 @@ export class HttpContactsRepositoryService extends ServiceBase implements IHttpC
     const options = this.httpService.createOptions(HttpRequestMethod.get, this.httpService.createHeader(), requestURL, null, false);
     return this.httpService.execute(options);
   }
+
+  retrieveRates<T>(): Observable<any> {
+    const requestURL = `https://juz537ocx2.execute-api.us-west-1.amazonaws.com/dev/rates`;
+
+    https: this.loggingService.log(this.serviceName, Severity.Information, `Preparing to call API to [retrieve all rates].`);
+    const options = this.httpService.createOptions(HttpRequestMethod.get, this.httpService.createHeader(), requestURL, null, false);
+    return this.httpService.execute(options);
+  }
 }
