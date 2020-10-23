@@ -11,7 +11,6 @@ import { AddContactAction } from './actions/add-contact.action';
 import { Contact, ContactDto } from '@valencia/quicken/domain/common';
 import { RetrieveContactsAction } from './actions/retrieve-contacts.action';
 import { RemoveContactAction } from './actions/remove-contact.action';
-import { RetrieveRatesAction } from './actions/retrieve-rates.action';
 
 @Injectable({
   providedIn: 'root',
@@ -39,12 +38,6 @@ export class BusinessProviderService extends ServiceBase implements IBusinessPro
 
   retrieveContacts<T>(): Observable<ApiResponse<T>> {
     const action = new RetrieveContactsAction<T>();
-    action.Do(this);
-    return action.response;
-  }
-
-  retrieveRates() {
-    const action = new RetrieveRatesAction();
     action.Do(this);
     return action.response;
   }
