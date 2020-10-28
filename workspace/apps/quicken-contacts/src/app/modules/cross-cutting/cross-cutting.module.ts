@@ -40,7 +40,7 @@ export function initializeLogWriter(loggingService: LoggingService, consoleWrite
   providers: [],
 })
 export class CrossCuttingModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<CrossCuttingModule> {
     return {
       ngModule: CrossCuttingModule,
       providers: [

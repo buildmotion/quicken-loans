@@ -6,7 +6,7 @@ import { ConfigurationContext } from './configuration-context';
   imports: [CommonModule],
 })
 export class ConfigurationModule {
-  static forRoot(configContext: ConfigurationContext): ModuleWithProviders {
+  static forRoot(configContext: ConfigurationContext): ModuleWithProviders<ConfigurationModule> {
     console.log(`Preparing to handle configuration context.`);
     return {
       ngModule: ConfigurationModule,
