@@ -27,7 +27,7 @@
         </sprk-alert>
       </ng-container>
       <!-- NOTIFICATIONS :: END -->
-
+      
       <ng-container *ngIf="showSpinner$ | async as show; else formTemplate">
         <sprk-modal [isVisible]="show" title="New Contact..." modalType="wait" idString="modal-wait-1">
           <p class="sprk-c-Modal__content">

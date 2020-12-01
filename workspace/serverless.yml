@@ -1,7 +1,16 @@
-service: contacts
 # app and org for use with dashboard.serverless.com
 org: angulararchitecture
 app: quicken-contacts
+service: contacts
+
+custom:
+  appName: 'quicken-contacts'
+  defaultStage: dev
+  currentStage: ${opt:stage, self:custom.defaultStage}
+  userPoolName: ${self:custom.appName}-user-pool-${self:custom.currentStage}
+  userPoolClientName: ${self:custom.appName}-user-pool-client-${self:custom.currentStage}
+  ContactsTable:
+    name: !Ref ContactsTable
 
 plugins:
   - serverless-plugin-typescript
@@ -11,7 +20,7 @@ provider:
   tracing:
     apiGateway: true
   runtime: nodejs12.x
-  region: us-west-1
+  region: us-west-2
   stage: ${opt:stage, 'dev'}
   environment:
     CONTACTS_TABLE_NAME: ${self:custom.ContactsTable.name}
@@ -42,8 +51,24 @@ functions:
 resources:
   Resources:
     ContactsTable: ${file(aws/contactsTable.yml):ContactsTable}
-custom:
-  ContactsTable:
-    name: !Ref ContactsTable
-  # optimize:
-  #   external: ['swagger-ui-dist']
+    CognitoUserPool:
+      Type: 'AWS::Cognito::UserPool'
+      Properties:
+        MfaConfiguration: OFF
+        UserPoolName: ${self:custom.userPoolName}
+        UsernameAttributes:
+          - email
+        Policies:
+          PasswordPolicy:
+            MinimumLength: 8
+            RequireLowercase: True
+            RequireNumbers: True
+            RequireSymbols: True
+            RequireUppercase: True
+    CognitoUserPoolClient:
+      Type: 'AWS::Cognito::UserPoolClient'
+      Properties:
+        ClientName: ${self:custom.userPoolClientName}
+        GenerateSecret: False
+        UserPoolId:
+          Ref: CognitoUserPool

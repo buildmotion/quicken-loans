@@ -1,12 +1,13 @@
 import { BehaviorSubject, Observable } from 'rxjs';
-
-import { Injectable } from '@angular/core';
-import { ApiResponse } from '@valencia/common';
-import { ServiceBase } from '@valencia/foundation';
-import { LoggingService, Severity } from '@valencia/logging';
-// tslint:disable-next-line:nx-enforce-module-boundaries
 import { Contact, ContactDto } from '@valencia/quicken/domain/common';
+import { LoggingService, Severity } from '@valencia/logging';
+
+import { ApiResponse } from '@valencia/common';
 import { ContactsService } from '@valencia/quicken/domain/contacts-service';
+import { Injectable } from '@angular/core';
+import { ServiceBase } from '@valencia/foundation';
+
+// tslint:disable-next-line:nx-enforce-module-boundaries
 
 @Injectable({
   providedIn: 'root',
@@ -57,6 +58,9 @@ export class AddContactUIService extends ServiceBase {
   }
 
   private handleAddContactError(error: any): void {
+    this.showSpinnerSubject.next(false);
+    const failedMessage = this.contactsService.serviceContext.Messages[0].Message;
+    this.failMessageSubject.next(failedMessage);
     this.handleError(error);
   }
 

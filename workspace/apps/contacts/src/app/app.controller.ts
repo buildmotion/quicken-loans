@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Patch } from '@nestjs/common';
+import { Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
 
 // import { ApiContactsService } from '@valencia/api/contacts';
 
@@ -16,6 +16,5 @@ export class AppController {
       message: `Successfully created new contact.`,
     };
     return response;
-    // return this.contactService.getData();
   }
 }
