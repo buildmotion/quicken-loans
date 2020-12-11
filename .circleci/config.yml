@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/workspace
     docker:
-      - image: circleci/node:12.14.1@sha256:f9de24fc0017059cc42ef7d07db060008af65a98b1f0cdd1ef3339213226bf6d
+      - image: cimg/node:15.4.0
     steps:
       - checkout
       - run: node --version
