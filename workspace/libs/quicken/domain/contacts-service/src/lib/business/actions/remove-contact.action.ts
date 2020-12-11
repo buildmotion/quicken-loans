@@ -1,5 +1,6 @@
 import { BusinessActionBase } from './business-action-base';
 import { Severity } from '@valencia/logging';
+// tslint:disable-next-line:nx-enforce-module-boundaries
 import { Contact } from '@valencia/quicken/domain/common';
 import { IsNotNullOrUndefined, StringIsNotNullEmptyRange, GuidIsValid } from '@valencia/rules-engine';
 

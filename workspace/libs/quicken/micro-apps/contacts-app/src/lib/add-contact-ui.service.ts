@@ -1,4 +1,5 @@
 import { BehaviorSubject, Observable } from 'rxjs';
+// tslint:disable-next-line:nx-enforce-module-boundaries
 import { Contact, ContactDto } from '@valencia/quicken/domain/common';
 import { LoggingService, Severity } from '@valencia/logging';
 
@@ -6,8 +7,6 @@ import { ApiResponse } from '@valencia/common';
 import { ContactsService } from '@valencia/quicken/domain/contacts-service';
 import { Injectable } from '@angular/core';
 import { ServiceBase } from '@valencia/foundation';
-
-// tslint:disable-next-line:nx-enforce-module-boundaries
 
 @Injectable({
   providedIn: 'root',

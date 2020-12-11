@@ -1,4 +1,5 @@
 import { Action, ActionResult } from '@valencia/actions';
+// tslint:disable-next-line:nx-enforce-module-boundaries
 import { Contact, ContactDto } from '@valencia/quicken/domain/common';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { LoggingService, LoggingServiceMock } from '@valencia/logging';

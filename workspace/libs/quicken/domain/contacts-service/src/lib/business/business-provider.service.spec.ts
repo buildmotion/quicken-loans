@@ -1,9 +1,9 @@
-import { TestBed } from '@angular/core/testing';
+import { LoggingService, LoggingServiceMock } from '@valencia/logging';
 
 import { BusinessProviderService } from './business-provider.service';
-import { HttpClientModule } from '@angular/common/http';
 import { ConfigurationService } from '@valencia/configuration';
-import { LoggingService, LoggingServiceMock } from '@valencia/logging';
+import { HttpClientModule } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
 
 describe('BusinessProviderService', () => {
   beforeEach(() =>
@@ -23,7 +23,7 @@ describe('BusinessProviderService', () => {
   );
 
   it('should be created', () => {
-    const service: BusinessProviderService = TestBed.get(BusinessProviderService);
+    const service: BusinessProviderService = TestBed.inject<BusinessProviderService>(BusinessProviderService);
     expect(service).toBeTruthy();
   });
 });
