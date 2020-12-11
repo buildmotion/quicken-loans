@@ -49,7 +49,7 @@ export class AddContactUIService extends ServiceBase {
         this.loggingService.log(this.serviceName, Severity.Information, `Preparing to process [successful] API response`);
         this.contact = response.data;
         this.contactSubject.next(response.data);
-        this.successMessageSubject.next(`Successfully create contact for [${this.contact.firstName} ${this.contact.lastName}].`);
+        this.successMessageSubject.next(`Successfully created contact for [${this.contact.firstName} ${this.contact.lastName}].`);
       } else {
         this.loggingService.log(this.serviceName, Severity.Information, `Preparing to process [unsuccessful] API response`);
         this.failMessageSubject.next(response.message);
