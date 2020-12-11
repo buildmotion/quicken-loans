@@ -3,9 +3,10 @@ jobs:
   build:
     working_directory: ~/workspace
     docker:
-      - image: circleci/node@10.8.0
+      - image: cimg/node@12.19.0
     steps:
       - checkout
+      - run: node --version
       - run:
           name: install-dependencies
           command: cd workspace && yarn install
