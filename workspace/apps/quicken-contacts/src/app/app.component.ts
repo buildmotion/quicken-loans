@@ -14,7 +14,7 @@ export class AppComponent extends ComponentBase {
   /**
    * The application components extend from the library project
    * [Foundation] to provide the base class. Logging is a key
-   * feature of the application.
+   * feature of the application. Yup!
    */
   constructor(loggingService: LoggingService, router: Router) {
     super('AppComponent', loggingService, router);
