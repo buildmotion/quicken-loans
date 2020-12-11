@@ -25,7 +25,6 @@ jobs:
           name: angular-build
           command: cd workspace && yarn ng build --project=quicken-contacts --prod --aot
 workflows:
-version: 2
 concurrently:
     jobs:
     - web
