@@ -8,7 +8,6 @@ jobs:
       - image: circleci/node:6-browsers
     steps:
       - checkout
-        name: checkout-some-sweet-code
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
