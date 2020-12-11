@@ -11,9 +11,7 @@ jobs:
       # - restore_cache:
       #     key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
-          command: |
-          echo Changing directory to [workspace].
-          cd workspace
+          command: cd workspace
       - run:
           name: install-dependencies
           command: yarn install
