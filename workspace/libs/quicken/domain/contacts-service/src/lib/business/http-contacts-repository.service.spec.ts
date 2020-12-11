@@ -12,7 +12,7 @@ describe('HttpContactsRepositoryService', () => {
     })
   );
 
-  it('should be created', () => {
+  it('should create HttpContactsRepositoryService', () => {
     const service: HttpContactsRepositoryService = TestBed.inject(HttpContactsRepositoryService);
     expect(service).toBeTruthy();
   });
