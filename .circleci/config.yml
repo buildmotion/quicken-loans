@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/workspace
     docker:
-      - image: cimg/node:12.19.1
+      - image: cimg/node:12.19.1-browsers
     steps:
       - checkout
       - run: node --version
