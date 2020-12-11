@@ -23,7 +23,7 @@ jobs:
       - store_artifacts:
           path: tslint.xml
           prefix: lint
-    - save_cache:
+      - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
