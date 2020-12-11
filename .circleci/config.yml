@@ -8,8 +8,9 @@ jobs:
       - checkout
       - run: node --version
       - run:
-          name: install-dependencies
-          command: cd workspace && yarn install
+        name: install-dependencies
+        command: cd workspace && yarn install
+      - run: yarn --version
       - run:
           name: angular-test
           command: cd workspace && yarn ng test --project=quicken-contacts --single-run --no-progress
