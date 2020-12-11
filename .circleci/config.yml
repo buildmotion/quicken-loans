@@ -6,14 +6,12 @@ jobs:
       - image: circleci/node@12.19.0
     steps:
       - checkout
-      # - restore_cache:
-      #     key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
-        name: install-dependencies
-        command: cd workspace && yarn install
+          name: install-dependencies
+          command: cd workspace && yarn install
       - run:
-        name: angular-test
-        command: cd workspace && yarn ng test --project=quicken-contacts --single-run --no-progress
+          name: angular-test
+          command: cd workspace && yarn ng test --project=quicken-contacts --single-run --no-progress
       - store_artifacts:
           path: test-results.xml
           prefix: tests
