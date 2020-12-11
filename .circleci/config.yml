@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/workspace
+    working_directory: ~/quicken-loans
     docker:
       - image: cimg/node:15.4.0
     steps:
