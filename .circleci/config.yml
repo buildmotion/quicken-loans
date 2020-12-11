@@ -20,7 +20,8 @@ jobs:
     #         - ./node_modules
       - run:
           name: angular-build
-          command: yarn ng -- build --project=contacts --prod --aot --no-progress
+        #   command: yarn ng -- build --project=contacts --prod --aot --no-progress
+          command: yarn ng -- build --project=contacts --prod --aot
       - run:
           name: angular-test
           command: yarn test --project=contacts --single-run --no-progress
