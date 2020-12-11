@@ -1,30 +1,33 @@
 version: 2.1
 jobs:
-  web:
+  build:
+    working_directory: ~/workspace
     docker:
       - image: circleci/node@12.19.0
-    working_directory: ~/quicken-loans
     steps:
       - checkout
+      # - restore_cache:
+      #     key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
-        name: install-dependencies
-        command: cd workspace && yarn install
-      - run:
-        name: angular-test
-        command: cd workspace && yarn ng test --project=quicken-contacts --single-run --no-progress
-      - store_artifacts:
-        path: test-results.xml
-        prefix: tests
-      - run:
-        name: angular-lint
-        command: cd workspace && yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
-      - store_artifacts:
-        path: tslint.xml
-        prefix: lint
-      - run:
-          name: angular-build
-          command: cd workspace && yarn ng build --project=quicken-contacts --prod --aot
-workflows:
-concurrently:
-    jobs:
-    - web
+          name: install-dependencies
+          command: cd workspace && yarn install
+          - run:
+            name: angular-test
+            command: cd workspace && yarn ng test --project=quicken-contacts --single-run --no-progress
+        - store_artifacts:
+            path: test-results.xml
+            prefix: tests
+        - run:
+            name: angular-lint
+            command: cd workspace && yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
+        - save_cache:
+            key: dependency-cache-{{ checksum "yarn.lock" }}
+            paths:
+                - ~/.cache/yarn
+                - ./node_modules
+        - run:
+            name: angular-build
+            command: cd workspace && yarn ng build --project=quicken-contacts --prod --aot
+        - store_artifacts:
+            path: tslint.xml
+            prefix: lint
