@@ -1,9 +1,8 @@
-import { TestBed } from '@angular/core/testing';
-
-import { HttpContactsRepositoryService } from './http-contacts-repository.service';
-import { HttpClientModule } from '@angular/common/http';
 import { ConfigurationService } from '@valencia/configuration';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpContactsRepositoryService } from './http-contacts-repository.service';
 import { LoggingService } from '@valencia/logging';
+import { TestBed } from '@angular/core/testing';
 
 describe('HttpContactsRepositoryService', () => {
   beforeEach(() =>
@@ -14,7 +13,7 @@ describe('HttpContactsRepositoryService', () => {
   );
 
   it('should be created', () => {
-    const service: HttpContactsRepositoryService = TestBed.get(HttpContactsRepositoryService);
+    const service: HttpContactsRepositoryService = TestBed.inject(HttpContactsRepositoryService);
     expect(service).toBeTruthy();
   });
 });
