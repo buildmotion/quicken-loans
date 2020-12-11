@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/workspace
     docker:
-      - image: cimg/node@12
+      - image: circleci/node:6-browsers
     steps:
       - checkout
       - run: node --version
