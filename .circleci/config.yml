@@ -20,6 +20,9 @@ jobs:
       - run:
           name: angular-lint
           command: cd workspace && yarn lint
+      - store_artifacts:
+          path: tslint.xml
+          prefix: lint
       - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
@@ -28,6 +31,3 @@ jobs:
       - run:
           name: angular-build
           command: cd workspace && yarn ng build --project=quicken-contacts --prod --aot
-      - store_artifacts:
-          path: tslint.xml
-          prefix: lint
