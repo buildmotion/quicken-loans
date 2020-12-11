@@ -22,9 +22,6 @@ jobs:
       #     paths:
       #       - ~/.cache/yarn
       #       - ./node_modules
-      paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: angular-build
         #   command: yarn ng -- build --project=contacts --prod --aot --no-progress
