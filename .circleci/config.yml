@@ -1,17 +1,15 @@
 version: 2.1
 orbs:
-    node: circleci/node@3.0.0
+    node: circleci/node@12.19.0
 jobs:
   build:
-    working_directory: ~/quicken-loans
+    working_directory: ~/workspace
     docker:
       - image: circleci/node:6-browsers
     steps:
       - checkout
       # - restore_cache:
       #     key: dependency-cache-{{ checksum "yarn.lock" }}
-      - run:
-          command: cd workspace
       - run:
           name: install-dependencies
           command: yarn install
